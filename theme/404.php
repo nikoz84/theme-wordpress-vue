@@ -1,6 +1,8 @@
 <?php
 /**
- * O template usado para exibir páginas 404 (não encontrado).
+ * Vue Blocks — 404 (Not found) template.
+ *
+ * Refined to the Safe Mídia visual language per US3.
  *
  * @package Vue_Blocks
  */
@@ -8,22 +10,22 @@
 get_header();
 ?>
 
-<div class="vb-layout">
-	<main id="primary" class="site-main">
-		<section class="error-404 not-found">
-			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Ops! Página não encontrada.', 'vue-blocks' ); ?></h1>
-			</header>
+<main id="primary" class="site-main vb-layout vb-404">
 
-			<div class="page-content">
-				<p><?php esc_html_e( 'O endereço que você tentou acessar não existe. Que tal pesquisar por algo?', 'vue-blocks' ); ?></p>
-				<?php get_search_form(); ?>
-			</div>
-		</section>
-	</main>
+	<section class="archive-empty vb-404-block">
+		<h1 class="sec-title"><?php esc_html_e( 'Página não encontrada', 'vue-blocks' ); ?></h1>
+		<p class="vb-404-msg">
+			<?php esc_html_e( 'A página que você procura não existe ou foi movida. Tente a pesquisa abaixo ou volte à home.', 'vue-blocks' ); ?>
+		</p>
+		<div class="vb-404-search">
+			<?php get_search_form(); ?>
+		</div>
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn-see-more">
+			<?php esc_html_e( 'Voltar à home', 'vue-blocks' ); ?> &rarr;
+		</a>
+	</section>
 
-	<?php get_sidebar(); ?>
-</div>
+</main>
 
 <?php
 get_footer();

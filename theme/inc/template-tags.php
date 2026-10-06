@@ -156,3 +156,66 @@ if ( ! function_exists( 'vb_first_category' ) ) {
 		return $cats[0]->name;
 	}
 }
+
+
+/**
+ * Colunista cards for the "Colunistas" home section.
+ *
+ * Returns one card per distinct post_author in the "colunistas"
+ * category (per data-model E2 of feature 005). Each card carries
+ * the author's display name, avatar (or a placeholder), and the
+ * most-recent post title + permalink.
+ *
+ * Returns an empty array when no posts exist in "colunistas" — the
+ * template part renders nothing in that case (per FR-004 empty-state
+ * rule).
+ *
+ * @param int $limit Maximum number of cards to return. Default 3.
+ * @return array<int, array<string, mixed>>
+ */
+if ( ! function_exists( 'vb_get_colunista_cards' ) ) {
+	function vb_get_colunista_cards( $limit = 3 ) {
+		$cat = get_category_by_slug( 'colunistas' );
+		if ( ! $cat ) {
+			return array();
+		}
+
+		$posts = get_posts(
+			array(
+				'category'      => $cat->term_id,
+				'posts_per_page' => 50,
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+			)
+		);
+		if ( empty( $posts ) ) {
+			return array();
+		}
+
+		$cards        = array();
+		$seen_authors = array();
+		foreach ( $posts as $post ) {
+			if ( in_array( $post->post_author, $seen_authors, true ) ) {
+				continue;
+			}
+			$seen_authors[] = (int) $post->post_author;
+
+			$cards[] = array(
+				'author_id'           => (int) $post->post_author,
+				'author_display_name' => get_the_author_meta( 'display_name', $post->post_author ),
+				'author_bio'          => get_the_author_meta( 'user_description', $post->post_author ),
+				'avatar_url'          => get_avatar_url( $post->post_author, array( 'size' => 52 ) ),
+				'latest_post_id'      => (int) $post->ID,
+				'latest_post_title'   => get_the_title( $post ),
+				'latest_post_permalink' => get_permalink( $post ),
+				'latest_post_thumbnail_url' => get_the_post_thumbnail_url( $post, 'vb-card' ),
+			);
+
+			if ( count( $cards ) >= $limit ) {
+				break;
+			}
+		}
+
+		return $cards;
+	}
+}

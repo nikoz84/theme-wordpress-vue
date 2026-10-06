@@ -123,6 +123,29 @@ function vb_setup() {
 add_action( 'after_setup_theme', 'vb_setup' );
 
 /**
+ * Auto-create the "Colunistas" WordPress category on theme setup
+ * (per FR-004a of feature 005 and `contracts/colunistas.contract.md`).
+ * Idempotent — re-runs are no-ops; if the category exists, nothing
+ * happens.
+ *
+ * Uses `term_exists` + `wp_insert_term` (always loaded from
+ * `wp-includes/taxonomy.php`) instead of the admin-only
+ * `category_exists` + `wp_create_category` so this works in
+ * non-admin contexts (`after_setup_theme` fires before
+ * `wp-admin/includes/taxonomy.php` is loaded).
+ */
+function vb_register_colunistas_category() {
+	if ( term_exists( 'colunistas', 'category' ) ) {
+		return;
+	}
+	wp_insert_term( 'Colunistas', 'category', array(
+		'description' => 'Colunistas do portal Safe Mídia.',
+		'slug'        => 'colunistas',
+	) );
+}
+add_action( 'after_setup_theme', 'vb_register_colunistas_category' );
+
+/**
  * 2. LARGURA DE CONTEÚDO (usada por embeds/imagens)
  */
 function vb_content_width() {

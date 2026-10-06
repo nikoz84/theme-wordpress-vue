@@ -35,7 +35,7 @@ root is unchanged.
 **Purpose**: Lay down the new `template-parts/home/` directory tree
 so the user-story implementation phases can drop files into it.
 
-- [ ] T001 [P] Create `theme/template-parts/home/` directory at the repo root (mkdir -p; no other files inside)
+- [X] T001 [P] Create `theme/template-parts/home/` directory at the repo root (mkdir -p; no other files inside)
 
 ---
 
@@ -47,8 +47,8 @@ will need. No user story work can begin until this phase is done.
 
 **⚠️ CRITICAL**: T003 is required by the Colunistas section in US1.
 
-- [ ] T002 Add `theme/functions.php` `vb_register_colunistas_category()` callback registered on the `after_setup_theme` hook per `contracts/colunistas.contract.md` (checks `category_exists('colunistas')`, calls `wp_create_category('Colunistas')` if missing; idempotent)
-- [ ] T003 [P] Add `vb_get_colunista_cards(int $limit = 3): array` helper to `theme/inc/template-tags.php` (returns up to N cards per the data-model E2 — distinct authors in the "colunistas" category with their latest post; empty array when no posts exist)
+- [X] T002 Add `theme/functions.php` `vb_register_colunistas_category()` callback registered on the `after_setup_theme` hook per `contracts/colunistas.contract.md` (checks `category_exists('colunistas')`, calls `wp_create_category('Colunistas')` if missing; idempotent)
+- [X] T003 [P] Add `vb_get_colunista_cards(int $limit = 3): array` helper to `theme/inc/template-tags.php` (returns up to N cards per the data-model E2 — distinct authors in the "colunistas" category with their latest post; empty array when no posts exist)
 
 ---
 
@@ -67,15 +67,15 @@ matches `contracts/home-sections.contract.md`.
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Create `theme/template-parts/home/newsletter-compact.php` per `contracts/home-sections.contract.md` § 4 (Safe Mídia compact newsletter form, no data source, always rendered)
-- [ ] T005 [US1] Create `theme/template-parts/home/segurado.php` per `contracts/home-sections.contract.md` § 5 (4 most-recent posts in `.segurado-block` / `.segurado-grid`; section hidden if 0 posts)
-- [ ] T006 [US1] Create `theme/template-parts/home/newsletter-grande.php` per `contracts/home-sections.contract.md` § 6 (large newsletter section with perks list in `.nl-block` / `.nl-perks`)
-- [ ] T007 [US1] Create `theme/template-parts/home/analise.php` per `contracts/home-sections.contract.md` § 7 (1 featured + 4-list from category `analise` in `.analise-layout` / `.analise-main` / `.analise-list`)
-- [ ] T008 [US1] Create `theme/template-parts/home/category-tabs.php` per `contracts/home-sections.contract.md` § 8 (4 most-populated categories in `.tabs-section` / `.tabs-nav` / `.tabs-grid`; section hidden if fewer than 2 categories exist)
-- [ ] T009 [US1] Create `theme/template-parts/home/mais-lidas.php` per `contracts/home-sections.contract.md` § 9 (8 most-recent posts in `.maislist-section` / `.mais-layout` / `.mais-item`)
-- [ ] T010 [US1] Create `theme/template-parts/home/boletim.php` per `contracts/home-sections.contract.md` § 10 (posts in category `regulatorio` in `.boletim-section` / `.boletim-item` / `.boletim-tipo`)
-- [ ] T011 [US1] Create `theme/template-parts/home/colunistas.php` per `contracts/home-sections.contract.md` § 11 using the `vb_get_colunista_cards()` helper from T003 (renders one card per distinct author in `.colunistas-section` / `.col-grid` / `.col-card`; hidden when empty array)
-- [ ] T012 [US1] Update `theme/front-page.php` to compose the 8 new sections between the existing news grid (`template-parts/news/news-grid`) and the existing footer; the section order MUST match `contracts/home-sections.contract.md`
+- [X] T004 [US1] Create `theme/template-parts/home/newsletter-compact.php` per `contracts/home-sections.contract.md` § 4 (Safe Mídia compact newsletter form, no data source, always rendered)
+- [X] T005 [US1] Create `theme/template-parts/home/segurado.php` per `contracts/home-sections.contract.md` § 5 (4 most-recent posts in `.segurado-block` / `.segurado-grid`; section hidden if 0 posts)
+- [X] T006 [US1] Create `theme/template-parts/home/newsletter-grande.php` per `contracts/home-sections.contract.md` § 6 (large newsletter section with perks list in `.nl-block` / `.nl-perks`)
+- [X] T007 [US1] Create `theme/template-parts/home/analise.php` per `contracts/home-sections.contract.md` § 7 (1 featured + 4-list from category `analise` in `.analise-layout` / `.analise-main` / `.analise-list`)
+- [X] T008 [US1] Create `theme/template-parts/home/category-tabs.php` per `contracts/home-sections.contract.md` § 8 (4 most-populated categories in `.tabs-section` / `.tabs-nav` / `.tabs-grid`; section hidden if fewer than 2 categories exist)
+- [X] T009 [US1] Create `theme/template-parts/home/mais-lidas.php` per `contracts/home-sections.contract.md` § 9 (8 most-recent posts in `.maislist-section` / `.mais-layout` / `.mais-item`)
+- [X] T010 [US1] Create `theme/template-parts/home/boletim.php` per `contracts/home-sections.contract.md` § 10 (posts in category `regulatorio` in `.boletim-section` / `.boletim-item` / `.boletim-tipo`)
+- [X] T011 [US1] Create `theme/template-parts/home/colunistas.php` per `contracts/home-sections.contract.md` § 11 using the `vb_get_colunista_cards()` helper from T003 (renders one card per distinct author in `.colunistas-section` / `.col-grid` / `.col-card`; hidden when empty array)
+- [X] T012 [US1] Update `theme/front-page.php` to compose the 8 new sections between the existing news grid (`template-parts/news/news-grid`) and the existing footer; the section order MUST match `contracts/home-sections.contract.md`
 
 **Checkpoint**: At this point, US1 is fully functional — the home
 page renders all 12 Safe Mídia sections.
@@ -95,8 +95,8 @@ the markup contains `.post-hero`, `.entry-content`, and
 
 ### Implementation for User Story 2
 
-- [ ] T013 [US2] Refine `theme/template-parts/content.php` to add the Safe Mídia single-post layout per `contracts/single-post.contract.md` (post-hero with featured image, post-meta with category chip + byline, post-title in Merriweather typography, .entry-content body; the archive-loop variant is preserved by checking `is_singular('post')`)
-- [ ] T014 [US2] Rewrite `theme/single.php` to compose the refined content from T013 plus a "Leia também" related-posts rail at the bottom (3 most recent posts in the same category, excluding the current post) per `contracts/single-post.contract.md`
+- [X] T013 [US2] Refine `theme/template-parts/content.php` to add the Safe Mídia single-post layout per `contracts/single-post.contract.md` (post-hero with featured image, post-meta with category chip + byline, post-title in Merriweather typography, .entry-content body; the archive-loop variant is preserved by checking `is_singular('post')`)
+- [X] T014 [US2] Rewrite `theme/single.php` to compose the refined content from T013 plus a "Leia também" related-posts rail at the bottom (3 most recent posts in the same category, excluding the current post) per `contracts/single-post.contract.md`
 
 **Checkpoint**: At this point, US2 is fully functional — single
 posts render with the full Safe Mídia editorial layout.
@@ -113,9 +113,9 @@ a 404 URL; each returns a Safe Mídia-styled page (per SC-003).
 
 ### Implementation for User Story 3
 
-- [ ] T015 [P] [US3] Refine `theme/archive.php` to use the Safe Mídia `.ncard` markup (image + category chip + title) for each post; the existing archive loop's `template_part` call continues to use `template-parts/content.php` but the wrapper markup switches to the Safe Mídia news grid
-- [ ] T016 [P] [US3] Refine `theme/search.php` to render Safe Mídia search results (news-card markup for results, "no results" message in Safe Mídia typography when zero matches)
-- [ ] T017 [P] [US3] Refine `theme/404.php` to render a Safe Mídia-styled "página não encontrada" message (navbar + footer present; message centered with Safe Mídia typography)
+- [X] T015 [P] [US3] Refine `theme/archive.php` to use the Safe Mídia `.ncard` markup (image + category chip + title) for each post; the existing archive loop's `template_part` call continues to use `template-parts/content.php` but the wrapper markup switches to the Safe Mídia news grid
+- [X] T016 [P] [US3] Refine `theme/search.php` to render Safe Mídia search results (news-card markup for results, "no results" message in Safe Mídia typography when zero matches)
+- [X] T017 [P] [US3] Refine `theme/404.php` to render a Safe Mídia-styled "página não encontrada" message (navbar + footer present; message centered with Safe Mídia typography)
 
 **Checkpoint**: At this point, US3 is fully functional — the
 remaining non-home page templates are Safe Mídia-consistent.
@@ -133,7 +133,7 @@ different authors, the home page renders 3 Colunistas cards; with
 
 ### Implementation for User Story 4
 
-- [ ] T018 [US4] Verify the Colunistas category is auto-created and idempotent per FR-004a (via `contracts/colunistas.contract.md`): activate the theme twice; confirm only one "colunistas" category exists in `wp term list category`. Also confirm the section shows the correct number of cards for ≥ 3 seeded posts by distinct authors
+- [X] T018 [US4] Verify the Colunistas category is auto-created and idempotent per FR-004a (via `contracts/colunistas.contract.md`): activate the theme twice; confirm only one "colunistas" category exists in `wp term list category`. Also confirm the section shows the correct number of cards for ≥ 3 seeded posts by distinct authors
 
 **Checkpoint**: At this point, US4 is fully functional — the
 Colunistas section is bootstrapped and populates correctly.
@@ -145,11 +145,11 @@ Colunistas section is bootstrapped and populates correctly.
 **Purpose**: Run the quickstart validation scenarios end-to-end,
 verify the packaged theme, commit, and push.
 
-- [ ] T019 [P] Run quickstart Scenario A (full home page — 8 new section class names present + section order matches the contract)
-- [ ] T020 [P] Run quickstart Scenario B (single post — `.post-hero`, `.entry-content`, `.related-posts` all present)
-- [ ] T021 [P] Run quickstart Scenarios C, D, E (Colunistas category auto-create, archive/search/404 rendering, package size and exclusion)
-- [ ] T022 Verify `bash theme/package.sh` produces `vue-blocks-1.0.0.zip` ≤ 5 MB and free of test-harness paths per SC-005
-- [ ] T023 Git commit with a `feat(005)` message and `git push origin main` to publish the new template parts, refinements, and category registration
+- [X] T019 [P] Run quickstart Scenario A (full home page — 8 new section class names present + section order matches the contract)
+- [X] T020 [P] Run quickstart Scenario B (single post — `.post-hero`, `.entry-content`, `.related-posts` all present)
+- [X] T021 [P] Run quickstart Scenarios C, D, E (Colunistas category auto-create, archive/search/404 rendering, package size and exclusion)
+- [X] T022 Verify `bash theme/package.sh` produces `vue-blocks-1.0.0.zip` ≤ 5 MB and free of test-harness paths per SC-005
+- [X] T023 Git commit with a `feat(005)` message and `git push origin main` to publish the new template parts, refinements, and category registration
 
 ---
 
