@@ -93,7 +93,7 @@ if ( ! function_exists( 'vb_placeholder_image' ) ) {
 			$seed = get_the_ID();
 		}
 		$seed = $seed ? absint( $seed ) : absint( wp_rand( 1, 9999 ) );
-		return 'https://picsum.photos/seed/vue-blocks/' . $seed . '/480/270';
+		return 'https://picsum.photos/seed/' . $seed . '/480/270';
 	}
 }
 
