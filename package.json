@@ -1,0 +1,18 @@
+{
+  "name": "vue-blocks",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Optional Vite build pipeline for the Vue Blocks WordPress theme (opt-in per Constitution Principle V).",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

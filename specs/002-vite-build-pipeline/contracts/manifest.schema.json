@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/nikoz84/theme-wordpress-vue/contracts/manifest.schema.json",
+  "title": "Vue Blocks Vite Build Manifest",
+  "description": "Contract between the Vite build output and the WordPress theme's functions.php opt-in enqueue path. The build writes this file into dist/manifest.json; functions.php reads it when VB_USE_BUNDLED_ASSETS is true.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["app", "style"],
+  "properties": {
+    "app": {
+      "type": "object",
+      "description": "Logical alias for the JS entry (assets/js/app.js).",
+      "additionalProperties": false,
+      "required": ["file", "isEntry"],
+      "properties": {
+        "file": {
+          "type": "string",
+          "description": "Path of the emitted JS bundle, relative to the repository root. Must live under dist/.",
+          "pattern": "^dist/.*\\.js$",
+          "examples": ["dist/assets/app.8f3a2b.js"]
+        },
+        "isEntry": {
+          "type": "boolean",
+          "const": true,
+          "description": "Marks the entry JS bundle so functions.php can confirm it is the root of the JS graph."
+        },
+        "imports": {
+          "type": "array",
+          "description": "Other logical names whose JS this bundle imports (informational; usually empty for this theme).",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "css": {
+          "type": "array",
+          "description": "Other logical names whose CSS this bundle emits (informational; usually empty for this theme).",
+          "items": { "type": "string" },
+          "default": []
+        }
+      }
+    },
+    "style": {
+      "type": "object",
+      "description": "Logical alias for the CSS entry (style.css).",
+      "additionalProperties": false,
+      "required": ["file", "isEntry"],
+      "properties": {
+        "file": {
+          "type": "string",
+          "description": "Path of the emitted CSS bundle, relative to the repository root. Must live under dist/.",
+          "pattern": "^dist/.*\\.css$",
+          "examples": ["dist/assets/style.4e7c91.css"]
+        },
+        "isEntry": {
+          "type": "boolean",
+          "const": true,
+          "description": "Marks the entry CSS bundle so functions.php can confirm it is the root of the CSS graph."
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "app": {
+        "file": "dist/assets/app.8f3a2b.js",
+        "isEntry": true,
+        "imports": [],
+        "css": []
+      },
+      "style": {
+        "file": "dist/assets/style.4e7c91.css",
+        "isEntry": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build artifacts (Vite opt-in)
+dist/
+
+# Packaged theme zips (theme/package.sh outputs these at the repo root)
+vue-blocks-*.zip
+*.zip
+
+# Logs and temp
+*.log
+*.tmp
+*.swp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.iml
+
+# Agent / tooling directories (opencode, claude, skills)
+.agents/
+.claude/
+.opencode/
+skills-lock.json
+
+# Design exploration (HTML references in this directory are not
+# shipped with the theme; they informed the Safe Mídia layout).
+layouts-html/
+
+# WordPress runtime artifacts created by the Docker harness at runtime
+wp-content/
+
+# Docker compose override files
+docker-compose.override.yml

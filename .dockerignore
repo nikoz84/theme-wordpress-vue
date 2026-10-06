@@ -1,0 +1,40 @@
+# Files ignored when building any future theme Dockerfile; safe defaults
+# for the bind-mounted compose stack as well.
+
+# VCS
+.git/
+.gitignore
+
+# Editor / IDE / OS noise
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Logs and temp
+*.log
+*.tmp
+*.swp
+*.bak
+
+# Build / dependency outputs (Vite opt-in path)
+node_modules/
+dist/
+
+# Documentation / meta that doesn't belong in an image
+README.md
+specs/
+.specify/
+.opencode/
+
+# Docker / compose metadata
+docker-compose.yml
+.dockerignore
+Dockerfile*
+
+# Per the FR-008 contract: env files with secrets MUST NOT be copied
+# into images. Only .env.example is committed; .env is gitignored above.
+.env
+.env.*
+!.env.example

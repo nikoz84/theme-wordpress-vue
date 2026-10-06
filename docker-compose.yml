@@ -1,0 +1,61 @@
+name: vue-blocks-docker
+
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${WP_DB_NAME:-wordpress}
+      MYSQL_USER: ${WP_DB_USER:-wordpress}
+      MYSQL_PASSWORD: ${WP_DB_PASSWORD:?WP_DB_PASSWORD is required}
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    volumes:
+      - vb_db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  wordpress:
+    image: wordpress:6
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${HOST_PORT:-8080}:80"
+    environment:
+      WORDPRESS_DB_HOST: ${WP_DB_HOST:-db}
+      WORDPRESS_DB_USER: ${WP_DB_USER:-wordpress}
+      WORDPRESS_DB_PASSWORD: ${WP_DB_PASSWORD:?WP_DB_PASSWORD is required}
+      WORDPRESS_DB_NAME: ${WP_DB_NAME:-wordpress}
+      # The vars below are read by bin/bootstrap.sh (the container's
+      # entrypoint) to drive `wp core install` and the admin user. They
+      # MUST be present; `.env` provides the placeholders.
+      WP_ADMIN_USER: ${WP_ADMIN_USER:?WP_ADMIN_USER is required}
+      WP_ADMIN_PASSWORD: ${WP_ADMIN_PASSWORD:?WP_ADMIN_PASSWORD is required}
+      WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL:?WP_ADMIN_EMAIL is required}
+      WP_SITE_TITLE: ${WP_SITE_TITLE:?WP_SITE_TITLE is required}
+    volumes:
+      - vb_uploads:/var/www/html/wp-content/uploads
+      # The theme lives under theme/ (post-restructuring). Mount it under
+      # the WordPress theme directory so edits to PHP/CSS/JS files
+      # reflect on the next request (per FR-004) without disturbing
+      # WordPress core.
+      - ./theme:/var/www/html/wp-content/themes/vue-blocks
+      # The test harness's bootstrap script + seed file live at the
+      # repo root (NOT in the packaged theme). Mount them at /bootstrap
+      # so the entrypoint can reach them.
+      - ./bin:/bootstrap/bin
+      - ./seed:/bootstrap/seed
+      # Custom PHP configuration so opcache revalidates theme-source
+      # edits on the next request (per research R8).
+      - ./config/php.ini:/usr/local/etc/php/conf.d/zz-vue-blocks.ini:ro
+    entrypoint: ["bash", "/bootstrap/bin/bootstrap.sh"]
+    command: ["apache2-foreground"]
+
+volumes:
+  vb_db:
+  vb_uploads:
