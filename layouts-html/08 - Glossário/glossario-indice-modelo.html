@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glossário do Seguro: termos explicados em linguagem simples | Safe Mídia</title>
+<meta name="description" content="Os termos do mercado de seguros explicados sem juridiquês: franquia, prêmio, sinistro, carência, apólice e muito mais, com exemplos práticos.">
+<link rel="canonical" href="https://safemidia.com.br/glossario/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": "https://safemidia.com.br/glossario/",
+  "name": "Glossário do Seguro Safe Mídia",
+  "description": "Termos do mercado de seguros explicados em linguagem simples, com exemplos práticos e revisão técnica.",
+  "publisher": { "@type": "NewsMediaOrganization", "name": "Safe Mídia", "url": "https://safemidia.com.br/" }
+}
+</script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0B1E3D;
+    --navy-mid: #13294F;
+    --blue: #1E50D4;
+    --gold: #F5C418;
+    --off-white: #F4F6FB;
+    --gray-200: #DDE2EF;
+    --gray-text: #5C6E8A;
+    --dark: #0F1C30;
+    --white: #FFFFFF;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); font-size: 15px; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ── NAVBAR ── */
+  .navbar { background: var(--navy); position: sticky; top: 0; z-index: 60; }
+  .navbar-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .logo { display: flex; align-items: center; gap: 9px; }
+  .logo-shield { width: 32px; height: 32px; background: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .logo-name { font-family: 'Merriweather', serif; font-size: 18px; font-weight: 700; color: var(--white); }
+  .logo-name span { color: var(--gold); }
+  .nav-links { display: flex; gap: 26px; }
+  .nav-links a { font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,.75); }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a.active { color: var(--gold); }
+  .btn-nl { background: var(--gold); color: var(--navy); font-size: 13px; font-weight: 700; padding: 9px 18px; border-radius: 100px; border: none; cursor: pointer; }
+
+  /* ── HERO ── */
+  .glo-hero { background: var(--navy); padding: 48px 24px 0; }
+  .glo-hero-inner { max-width: 1200px; margin: 0 auto; }
+  .glo-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.8px; color: var(--gold); margin-bottom: 14px;
+  }
+  .glo-hero h1 { font-family: 'Merriweather', serif; font-size: 40px; font-weight: 900; color: var(--white); letter-spacing: -.5px; margin-bottom: 12px; }
+  .glo-hero .sub { font-size: 16px; color: rgba(255,255,255,.65); max-width: 620px; line-height: 1.65; margin-bottom: 30px; }
+
+  .glo-search { position: relative; max-width: 620px; margin-bottom: 34px; }
+  .glo-search input {
+    width: 100%; height: 56px; border-radius: 100px; border: none; background: var(--white);
+    padding: 0 24px 0 52px; font-family: 'Inter', sans-serif; font-size: 15px; color: var(--dark); outline: none;
+  }
+  .glo-search input::placeholder { color: var(--gray-text); }
+  .glo-search svg { position: absolute; left: 22px; top: 20px; color: var(--gray-text); }
+
+  /* barra A-Z fixa */
+  .az-bar { background: var(--navy-mid); position: sticky; top: 64px; z-index: 50; }
+  .az-bar-inner { max-width: 1200px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .az-bar a {
+    min-width: 32px; height: 32px; padding: 0 6px; display: flex; align-items: center; justify-content: center;
+    border-radius: 8px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.75); transition: all .15s;
+  }
+  .az-bar a:hover { background: var(--blue); color: var(--white); }
+  .az-bar a.off { opacity: .28; pointer-events: none; }
+
+  /* ── CONTEÚDO ── */
+  .glo-main { max-width: 1200px; margin: 0 auto; padding: 40px 24px 72px; }
+
+  .populares { margin-bottom: 44px; }
+  .populares-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--navy); display: block; margin-bottom: 14px; }
+  .populares-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .populares-chips a {
+    background: var(--off-white); border: 1px solid var(--gray-200); border-radius: 100px;
+    padding: 9px 18px; font-size: 13.5px; font-weight: 600; color: var(--navy); transition: all .15s;
+  }
+  .populares-chips a:hover { border-color: var(--blue); color: var(--blue); }
+
+  .letra-sec { margin-bottom: 40px; scroll-margin-top: 130px; }
+  .letra-head { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+  .letra-head .letra {
+    font-family: 'Merriweather', serif; font-size: 28px; font-weight: 900; color: var(--blue);
+    width: 52px; height: 52px; background: var(--off-white); border: 1px solid var(--gray-200);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .letra-head .linha { flex: 1; height: 1px; background: var(--gray-200); }
+
+  .termos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .termo-card {
+    border: 1px solid var(--gray-200); border-radius: 12px; padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 8px; transition: all .15s; position: relative;
+  }
+  .termo-card:hover { border-color: var(--blue); box-shadow: 0 4px 18px rgba(11,30,61,.07); }
+  .termo-card h2 { font-family: 'Merriweather', serif; font-size: 17px; font-weight: 700; color: var(--navy); }
+  .termo-card p { font-size: 13px; line-height: 1.6; color: var(--gray-text); }
+  .termo-card .seta {
+    position: absolute; top: 20px; right: 18px; color: var(--gray-200); transition: color .15s;
+  }
+  .termo-card:hover .seta { color: var(--blue); }
+  .termo-tag {
+    display: inline-block; width: fit-content; font-size: 9.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .8px; padding: 3px 9px; border-radius: 100px; background: #E3EAFB; color: var(--blue);
+  }
+  .termo-tag.pro { background: #FAEEDA; color: #854F0B; }
+
+  .sem-resultado { display: none; text-align: center; padding: 48px 0; color: var(--gray-text); font-size: 15px; }
+  .sem-resultado strong { color: var(--navy); }
+
+  /* CTA sugerir termo */
+  .sugerir {
+    background: var(--off-white); border: 1px solid var(--gray-200); border-radius: 13px;
+    padding: 26px 30px; margin-top: 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .sugerir h3 { font-family: 'Merriweather', serif; font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .sugerir p { font-size: 13.5px; color: var(--gray-text); margin: 0; }
+  .btn-outline {
+    background: none; border: 2px solid var(--blue); color: var(--blue); font-size: 13px; font-weight: 700;
+    padding: 10px 20px; border-radius: 100px; cursor: pointer; white-space: nowrap;
+  }
+
+  footer { background: var(--navy); padding: 28px 24px; text-align: center; }
+  footer p { font-size: 12px; color: rgba(255,255,255,.5); line-height: 1.8; }
+  footer a { color: rgba(255,255,255,.75); }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .glo-hero h1 { font-size: 30px; }
+    .termos-grid { grid-template-columns: 1fr; }
+    .az-bar-inner { overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
+    .sugerir { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="logo" aria-label="Safe Mídia, página inicial">
+      <span class="logo-shield">
+        <svg width="15" height="17" viewBox="0 0 18 22" fill="none"><path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/></svg>
+      </span>
+      <span class="logo-name">Safe <span>Mídia</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#">Mercado</a>
+      <a href="#">Regulação</a>
+      <a href="#">Ramos</a>
+      <a href="#">Para o Segurado</a>
+      <a href="#" class="active">Glossário</a>
+    </div>
+    <button class="btn-nl">Assinar Newsletter</button>
+  </div>
+</nav>
+
+<header class="glo-hero">
+  <div class="glo-hero-inner">
+    <span class="glo-eyebrow">Guia permanente · Safe Mídia</span>
+    <h1>Glossário do Seguro</h1>
+    <p class="sub">Os termos do mercado explicados sem juridiquês, com exemplos práticos e revisão técnica. Do básico que todo segurado deveria saber ao vocabulário que o profissional usa no dia a dia.</p>
+    <div class="glo-search">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="gloFilter" placeholder="Busque um termo: franquia, carência, sinistro..." aria-label="Buscar termo no glossário">
+    </div>
+  </div>
+</header>
+
+<nav class="az-bar" aria-label="Navegar por letra">
+  <div class="az-bar-inner">
+    <a href="#letra-a">A</a><a href="#letra-b">B</a><a href="#letra-c">C</a><a class="off" href="#">D</a><a href="#letra-e">E</a><a href="#letra-f">F</a><a class="off" href="#">G</a><a class="off" href="#">H</a><a href="#letra-i">I</a><a class="off" href="#">J</a><a class="off" href="#">K</a><a class="off" href="#">L</a><a class="off" href="#">M</a><a class="off" href="#">N</a><a class="off" href="#">O</a><a href="#letra-p">P</a><a class="off" href="#">Q</a><a href="#letra-r">R</a><a href="#letra-s">S</a><a class="off" href="#">T</a><a class="off" href="#">U</a><a class="off" href="#">V</a><a class="off" href="#">W</a><a class="off" href="#">X</a><a class="off" href="#">Y</a><a class="off" href="#">Z</a>
+  </div>
+</nav>
+
+<main class="glo-main">
+
+  <div class="populares">
+    <span class="populares-label">Mais buscados</span>
+    <div class="populares-chips">
+      <a href="#">Franquia</a>
+      <a href="#">Prêmio</a>
+      <a href="#">Sinistro</a>
+      <a href="#">Carência</a>
+      <a href="#">Apólice</a>
+      <a href="#">Endosso</a>
+    </div>
+  </div>
+
+  <section class="letra-sec" id="letra-a">
+    <div class="letra-head"><span class="letra">A</span><span class="linha"></span></div>
+    <div class="termos-grid">
+      <a class="termo-card" href="#">
+        <span class="termo-tag">Segurado</span>
+        <h2>Apólice</h2>
+        <p>O contrato do seguro: o documento que diz o que está coberto, por quanto e por qual período.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+      <a class="termo-card" href="#">
+        <span class="termo-tag">Segurado</span>
+        <h2>Aviso de sinistro</h2>
+        <p>A comunicação à seguradora de que o problema coberto aconteceu. É o que dá início ao pedido de pagamento.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+      <a class="termo-card" href="#">
+        <span class="termo-tag pro">Profissional</span>
+        <h2>Ativos garantidores</h2>
+        <p>Os investimentos que a seguradora é obrigada a manter para garantir que consegue pagar o que deve aos segurados.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="letra-sec" id="letra-b">
+    <div class="letra-head"><span class="letra">B</span><span class="linha"></span></div>
+    <div class="termos-grid">
+      <a class="termo-card" href="#">
+        <span class="termo-tag">Segurado</span>
+        <h2>Bônus</h2>
+        <p>O desconto progressivo que o segurado ganha na renovação por não ter usado o seguro no período.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+      <a class="termo-card" href="#">
+        <span class="termo-tag">Segurado</span>
+        <h2>Beneficiário</h2>
+        <p>Quem recebe o pagamento do seguro. No seguro de vida, é a pessoa indicada por quem contratou.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="letra-sec" id="letra-c">
+    <div class="letra-head"><span class="letra">C</span><span class="linha"></span></div>
+    <div class="termos-grid">
+      <a class="termo-card" href="#">
+        <span class="termo-tag">Segurado</span>
+        <h2>Carência</h2>
+        <p>O período de espera entre contratar e poder usar. Comum em planos de saúde e seguros de vida.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+      <a class="termo-card" href="#">
+        <span class="termo-tag">Segurado</span>
+        <h2>Corretor de seguros</h2>
+        <p>O profissional habilitado que intermedeia a contratação e defende o interesse do cliente junto à seguradora.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+      <a class="termo-card" href="#">
+        <span class="termo-tag pro">Profissional</span>
+        <h2>Cosseguro</h2>
+        <p>Quando duas ou mais seguradoras dividem o mesmo risco, cada uma respondendo por uma fatia.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="letra-sec" id="letra-e">
+    <div class="letra-head"><span class="letra">E</span><span class="linha"></span></div>
+    <div class="termos-grid">
+      <a class="termo-card" href="#">
+        <span class="termo-tag">Segurado</span>
+        <h2>Endosso</h2>
+        <p>Qualquer alteração feita no seguro depois de contratado: troca de carro, mudança de endereço, inclusão de cobertura.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="letra-sec" id="letra-f">
+    <div class="letra-head"><span class="letra">F</span><span class="linha"></span></div>
+    <div class="termos-grid">
+      <a class="termo-card" href="glossario-franquia-modelo.html">
+        <span class="termo-tag">Segurado</span>
+        <h2>Franquia</h2>
+        <p>A parte do conserto que sai do seu bolso quando você usa o seguro. Entenda os três tipos e veja o exemplo com números.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="letra-sec" id="letra-i">
+    <div class="letra-head"><span class="letra">I</span><span class="linha"></span></div>
+    <div class="termos-grid">
+      <a class="termo-card" href="#">
+        <span class="termo-tag">Segurado</span>
+        <h2>Indenização</h2>
+        <p>O pagamento que a seguradora faz quando o problema coberto acontece: o conserto, o reembolso ou o valor contratado.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+      <a class="termo-card" href="#">
+        <span class="termo-tag pro">Profissional</span>
+        <h2>IBNR</h2>
+        <p>Provisão para sinistros ocorridos e ainda não avisados. Um dos principais itens do balanço de uma seguradora.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="letra-sec" id="letra-p">
+    <div class="letra-head"><span class="letra">P</span><span class="linha"></span></div>
+    <div class="termos-grid">
+      <a class="termo-card" href="#">
+        <span class="termo-tag">Segurado</span>
+        <h2>Prêmio</h2>
+        <p>O valor que você paga pelo seguro. Apesar do nome, quem paga o prêmio é você, não quem recebe.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+      <a class="termo-card" href="#">
+        <span class="termo-tag pro">Profissional</span>
+        <h2>Provisões técnicas</h2>
+        <p>As reservas que a seguradora mantém, por exigência da Susep, para honrar os compromissos futuros com segurados.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="letra-sec" id="letra-r">
+    <div class="letra-head"><span class="letra">R</span><span class="linha"></span></div>
+    <div class="termos-grid">
+      <a class="termo-card" href="#">
+        <span class="termo-tag pro">Profissional</span>
+        <h2>Resseguro</h2>
+        <p>O seguro da seguradora: a operação em que ela repassa parte dos riscos que aceitou para outra empresa.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+      <a class="termo-card" href="#">
+        <span class="termo-tag pro">Profissional</span>
+        <h2>Run-off</h2>
+        <p>Quando uma seguradora para de vender contratos novos e segue operando só para honrar os antigos até o fim.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="letra-sec" id="letra-s">
+    <div class="letra-head"><span class="letra">S</span><span class="linha"></span></div>
+    <div class="termos-grid">
+      <a class="termo-card" href="#">
+        <span class="termo-tag">Segurado</span>
+        <h2>Sinistro</h2>
+        <p>O nome que o setor dá ao evento coberto quando ele acontece: a batida, o roubo, o incêndio, o vazamento.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+      <a class="termo-card" href="#">
+        <span class="termo-tag pro">Profissional</span>
+        <h2>Sinistralidade</h2>
+        <p>O quanto a seguradora paga em sinistros em relação ao que arrecada em prêmios. O termômetro de saúde de um ramo.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+      <a class="termo-card" href="#">
+        <span class="termo-tag">Segurado</span>
+        <h2>Salvado</h2>
+        <p>O que sobra do bem depois do sinistro (o carro batido, por exemplo), que passa a pertencer à seguradora após a indenização.</p>
+        <span class="seta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <p class="sem-resultado" id="semResultado">Nenhum termo encontrado para <strong id="termoBuscado"></strong>. Que tal sugerir a inclusão dele?</p>
+
+  <div class="sugerir">
+    <div>
+      <h3>Não encontrou o termo que procurava?</h3>
+      <p>Sugira a inclusão e a redação prepara o verbete com revisão técnica.</p>
+    </div>
+    <button class="btn-outline">Sugerir um termo</button>
+  </div>
+
+</main>
+
+<footer>
+  <p>Safe Mídia · Portal independente de notícias do mercado de seguros, sem vínculo com seguradoras ou órgãos reguladores.<br>
+  <a href="#">Sobre</a> · <a href="#">Política editorial</a> · <a href="#">Glossário</a> · <a href="#">Contato</a></p>
+</footer>
+
+<script>
+(function () {
+  var input = document.getElementById('gloFilter');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.termo-card'));
+  var secoes = Array.prototype.slice.call(document.querySelectorAll('.letra-sec'));
+  var vazio = document.getElementById('semResultado');
+  var termoEl = document.getElementById('termoBuscado');
+
+  function normaliza(s) {
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  input.addEventListener('input', function () {
+    var q = normaliza(input.value.trim());
+    var total = 0;
+
+    cards.forEach(function (card) {
+      var txt = normaliza(card.textContent);
+      var mostra = !q || txt.indexOf(q) !== -1;
+      card.style.display = mostra ? '' : 'none';
+      if (mostra) total++;
+    });
+
+    secoes.forEach(function (sec) {
+      var visiveis = sec.querySelectorAll('.termo-card:not([style*="none"])').length;
+      sec.style.display = visiveis ? '' : 'none';
+    });
+
+    vazio.style.display = total ? 'none' : 'block';
+    termoEl.textContent = '"' + input.value.trim() + '"';
+  });
+})();
+</script>
+
+</body>
+</html>

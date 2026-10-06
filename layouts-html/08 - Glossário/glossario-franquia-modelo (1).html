@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Franquia (seguros): o que é e como funciona | Glossário Safe Mídia</title>
+<meta name="description" content="Franquia é o valor que fica por conta do segurado em cada sinistro. Entenda como funciona, os tipos (normal, reduzida e isenta) e veja um exemplo prático com números.">
+<link rel="canonical" href="https://safemidia.com.br/glossario/franquia/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://safemidia.com.br/glossario/franquia/#termo",
+      "name": "Franquia",
+      "description": "Franquia é a parte do conserto que sai do bolso de quem contratou o seguro ao usá-lo. Se o dano custa menos que a franquia, não compensa acionar o seguro. Se custa mais, a pessoa paga só o valor da franquia e a seguradora paga o restante do reparo.",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Glossário do Seguro Safe Mídia",
+        "url": "https://safemidia.com.br/glossario/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "A franquia é paga para quem?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Em regra, para a oficina ou prestador que executa o reparo, no momento do serviço. A seguradora paga diretamente ao prestador apenas a parte que excede a franquia. O valor não é pago à seguradora."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Roubo, furto ou perda total têm franquia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Na grande maioria dos seguros de carro, não. A franquia vale só para danos parciais. Quando o carro é roubado e não recuperado, ou quando não compensa consertar, a seguradora paga o valor cheio contratado, sem descontar franquia. O nome técnico desse pagamento é indenização integral."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Franquia mais baixa deixa o seguro mais caro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Franquia e prêmio andam em direções opostas: quanto menor a franquia (menos risco por conta do segurado), maior o prêmio pago à seguradora. A franquia reduzida encarece a apólice; a majorada barateia."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://safemidia.com.br/" },
+        { "@type": "ListItem", "position": 2, "name": "Glossário", "item": "https://safemidia.com.br/glossario/" },
+        { "@type": "ListItem", "position": 3, "name": "Franquia" }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0B1E3D;
+    --navy-mid: #13294F;
+    --blue: #1E50D4;
+    --gold: #F5C418;
+    --off-white: #F4F6FB;
+    --gray-200: #DDE2EF;
+    --gray-text: #5C6E8A;
+    --dark: #0F1C30;
+    --white: #FFFFFF;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); font-size: 15px; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  /* ── NAVBAR ── */
+  .navbar { background: var(--navy); position: sticky; top: 0; z-index: 50; }
+  .navbar-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .logo { display: flex; align-items: center; gap: 9px; }
+  .logo-shield {
+    width: 32px; height: 32px; background: var(--blue); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .logo-name { font-family: 'Merriweather', serif; font-size: 18px; font-weight: 700; color: var(--white); }
+  .logo-name span { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 26px; }
+  .nav-links a { font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,.75); transition: color .15s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+  .nav-links a.active { color: var(--gold); }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-search {
+    width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2);
+    background: none; display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgba(255,255,255,.8);
+  }
+  .btn-nl {
+    background: var(--gold); color: var(--navy); font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+    padding: 9px 18px; border-radius: 100px; border: none; cursor: pointer;
+  }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 18px 24px 0; font-size: 12.5px; color: var(--gray-text); }
+  .breadcrumb a { color: var(--gray-text); }
+  .breadcrumb a:hover { color: var(--blue); }
+  .breadcrumb span.sep { margin: 0 7px; color: var(--gray-200); }
+  .breadcrumb strong { color: var(--dark); font-weight: 600; }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 1200px; margin: 0 auto; padding: 28px 24px 64px; display: grid; grid-template-columns: 1fr 300px; gap: 48px; }
+
+  /* ── TERM HEADER ── */
+  .term-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.8px; color: var(--blue); margin-bottom: 14px;
+  }
+  .term-eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--gold); }
+  h1 { font-family: 'Merriweather', serif; font-size: 42px; font-weight: 900; color: var(--navy); letter-spacing: -.5px; line-height: 1.15; margin-bottom: 10px; }
+  .term-aka { font-size: 14px; color: var(--gray-text); margin-bottom: 26px; }
+  .term-aka em { font-style: normal; color: var(--dark); font-weight: 500; }
+
+  /* ── DEFINITION CARD (assinatura da página) ── */
+  .def-card {
+    background: var(--off-white); border: 1px solid var(--gray-200); border-left: 4px solid var(--gold);
+    border-radius: 0 13px 13px 0; padding: 26px 30px; margin-bottom: 18px;
+  }
+  .def-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--navy); margin-bottom: 10px; }
+  .def-card p { font-family: 'Merriweather', serif; font-size: 19px; line-height: 1.65; color: var(--dark); }
+  .def-card p strong { color: var(--blue); }
+
+  .term-review { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--gray-text); margin-bottom: 40px; }
+  .term-review svg { flex-shrink: 0; }
+  .term-review a { color: var(--blue); font-weight: 600; }
+
+  /* ── BODY ── */
+  .term-body h2 { font-family: 'Merriweather', serif; font-size: 24px; font-weight: 700; color: var(--navy); margin: 38px 0 16px; }
+  .term-body p { font-size: 16px; line-height: 1.75; color: var(--dark); margin-bottom: 18px; }
+  .term-body p a { color: var(--blue); font-weight: 500; border-bottom: 1px solid rgba(30,80,212,.3); }
+  .term-body p a:hover { border-bottom-color: var(--blue); }
+
+  /* exemplo numerado */
+  .exemplo-card { background: var(--navy); border-radius: 13px; padding: 26px 30px; margin: 26px 0; }
+  .exemplo-label {
+    display: flex; align-items: center; gap: 9px; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.6px; color: var(--gold); margin-bottom: 16px;
+  }
+  .exemplo-row { display: flex; gap: 16px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .exemplo-row:last-child { border-bottom: none; }
+  .exemplo-num {
+    width: 24px; height: 24px; background: var(--blue); color: var(--white); border-radius: 6px;
+    font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+  }
+  .exemplo-row p { font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,.88); margin: 0; }
+  .exemplo-row p strong { color: var(--gold); font-weight: 600; }
+
+  /* tipos de franquia */
+  .tipos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 22px 0 6px; }
+  .tipo-card { background: var(--off-white); border: 1px solid var(--gray-200); border-radius: 12px; padding: 20px; }
+  .tipo-card h3 { font-family: 'Merriweather', serif; font-size: 15.5px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .tipo-card p { font-size: 13px; line-height: 1.6; color: var(--gray-text); margin: 0; }
+  .tipo-badge {
+    display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px;
+    padding: 3px 9px; border-radius: 100px; margin-bottom: 10px;
+  }
+  .tipo-badge.padrao { background: #E3EAFB; color: var(--blue); }
+  .tipo-badge.cara { background: #FAEEDA; color: #854F0B; }
+  .tipo-badge.rara { background: #EAF6EC; color: #1D7A34; }
+
+  /* confusão comum */
+  .confusao {
+    background: var(--off-white); border: 1px solid var(--gray-200); border-radius: 13px;
+    padding: 22px 26px; margin: 26px 0; display: flex; gap: 16px; align-items: flex-start;
+  }
+  .confusao-icon {
+    width: 40px; height: 40px; background: var(--gold); border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; color: var(--navy);
+  }
+  .confusao h3 { font-family: 'Merriweather', serif; font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .confusao p { font-size: 14px; line-height: 1.65; color: var(--dark); margin: 0; }
+
+  /* FAQ */
+  .faq details { border: 1px solid var(--gray-200); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+  .faq summary {
+    padding: 16px 20px; font-size: 15px; font-weight: 600; color: var(--navy); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; list-style: none;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: '+'; font-size: 20px; color: var(--blue); font-weight: 400; }
+  .faq details[open] summary::after { content: '−'; }
+  .faq details[open] summary { background: var(--off-white); }
+  .faq .faq-body { padding: 14px 20px 18px; font-size: 14.5px; line-height: 1.7; color: var(--dark); border-top: 1px solid var(--gray-200); }
+
+  /* termos relacionados */
+  .rel-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .rel-chips a {
+    background: var(--white); border: 1px solid var(--gray-200); border-radius: 100px;
+    padding: 9px 18px; font-size: 13.5px; font-weight: 600; color: var(--navy); transition: all .15s;
+  }
+  .rel-chips a:hover { border-color: var(--blue); color: var(--blue); background: #F0F4FE; }
+
+  /* notícias do tema */
+  .tag-news { display: grid; gap: 12px; margin-top: 16px; }
+  .tag-news a {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    border: 1px solid var(--gray-200); border-radius: 12px; padding: 16px 20px; transition: border-color .15s;
+  }
+  .tag-news a:hover { border-color: var(--blue); }
+  .tag-news .tn-cat { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); display: block; margin-bottom: 5px; }
+  .tag-news h3 { font-family: 'Merriweather', serif; font-size: 15.5px; font-weight: 700; color: var(--dark); line-height: 1.45; }
+  .tag-news time { font-size: 12px; color: var(--gray-text); white-space: nowrap; }
+
+  /* CTA newsletter */
+  .nl-cta { background: var(--navy); border-radius: 13px; padding: 28px 30px; margin-top: 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .nl-cta h3 { font-family: 'Merriweather', serif; font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .nl-cta p { font-size: 13px; color: rgba(255,255,255,.65); margin: 0; }
+  .nl-cta .btn-nl { flex-shrink: 0; }
+
+  /* ── SIDEBAR ── */
+  .sidebar { display: flex; flex-direction: column; gap: 28px; }
+  .side-box { border: 1px solid var(--gray-200); border-radius: 13px; padding: 22px; }
+  .side-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--navy);
+    padding-bottom: 12px; margin-bottom: 14px; border-bottom: 2px solid var(--gold); display: inline-block;
+  }
+  .side-list { list-style: none; }
+  .side-list li { border-bottom: 1px solid var(--off-white); }
+  .side-list li:last-child { border-bottom: none; }
+  .side-list a { display: flex; justify-content: space-between; align-items: center; padding: 11px 2px; font-size: 14px; font-weight: 500; color: var(--dark); }
+  .side-list a:hover { color: var(--blue); }
+  .side-list svg { color: var(--gray-200); flex-shrink: 0; }
+  .az-index { display: flex; flex-wrap: wrap; gap: 6px; }
+  .az-index a {
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--gray-200); border-radius: 8px; font-size: 12.5px; font-weight: 600; color: var(--navy);
+  }
+  .az-index a:hover { border-color: var(--blue); color: var(--blue); }
+  .az-index a.off { opacity: .35; pointer-events: none; }
+  .ad-slot {
+    background: var(--off-white); border: 1px dashed var(--gray-200); border-radius: 13px;
+    height: 250px; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gray-text);
+  }
+
+  /* ── FOOTER ── */
+  footer { background: var(--navy); padding: 28px 24px; text-align: center; }
+  footer p { font-size: 12px; color: rgba(255,255,255,.5); line-height: 1.8; }
+  footer a { color: rgba(255,255,255,.75); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .page { grid-template-columns: 1fr; gap: 40px; padding: 24px 18px 48px; }
+    h1 { font-size: 32px; }
+    .def-card { padding: 20px; }
+    .def-card p { font-size: 17px; }
+    .tipos-grid { grid-template-columns: 1fr; }
+    .exemplo-card { padding: 20px; }
+    .nl-cta { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="logo" aria-label="Safe Mídia, página inicial">
+      <span class="logo-shield">
+        <svg width="15" height="17" viewBox="0 0 18 22" fill="none"><path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/></svg>
+      </span>
+      <span class="logo-name">Safe <span>Mídia</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#">Mercado</a>
+      <a href="#">Regulação</a>
+      <a href="#">Ramos</a>
+      <a href="#">Para o Segurado</a>
+      <a href="#" class="active">Glossário</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-search" aria-label="Buscar no portal">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </button>
+      <button class="btn-nl">Assinar Newsletter</button>
+    </div>
+  </div>
+</nav>
+
+<nav class="breadcrumb" aria-label="Você está em">
+  <a href="#">Início</a><span class="sep">›</span><a href="#">Glossário</a><span class="sep">›</span><strong>Franquia</strong>
+</nav>
+
+<div class="page">
+
+  <main>
+    <span class="term-eyebrow">Glossário do Seguro</span>
+    <h1>Franquia</h1>
+    <p class="term-aka">Também aparece como: <em>franquia de seguro</em>, <em>participação obrigatória do segurado</em>. Em inglês: <em>deductible</em>.</p>
+
+    <div class="def-card">
+      <div class="def-card-label">Definição direta</div>
+      <p>Franquia é a <strong>parte do conserto que sai do seu bolso</strong> quando você usa o seguro. Se o dano custa menos que a franquia, não compensa acionar o seguro: você paga o conserto direto. Se custa mais, você paga só o valor da franquia e a seguradora paga o resto.</p>
+    </div>
+
+    <div class="term-review">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1D7A34" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+      Revisado pela redação em <time datetime="2026-07-22">22 de julho de 2026</time> · com verificação técnica de <a href="#">Marcos Figueiredo</a>, atuário
+    </div>
+
+    <div class="term-body">
+
+      <h2>Como funciona na prática</h2>
+      <p>A franquia existe para dividir o risco entre você e a seguradora. Sem ela, a seguradora teria que administrar milhares de pequenos reparos, e isso encareceria o <a href="#">prêmio</a> (o nome técnico do valor que você paga pelo seguro) para todo mundo. Na prática, a franquia funciona como um filtro: danos pequenos ficam com você, danos relevantes acionam o seguro. No vocabulário do setor, o evento que aciona o seguro (a batida, o roubo, o vazamento) chama-se <a href="#">sinistro</a>.</p>
+
+      <div class="exemplo-card">
+        <div class="exemplo-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="17" x2="12" y2="17"/></svg>
+          Exemplo com números
+        </div>
+        <div class="exemplo-row">
+          <span class="exemplo-num">1</span>
+          <p>Seu seguro auto tem franquia de <strong>R$ 3.000</strong>.</p>
+        </div>
+        <div class="exemplo-row">
+          <span class="exemplo-num">2</span>
+          <p>Numa colisão com reparo orçado em <strong>R$ 8.000</strong>, você paga os R$ 3.000 da franquia à oficina e a seguradora cobre os <strong>R$ 5.000</strong> restantes.</p>
+        </div>
+        <div class="exemplo-row">
+          <span class="exemplo-num">3</span>
+          <p>Num arranhão de <strong>R$ 2.500</strong>, não vale acionar o seguro: o valor é menor que a franquia, e o acionamento ainda pode pesar no bônus da renovação.</p>
+        </div>
+      </div>
+
+      <h2>Os três tipos de franquia</h2>
+      <p>Na cotação, a escolha do tipo de franquia é uma das alavancas que mais mexem no preço final da apólice:</p>
+      <div class="tipos-grid">
+        <div class="tipo-card">
+          <span class="tipo-badge padrao">Padrão de mercado</span>
+          <h3>Normal (obrigatória)</h3>
+          <p>O valor de referência calculado pela seguradora para o perfil e o veículo. É a base de comparação entre cotações.</p>
+        </div>
+        <div class="tipo-card">
+          <span class="tipo-badge cara">Prêmio mais alto</span>
+          <h3>Reduzida</h3>
+          <p>O segurado paga menos em caso de sinistro, e em troca o prêmio da apólice fica mais caro. Faz sentido para quem roda muito.</p>
+        </div>
+        <div class="tipo-card">
+          <span class="tipo-badge rara">Prêmio mais baixo</span>
+          <h3>Majorada (ou aumentada)</h3>
+          <p>Franquia maior, apólice mais barata. Escolha de quem quer proteção contra perdas grandes e absorve as pequenas.</p>
+        </div>
+      </div>
+
+      <div class="confusao">
+        <div class="confusao-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+        </div>
+        <div>
+          <h3>A confusão mais comum</h3>
+          <p>Franquia não é mensalidade nem é paga à seguradora. O que se paga pelo seguro chama-se <a href="#" style="color:var(--blue);font-weight:600;">prêmio</a>. A franquia só existe se houver <a href="#" style="color:var(--blue);font-weight:600;">sinistro</a> com dano parcial, e é paga, em regra, direto ao prestador do reparo.</p>
+        </div>
+      </div>
+
+      <h2>Perguntas frequentes</h2>
+      <div class="faq">
+        <details>
+          <summary>A franquia é paga para quem?</summary>
+          <div class="faq-body">Em regra, para a oficina ou prestador que executa o reparo, no momento do serviço. A seguradora paga ao prestador apenas a parte que excede a franquia. O valor não é recolhido pela seguradora.</div>
+        </details>
+        <details>
+          <summary>Roubo, furto ou perda total têm franquia?</summary>
+          <div class="faq-body">Na grande maioria dos seguros de carro, não. A franquia vale só para danos parciais (o conserto). Quando o carro é roubado e não recuperado, ou quando o estrago é tão grande que não compensa consertar, a seguradora paga o valor cheio contratado, sem descontar franquia. O nome técnico desse pagamento é indenização integral.</div>
+        </details>
+        <details>
+          <summary>Franquia mais baixa deixa o seguro mais caro?</summary>
+          <div class="faq-body">Sim. Franquia e prêmio andam em direções opostas: quanto menor a franquia (menos risco por conta do segurado), maior o prêmio. A franquia reduzida encarece a apólice; a majorada barateia.</div>
+        </details>
+      </div>
+
+      <h2>Termos relacionados</h2>
+      <div class="rel-chips">
+        <a href="#">Prêmio</a>
+        <a href="#">Sinistro</a>
+        <a href="#">Indenização integral</a>
+        <a href="#">Apólice</a>
+        <a href="#">Endosso</a>
+        <a href="#">Bônus</a>
+      </div>
+
+      <h2>Franquia no noticiário</h2>
+      <div class="tag-news">
+        <a href="#">
+          <div>
+            <span class="tn-cat">Auto e Mobilidade</span>
+            <h3>Seguradoras testam franquia dinâmica atrelada ao uso do veículo</h3>
+          </div>
+          <time datetime="2026-07-15">15 jul 2026</time>
+        </a>
+        <a href="#">
+          <div>
+            <span class="tn-cat">Para o Segurado</span>
+            <h3>Vale a pena acionar o seguro? A conta que todo motorista deveria fazer</h3>
+          </div>
+          <time datetime="2026-07-08">8 jul 2026</time>
+        </a>
+        <a href="#">
+          <div>
+            <span class="tn-cat">Mercado</span>
+            <h3>Com sinistralidade em alta, franquias médias sobem 9% na renovação</h3>
+          </div>
+          <time datetime="2026-06-30">30 jun 2026</time>
+        </a>
+      </div>
+
+      <div class="nl-cta">
+        <div>
+          <h3>O mercado explicado em 5 minutos</h3>
+          <p>Receba a newsletter diária do Safe Mídia, todo dia útil às 7h.</p>
+        </div>
+        <button class="btn-nl">Assinar gratuitamente</button>
+      </div>
+
+    </div>
+  </main>
+
+  <aside class="sidebar">
+    <div class="side-box">
+      <span class="side-title">Mais buscados</span>
+      <ul class="side-list">
+        <li><a href="#">Prêmio <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></a></li>
+        <li><a href="#">Sinistro <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></a></li>
+        <li><a href="#">Apólice <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></a></li>
+        <li><a href="#">Carência <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></a></li>
+        <li><a href="#">Sinistralidade <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></a></li>
+        <li><a href="#">Cosseguro <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></a></li>
+      </ul>
+    </div>
+
+    <div class="side-box">
+      <span class="side-title">Navegue por letra</span>
+      <div class="az-index">
+        <a href="#">A</a><a href="#">B</a><a href="#">C</a><a href="#">D</a><a href="#">E</a><a href="#">F</a><a href="#">G</a><a href="#">H</a><a href="#">I</a><a class="off" href="#">J</a><a class="off" href="#">K</a><a href="#">L</a><a href="#">M</a><a class="off" href="#">N</a><a class="off" href="#">O</a><a href="#">P</a><a class="off" href="#">Q</a><a href="#">R</a><a href="#">S</a><a href="#">T</a><a class="off" href="#">U</a><a href="#">V</a><a class="off" href="#">W</a><a class="off" href="#">X</a><a class="off" href="#">Y</a><a class="off" href="#">Z</a>
+      </div>
+    </div>
+
+    <div class="ad-slot">Publicidade</div>
+  </aside>
+
+</div>
+
+<footer>
+  <p>Safe Mídia · Portal independente de notícias do mercado de seguros, sem vínculo com seguradoras ou órgãos reguladores.<br>
+  <a href="#">Sobre</a> · <a href="#">Política editorial</a> · <a href="#">Glossário</a> · <a href="#">Contato</a></p>
+</footer>
+
+</body>
+</html>

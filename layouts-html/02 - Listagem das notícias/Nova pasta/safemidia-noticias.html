@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Últimas Notícias — Safe Mídia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0B1E3D;
+    --blue:       #1E50D4;
+    --blue-hover: #1A46C0;
+    --gold:       #F5C418;
+    --gold-dark:  #DFB000;
+    --white:      #FFFFFF;
+    --off-white:  #F4F6FB;
+    --gray-100:   #EDF0F8;
+    --gray-200:   #DDE2EF;
+    --gray-text:  #5C6E8A;
+    --dark:       #0F1C30;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  img { display: block; width: 100%; object-fit: cover; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ══════════════════════════════════════════════
+     NAVBAR
+  ══════════════════════════════════════════════ */
+  .navbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 16px rgba(11,30,61,0.07);
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-logo { display: flex; align-items: center; gap: 9px; flex-shrink: 0; text-decoration: none; }
+
+  .logo-shield {
+    width: 34px; height: 34px;
+    background: var(--blue);
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .logo-text {
+    font-family: 'Merriweather', serif;
+    font-size: 21px; font-weight: 700;
+    color: var(--navy); letter-spacing: -0.4px;
+  }
+
+  .logo-text span { color: var(--blue); }
+
+  .nav-sep { width: 1px; height: 26px; background: var(--gray-200); flex-shrink: 0; }
+
+  .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; }
+
+  .nav-links a {
+    font-size: 13.5px; font-weight: 500; color: var(--gray-text);
+    padding: 7px 13px; border-radius: 7px; white-space: nowrap;
+    transition: color .18s, background .18s;
+  }
+
+  .nav-links a:hover { color: var(--blue); background: rgba(30,80,212,.07); }
+  .nav-links a.active { color: var(--blue); font-weight: 600; background: rgba(30,80,212,.08); }
+
+  .nav-socials { display: flex; align-items: center; gap: 8px; }
+
+  .soc {
+    width: 32px; height: 32px;
+    border: 1.5px solid var(--gray-200); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gray-text); transition: border-color .18s, color .18s;
+  }
+
+  .soc:hover { border-color: var(--blue); color: var(--blue); }
+
+  .btn-sub {
+    background: var(--gold); color: var(--navy);
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13.5px;
+    padding: 10px 20px; border-radius: 100px; border: none; cursor: pointer;
+    white-space: nowrap; display: flex; align-items: center; gap: 7px;
+    transition: background .18s, transform .15s;
+  }
+
+  .btn-sub:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+  /* ─── HAMBURGER ──────────────────────────────── */
+  .nav-hamburger {
+    display: none;
+    background: none; border: 1.5px solid var(--gray-200);
+    cursor: pointer; color: var(--navy);
+    padding: 7px 9px; border-radius: 9px;
+    align-items: center; justify-content: center;
+    flex-shrink: 0; transition: background .18s;
+  }
+
+  .nav-hamburger:hover { background: var(--gray-100); }
+
+  /* ─── MOBILE MENU ────────────────────────────── */
+  .mobile-menu {
+    position: fixed; top: 58px; left: 0; right: 0;
+    background: var(--white); border-bottom: 1px solid var(--gray-200);
+    box-shadow: 0 8px 32px rgba(11,30,61,.12);
+    z-index: 199; padding: 8px 16px 16px;
+    flex-direction: column; gap: 2px; display: none;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-size: 15px; font-weight: 500; color: var(--gray-text);
+    padding: 11px 14px; border-radius: 8px; text-decoration: none;
+    transition: color .18s, background .18s;
+  }
+
+  .mobile-menu a:hover,
+  .mobile-menu a.active { color: var(--blue); background: rgba(30,80,212,.06); font-weight: 600; }
+
+  /* ══════════════════════════════════════════════
+     PAGE HERO (header da listagem)
+  ══════════════════════════════════════════════ */
+  .page-hero {
+    background: var(--off-white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 32px 0 36px;
+  }
+
+  .page-hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .breadcrumb {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12.5px; color: var(--gray-text);
+    margin-bottom: 14px;
+  }
+
+  .breadcrumb a { color: var(--blue); }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb svg { flex-shrink: 0; opacity: .5; }
+
+  .page-title {
+    font-family: 'Merriweather', serif;
+    font-size: 36px; font-weight: 900;
+    color: var(--navy); line-height: 1.15;
+    letter-spacing: -.5px; margin-bottom: 8px;
+  }
+
+  .page-meta {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 13px; color: var(--gray-text);
+  }
+
+  .page-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gray-200); }
+
+  /* ══════════════════════════════════════════════
+     FILTER BAR (sticky abaixo da navbar)
+  ══════════════════════════════════════════════ */
+  .filter-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky; top: 66px; z-index: 150;
+  }
+
+  .filter-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 28px; height: 52px;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .filter-pills {
+    display: flex; align-items: center; gap: 5px;
+    flex: 1; overflow-x: auto; scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filter-pills::-webkit-scrollbar { display: none; }
+
+  .pill {
+    flex-shrink: 0; padding: 5px 14px; border-radius: 100px;
+    font-size: 12.5px; font-weight: 600; color: var(--gray-text);
+    background: none; border: 1.5px solid var(--gray-200);
+    cursor: pointer; white-space: nowrap;
+    transition: all .18s;
+  }
+
+  .pill:hover { border-color: var(--blue); color: var(--blue); }
+
+  .pill.active {
+    background: var(--blue); border-color: var(--blue);
+    color: var(--white);
+  }
+
+  .filter-sep { width: 1px; height: 22px; background: var(--gray-200); flex-shrink: 0; }
+
+  .sort-select {
+    flex-shrink: 0; appearance: none;
+    font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 600;
+    color: var(--gray-text); background: var(--white);
+    border: 1.5px solid var(--gray-200); border-radius: 8px;
+    padding: 5px 30px 5px 12px; cursor: pointer; outline: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235C6E8A' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    transition: border-color .18s;
+  }
+
+  .sort-select:hover { border-color: var(--blue); }
+
+  /* ══════════════════════════════════════════════
+     LAYOUT PRINCIPAL
+  ══════════════════════════════════════════════ */
+  .listing-section {
+    max-width: 1280px; margin: 36px auto 0; padding: 0 28px;
+  }
+
+  .listing-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ══════════════════════════════════════════════
+     CARD DESTAQUE (topo da listagem)
+  ══════════════════════════════════════════════ */
+  .featured-card {
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    border-radius: 14px; overflow: hidden;
+    border: 0.5px solid var(--gray-200);
+    margin-bottom: 28px; text-decoration: none;
+    transition: box-shadow .22s;
+  }
+
+  .featured-card:hover { box-shadow: 0 6px 28px rgba(11,30,61,.1); }
+  .featured-card:hover .featured-title { color: var(--blue); }
+
+  .featured-img-wrap { overflow: hidden; height: 300px; }
+
+  .featured-img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .45s ease;
+  }
+
+  .featured-card:hover .featured-img { transform: scale(1.04); }
+
+  .featured-body {
+    padding: 32px 32px 30px;
+    display: flex; flex-direction: column; justify-content: center;
+    background: var(--white);
+  }
+
+  .featured-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: #EEF3FF; color: var(--blue);
+    font-size: 9.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .9px; padding: 4px 10px; border-radius: 4px;
+    margin-bottom: 16px; align-self: flex-start;
+  }
+
+  .featured-cat {
+    font-size: 10.5px; font-weight: 700; color: var(--blue);
+    text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px;
+  }
+
+  .featured-title {
+    font-family: 'Merriweather', serif;
+    font-size: 22px; font-weight: 700; line-height: 1.42;
+    color: var(--dark); margin-bottom: 12px;
+    transition: color .18s;
+  }
+
+  .featured-excerpt {
+    font-size: 13.5px; color: var(--gray-text);
+    line-height: 1.65; margin-bottom: 20px;
+  }
+
+  .featured-meta {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 12px; color: var(--gray-text);
+    flex-wrap: wrap;
+  }
+
+  .featured-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gray-300, #c8d0e0); flex-shrink: 0; }
+
+  /* ══════════════════════════════════════════════
+     AD BANNER
+  ══════════════════════════════════════════════ */
+  .ad-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--gray-text); margin-bottom: 7px; opacity: .7;
+  }
+
+  .ad-h {
+    width: 100%; height: 90px;
+    background: var(--gray-100); border-radius: 10px;
+    border: 1.5px dashed var(--gray-200);
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; color: var(--gray-text); font-size: 13px; font-weight: 500;
+  }
+
+  .ad-v {
+    width: 100%; background: var(--gray-100);
+    border-radius: 10px; border: 1.5px dashed var(--gray-200);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 8px; color: var(--gray-text);
+    font-size: 13px; font-weight: 500; min-height: 300px;
+  }
+
+  .ad-v span:last-child { font-size: 11px; opacity: .6; }
+
+  .listing-ad { margin-bottom: 28px; }
+
+  .listing-ad-inline {
+    width: 100%; height: 80px;
+    background: var(--gray-100); border-radius: 8px;
+    border: 1.5px dashed var(--gray-200);
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; color: var(--gray-text); font-size: 12px; font-weight: 500;
+    margin: 4px 0 28px;
+  }
+
+  /* ══════════════════════════════════════════════
+     NEWS GRID (listagem)
+  ══════════════════════════════════════════════ */
+  .news-list-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    margin-bottom: 28px;
+  }
+
+  .ncard { cursor: pointer; }
+
+  .ncard-img {
+    position: relative; border-radius: 10px;
+    overflow: hidden; margin-bottom: 13px;
+  }
+
+  .ncard-img img {
+    height: 200px; object-fit: cover;
+    transition: transform .4s ease;
+  }
+
+  .ncard:hover .ncard-img img { transform: scale(1.05); }
+
+  .ncard-cat {
+    position: absolute; top: 11px; left: 11px;
+    background: var(--blue); color: var(--white);
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .9px;
+    padding: 3px 9px; border-radius: 4px;
+  }
+
+  .ncard-title {
+    font-family: 'Merriweather', serif;
+    font-size: 15.5px; font-weight: 700;
+    line-height: 1.45; color: var(--dark);
+    transition: color .18s; margin-bottom: 7px;
+  }
+
+  .ncard:hover .ncard-title { color: var(--blue); }
+
+  .ncard-excerpt {
+    font-size: 12.5px; color: var(--gray-text); line-height: 1.58;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 9px;
+  }
+
+  .ncard-meta { font-size: 11.5px; color: var(--gray-text); }
+
+  /* ══════════════════════════════════════════════
+     LOAD MORE
+  ══════════════════════════════════════════════ */
+  .load-more-wrap {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 12px;
+    padding: 12px 0 40px;
+  }
+
+  .btn-load-more {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; border: 1.5px solid var(--blue);
+    color: var(--blue); font-family: 'Inter', sans-serif;
+    font-size: 13.5px; font-weight: 600;
+    padding: 13px 32px; border-radius: 100px;
+    cursor: pointer; text-decoration: none;
+    transition: background .2s, color .2s;
+  }
+
+  .btn-load-more:hover { background: var(--blue); color: var(--white); }
+
+  .load-progress { font-size: 12px; color: var(--gray-text); }
+
+  /* ══════════════════════════════════════════════
+     SIDEBAR
+  ══════════════════════════════════════════════ */
+  .listing-sidebar {
+    display: flex; flex-direction: column; gap: 24px;
+    position: sticky; top: 130px;
+  }
+
+  /* Sidebar card wrapper */
+  .sidebar-card {
+    background: var(--white);
+    border: 0.5px solid var(--gray-200);
+    border-radius: 12px; overflow: hidden;
+  }
+
+  .sidebar-card-head {
+    padding: 13px 16px;
+    border-bottom: 0.5px solid var(--gray-100);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .sidebar-card-title {
+    font-family: 'Merriweather', serif;
+    font-size: 14px; font-weight: 700; color: var(--navy);
+  }
+
+  .sidebar-card-body { padding: 4px 16px 8px; }
+
+  /* Mais lidas na sidebar */
+  .sidebar-mais-item {
+    display: flex; align-items: flex-start; gap: 11px;
+    padding: 11px 0; border-bottom: 0.5px solid var(--gray-100);
+    text-decoration: none; transition: opacity .18s;
+  }
+
+  .sidebar-mais-item:last-child { border-bottom: none; padding-bottom: 4px; }
+  .sidebar-mais-item:hover { opacity: .72; }
+  .sidebar-mais-item:hover .sidebar-mais-title { color: var(--blue); }
+
+  .sidebar-mais-num {
+    font-size: 22px; font-weight: 700; color: var(--gray-200);
+    min-width: 28px; line-height: 1; flex-shrink: 0; padding-top: 2px;
+  }
+
+  .sidebar-mais-info { flex: 1; }
+
+  .sidebar-mais-cat {
+    font-size: 9.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .6px; color: var(--blue); margin-bottom: 4px;
+  }
+
+  .sidebar-mais-title {
+    font-family: 'Merriweather', serif;
+    font-size: 12.5px; font-weight: 700;
+    color: var(--dark); line-height: 1.42;
+    transition: color .18s;
+  }
+
+  /* Newsletter sidebar */
+  .sidebar-nl {
+    background: var(--navy); border-radius: 12px; padding: 22px 20px;
+  }
+
+  .sidebar-nl-icon {
+    width: 38px; height: 38px;
+    background: rgba(245,196,24,.14); border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); margin-bottom: 12px;
+  }
+
+  .sidebar-nl-title {
+    font-family: 'Merriweather', serif;
+    font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 6px;
+  }
+
+  .sidebar-nl-sub {
+    font-size: 12.5px; color: rgba(255,255,255,.45);
+    line-height: 1.55; margin-bottom: 14px;
+  }
+
+  .sidebar-nl-input {
+    width: 100%;
+    background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.14);
+    border-radius: 8px; padding: 9px 14px;
+    color: var(--white); font-family: 'Inter', sans-serif;
+    font-size: 12.5px; outline: none; margin-bottom: 8px;
+    transition: border-color .18s;
+  }
+
+  .sidebar-nl-input::placeholder { color: rgba(255,255,255,.3); }
+  .sidebar-nl-input:focus { border-color: rgba(255,255,255,.35); }
+
+  .sidebar-nl-btn {
+    width: 100%; background: var(--gold); color: var(--navy);
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px;
+    border: none; border-radius: 8px; padding: 10px; cursor: pointer;
+    transition: background .18s;
+  }
+
+  .sidebar-nl-btn:hover { background: var(--gold-dark); }
+
+  /* ══════════════════════════════════════════════
+     NEWSLETTER COMPACTA (abaixo do grid)
+  ══════════════════════════════════════════════ */
+  .nl-compact-section {
+    max-width: 1280px; margin: 32px auto 0; padding: 0 28px;
+  }
+
+  .nl-compact-block {
+    background: var(--navy); border-radius: 14px;
+    padding: 22px 32px; display: flex; align-items: center; gap: 28px;
+  }
+
+  .nl-compact-left {
+    display: flex; align-items: center; gap: 16px; flex: 1;
+  }
+
+  .nl-compact-icon {
+    width: 42px; height: 42px;
+    background: rgba(245,196,24,.14); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; color: var(--gold);
+  }
+
+  .nl-compact-title {
+    font-family: 'Merriweather', serif;
+    font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 3px;
+  }
+
+  .nl-compact-sub { font-size: 13px; color: rgba(255,255,255,.48); }
+
+  .nl-compact-form {
+    display: flex;
+    background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.13);
+    border-radius: 100px; padding: 5px 5px 5px 20px; min-width: 360px;
+  }
+
+  .nl-compact-input {
+    flex: 1; background: none; border: none; outline: none;
+    color: var(--white); font-family: 'Inter', sans-serif; font-size: 13.5px;
+  }
+
+  .nl-compact-input::placeholder { color: rgba(255,255,255,.35); }
+
+  .nl-compact-btn {
+    background: var(--gold); color: var(--navy);
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px;
+    border: none; border-radius: 100px; padding: 10px 20px;
+    cursor: pointer; white-space: nowrap; transition: background .18s;
+  }
+
+  .nl-compact-btn:hover { background: var(--gold-dark); }
+
+  /* ══════════════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════════════ */
+  .site-footer { background: var(--navy); margin-top: 60px; }
+
+  .footer-main {
+    max-width: 1280px; margin: 0 auto;
+    padding: 56px 28px 48px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.4fr 1.2fr;
+    gap: 48px;
+  }
+
+  .footer-logo {
+    display: flex; align-items: center; gap: 9px;
+    text-decoration: none; margin-bottom: 16px;
+  }
+
+  .footer-logo-text {
+    font-family: 'Merriweather', serif;
+    font-size: 19px; font-weight: 700; color: var(--white); letter-spacing: -.3px;
+  }
+
+  .footer-logo-text span { color: var(--gold); }
+
+  .footer-desc {
+    font-size: 13px; color: rgba(255,255,255,.45);
+    line-height: 1.7; margin-bottom: 20px;
+  }
+
+  .footer-socials { display: flex; gap: 10px; }
+
+  .footer-soc {
+    width: 34px; height: 34px;
+    border: 1px solid rgba(255,255,255,.18); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,.55); text-decoration: none;
+    transition: border-color .18s, color .18s;
+  }
+
+  .footer-soc:hover { border-color: rgba(255,255,255,.5); color: var(--white); }
+
+  .footer-col-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.2px; color: rgba(255,255,255,.35); margin-bottom: 18px;
+  }
+
+  .footer-links {
+    list-style: none; display: flex; flex-direction: column; gap: 10px;
+  }
+
+  .footer-links a {
+    font-size: 13.5px; color: rgba(255,255,255,.6); text-decoration: none;
+    transition: color .18s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-nl-sub {
+    font-size: 13px; color: rgba(255,255,255,.45);
+    line-height: 1.6; margin-bottom: 16px;
+  }
+
+  .footer-nl-form { display: flex; flex-direction: column; gap: 8px; }
+
+  .footer-nl-input {
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+    border-radius: 8px; padding: 10px 14px; color: var(--white);
+    font-family: 'Inter', sans-serif; font-size: 13px; outline: none;
+    transition: border-color .18s;
+  }
+
+  .footer-nl-input::placeholder { color: rgba(255,255,255,.3); }
+  .footer-nl-input:focus { border-color: rgba(255,255,255,.35); }
+
+  .footer-nl-btn {
+    background: var(--gold); color: var(--navy);
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px;
+    border: none; border-radius: 8px; padding: 10px; cursor: pointer;
+    transition: background .18s;
+  }
+
+  .footer-nl-btn:hover { background: var(--gold-dark); }
+
+  .footer-contact-block { margin-bottom: 20px; }
+
+  .footer-contact-label {
+    font-size: 12px; color: rgba(255,255,255,.35); margin-bottom: 5px; font-weight: 500;
+  }
+
+  .footer-contact-email {
+    font-size: 13.5px; color: rgba(255,255,255,.7);
+    text-decoration: none; transition: color .18s; word-break: break-all;
+  }
+
+  .footer-contact-email:hover { color: var(--white); }
+
+  .footer-bottom {
+    max-width: 1280px; margin: 0 auto;
+    padding: 20px 28px; border-top: 1px solid rgba(255,255,255,.08);
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; font-size: 12px; color: rgba(255,255,255,.3);
+  }
+
+  /* ══════════════════════════════════════════════
+     RESPONSIVE — TABLET (≤1024px)
+  ══════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .nav-sep:last-of-type { display: none; }
+
+    .listing-layout { grid-template-columns: 1fr 240px; gap: 28px; }
+    .featured-title { font-size: 19px; }
+    .news-list-grid { grid-template-columns: repeat(2, 1fr); }
+    .nl-compact-block { padding: 20px 24px; gap: 20px; }
+    .nl-compact-form { min-width: 280px; }
+  }
+
+  /* ══════════════════════════════════════════════
+     RESPONSIVE — MOBILE (≤768px)
+  ══════════════════════════════════════════════ */
+  @media (max-width: 768px) {
+
+    /* Navbar */
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px; height: 58px; position: relative; gap: 0;
+    }
+    .nav-sep { display: none; }
+    .nav-links { display: none; }
+    .nav-socials { display: none; }
+    .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); background: var(--white); padding: 0 4px; z-index: 1; }
+    .logo-text { font-size: 15px; }
+    .nav-hamburger { display: flex; }
+    .btn-sub { font-size: 10.5px; padding: 7px 10px; gap: 0; white-space: nowrap; }
+    .btn-sub svg { display: none; }
+
+    /* Filter bar */
+    .filter-bar { top: 58px; }
+    .filter-inner { padding: 0 16px; gap: 8px; }
+    .pill { font-size: 12px; padding: 5px 12px; }
+    .sort-select { font-size: 12px; padding: 5px 28px 5px 10px; }
+
+    /* Page hero */
+    .page-hero { padding: 22px 0 26px; }
+    .page-hero-inner { padding: 0 16px; }
+    .page-title { font-size: 26px; }
+    .page-meta { font-size: 12px; }
+
+    /* Listing layout: single column */
+    .listing-section { padding: 0 16px; margin-top: 24px; }
+    .listing-layout { grid-template-columns: 1fr; gap: 0; }
+    .listing-sidebar { display: none; }
+
+    /* Featured card: stack */
+    .featured-card { grid-template-columns: 1fr; margin-bottom: 22px; }
+    .featured-img-wrap { height: 220px; }
+    .featured-body { padding: 20px 18px 22px; }
+    .featured-title { font-size: 18px; }
+    .featured-excerpt { font-size: 13px; margin-bottom: 14px; }
+
+    /* Ad banner */
+    .listing-ad { margin-bottom: 20px; }
+    .ad-h { min-height: 200px; font-size: 11px; }
+    .listing-ad-inline { height: 160px; margin: 0 0 22px; }
+
+    /* News grid */
+    .news-list-grid { grid-template-columns: 1fr; gap: 0; margin-bottom: 0; }
+
+    .ncard {
+      display: flex; align-items: flex-start; gap: 13px;
+      padding: 14px 0; border-bottom: 1px solid var(--gray-100);
+    }
+
+    .ncard:last-child { border-bottom: none; }
+
+    .ncard-img {
+      width: 96px; height: 76px; border-radius: 8px;
+      flex-shrink: 0; margin-bottom: 0;
+    }
+
+    .ncard-img img { height: 76px; }
+
+    .ncard-cat { font-size: 9px; padding: 2px 7px; top: 7px; left: 7px; }
+
+    .ncard-content { flex: 1; }
+
+    .ncard-title { font-size: 13.5px; line-height: 1.4; margin-bottom: 4px; }
+
+    .ncard-excerpt { display: none; }
+
+    .ncard-meta { font-size: 11px; }
+
+    /* Load more */
+    .load-more-wrap { padding: 20px 0 32px; }
+    .btn-load-more { width: 100%; justify-content: center; font-size: 13px; padding: 13px; }
+
+    /* Newsletter compact */
+    .nl-compact-section { padding: 0 16px; margin-top: 28px; }
+    .nl-compact-block { flex-direction: column; padding: 22px 18px; gap: 16px; align-items: flex-start; }
+    .nl-compact-form { min-width: 0; width: 100%; flex-direction: column; border-radius: 10px; padding: 10px 12px; gap: 8px; }
+    .nl-compact-input { font-size: 13.5px; padding: 4px 0; }
+    .nl-compact-btn { border-radius: 8px; padding: 10px; text-align: center; width: 100%; }
+
+    /* Footer */
+    .site-footer { margin-top: 40px; }
+    .footer-main { grid-template-columns: 1fr; padding: 36px 16px 28px; gap: 32px; }
+    .footer-bottom { flex-direction: column; text-align: center; padding: 16px; gap: 8px; font-size: 11px; }
+    .footer-nl-btn { width: 100%; padding: 11px; }
+  }
+
+  /* ──── SMALL MOBILE (≤420px) ─────────────────── */
+  @media (max-width: 420px) {
+    .page-title { font-size: 22px; }
+    .featured-img-wrap { height: 190px; }
+    .ncard-img { width: 82px; height: 66px; }
+    .ncard-img img { height: 66px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     1. NAVBAR
+═══════════════════════════════════════════════ -->
+<header class="navbar">
+  <nav class="nav-inner">
+
+    <a href="index.html" class="nav-logo">
+      <div class="logo-shield">
+        <svg width="18" height="20" viewBox="0 0 18 22" fill="none">
+          <path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/>
+        </svg>
+      </div>
+      <span class="logo-text">Safe <span>Mídia</span></span>
+    </a>
+
+    <div class="nav-sep"></div>
+
+    <div class="nav-links">
+      <a href="#" class="active">Mercado</a>
+      <a href="#">Auto</a>
+      <a href="#">Saúde</a>
+      <a href="#">Vida</a>
+      <a href="#">Empresarial</a>
+      <a href="#">SUSEP</a>
+      <a href="#">Regulação</a>
+      <a href="#">Opinião</a>
+    </div>
+
+    <div class="nav-sep"></div>
+
+    <div class="nav-socials">
+      <a href="#" class="soc" title="Facebook">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+      <a href="#" class="soc" title="Instagram">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" class="soc" title="X">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="soc" title="LinkedIn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+    <button class="btn-sub">
+      Assinar Newsletter
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+
+  </nav>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="#" class="active">Últimas Notícias</a>
+  <a href="#">Auto</a>
+  <a href="#">Saúde</a>
+  <a href="#">Vida</a>
+  <a href="#">Empresarial</a>
+  <a href="#">SUSEP</a>
+  <a href="#">Regulação</a>
+  <a href="#">Opinião</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     2. PAGE HERO
+═══════════════════════════════════════════════ -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span>Últimas Notícias</span>
+    </div>
+
+    <h1 class="page-title">Últimas Notícias</h1>
+
+    <div class="page-meta">
+      <span>248 notícias publicadas</span>
+      <span class="page-meta-dot"></span>
+      <span>Atualizado hoje, 14:32</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     3. FILTER BAR
+═══════════════════════════════════════════════ -->
+<div class="filter-bar">
+  <div class="filter-inner">
+
+    <div class="filter-pills">
+      <button class="pill active">Todas</button>
+      <button class="pill">Mercado</button>
+      <button class="pill">Auto</button>
+      <button class="pill">Saúde</button>
+      <button class="pill">Vida</button>
+      <button class="pill">Empresarial</button>
+      <button class="pill">SUSEP</button>
+      <button class="pill">Regulação</button>
+      <button class="pill">Agro</button>
+      <button class="pill">Previdência</button>
+      <button class="pill">Opinião</button>
+    </div>
+
+    <div class="filter-sep"></div>
+
+    <select class="sort-select" aria-label="Ordenar por">
+      <option>Mais recentes</option>
+      <option>Mais lidas</option>
+      <option>Mais comentadas</option>
+    </select>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     4. CONTEÚDO PRINCIPAL
+═══════════════════════════════════════════════ -->
+<section class="listing-section">
+  <div class="listing-layout">
+
+    <!-- ─── MAIN ──────────────────────────────── -->
+    <div class="listing-main">
+
+      <!-- Card destaque -->
+      <a href="#" class="featured-card">
+
+        <div class="featured-img-wrap">
+          <img class="featured-img" src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=700&h=400&fit=crop&q=80" alt="Crescimento do setor de seguros"/>
+        </div>
+
+        <div class="featured-body">
+          <div class="featured-badge">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Destaque
+          </div>
+          <div class="featured-cat">Mercado</div>
+          <h2 class="featured-title">Seguradoras brasileiras registram crescimento de 23% no primeiro semestre de 2026, aponta SUSEP</h2>
+          <p class="featured-excerpt">Ramo de seguros de vida e previdência lideraram a expansão, enquanto seguro auto mantém posição como principal produto em volume de prêmios no país.</p>
+          <div class="featured-meta">
+            <span>Redação Safe Mídia</span>
+            <span class="featured-meta-dot"></span>
+            <span>Hoje, 10:47</span>
+            <span class="featured-meta-dot"></span>
+            <span>6 min de leitura</span>
+          </div>
+        </div>
+
+      </a>
+
+      <!-- Banner publicitário -->
+      <div class="listing-ad">
+        <div class="ad-label">Publicidade</div>
+        <div class="ad-h">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          Espaço Publicitário — Banner Horizontal (970 × 90)
+        </div>
+      </div>
+
+      <!-- Grade de notícias — bloco 1 -->
+      <div class="news-list-grid">
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=280&fit=crop&q=75" alt="Seguro auto"/>
+            <span class="ncard-cat">Auto</span>
+          </div>
+          <div class="ncard-content">
+            <h3 class="ncard-title">Novo decreto muda franquia do seguro auto com rastreador para condutores na faixa A</h3>
+            <p class="ncard-excerpt">Medida reduz até 35% o valor da franquia para motoristas que instalarem dispositivos de rastreamento homologados.</p>
+            <div class="ncard-meta">Há 1 hora</div>
+          </div>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&h=280&fit=crop&q=75" alt="Plano de saúde"/>
+            <span class="ncard-cat">Saúde</span>
+          </div>
+          <div class="ncard-content">
+            <h3 class="ncard-title">ANS limita reajuste de planos coletivos a 8,5% para o segundo semestre de 2026</h3>
+            <p class="ncard-excerpt">Decisão afeta cerca de 30 milhões de beneficiários e deve impactar contratos renovados a partir de julho.</p>
+            <div class="ncard-meta">Há 4 horas</div>
+          </div>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&h=280&fit=crop&q=75" alt="Seguradoras digitais"/>
+            <span class="ncard-cat">Mercado</span>
+          </div>
+          <div class="ncard-content">
+            <h3 class="ncard-title">Seguradoras digitais crescem 37% e atraem novos investidores no Brasil</h3>
+            <p class="ncard-excerpt">Insurtechs captaram R$ 1,2 bilhão em rodadas de investimento nos últimos 12 meses, impulsionadas pela expansão do open insurance.</p>
+            <div class="ncard-meta">Há 6 horas</div>
+          </div>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=500&h=280&fit=crop&q=75" alt="Regulação CNSP"/>
+            <span class="ncard-cat">Regulação</span>
+          </div>
+          <div class="ncard-content">
+            <h3 class="ncard-title">CNSP publica resolução sobre microsseguros para população de baixa renda</h3>
+            <p class="ncard-excerpt">Nova norma facilita comercialização de produtos com prêmio mensal abaixo de R$ 50 e simplifica processo de sinistro.</p>
+            <div class="ncard-meta">Há 9 horas</div>
+          </div>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1579621970590-9d752d781dba?w=500&h=280&fit=crop&q=75" alt="Previdência privada"/>
+            <span class="ncard-cat">Previdência</span>
+          </div>
+          <div class="ncard-content">
+            <h3 class="ncard-title">Captação de previdência privada aberta bate R$ 8,3 bilhões em junho, maior valor do ano</h3>
+            <p class="ncard-excerpt">PGBL e VGBL concentraram 78% dos resgates líquidos positivos, impulsionados pela incerteza fiscal do segundo trimestre.</p>
+            <div class="ncard-meta">Há 18 horas</div>
+          </div>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=280&fit=crop&q=75" alt="Atuária seguro de vida"/>
+            <span class="ncard-cat">Vida</span>
+          </div>
+          <div class="ncard-content">
+            <h3 class="ncard-title">Mortalidade por doenças crônicas impulsiona revisão de tabelas atuariais no setor</h3>
+            <p class="ncard-excerpt">Atuários alertam que dados pós-pandemia exigem atualização das premissas de mortalidade usadas em precificação de seguros de vida.</p>
+            <div class="ncard-meta">Há 21 horas</div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Ad inline entre blocos -->
+      <div class="listing-ad-inline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        Publicidade — Retângulo Médio (300 × 250)
+      </div>
+
+      <!-- Grade de notícias — bloco 2 -->
+      <div class="news-list-grid">
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=500&h=280&fit=crop&q=75" alt="Seguro empresarial D&O"/>
+            <span class="ncard-cat">Empresarial</span>
+          </div>
+          <div class="ncard-content">
+            <h3 class="ncard-title">Seguro D&O tem demanda recorde após escândalos corporativos no Brasil em 2026</h3>
+            <p class="ncard-excerpt">Apólices de responsabilidade de diretores e administradores cresceram 41% em emissões no semestre, puxadas por empresas de médio porte.</p>
+            <div class="ncard-meta">Há 1 dia</div>
+          </div>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=500&h=280&fit=crop&q=75" alt="Seguro agrícola paramétrico"/>
+            <span class="ncard-cat">Agro</span>
+          </div>
+          <div class="ncard-content">
+            <h3 class="ncard-title">Seguro paramétrico agrícola avança no Cerrado com novas coberturas climáticas</h3>
+            <p class="ncard-excerpt">Modelo baseado em índices climáticos elimina a vistoria presencial e agiliza pagamento de indenizações para pequenos produtores.</p>
+            <div class="ncard-meta">Há 1 dia</div>
+          </div>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0ad4a0d?w=500&h=280&fit=crop&q=75" alt="SUSEP open insurance"/>
+            <span class="ncard-cat">SUSEP</span>
+          </div>
+          <div class="ncard-content">
+            <h3 class="ncard-title">SUSEP abre consulta pública sobre framework de open insurance para 2027</h3>
+            <p class="ncard-excerpt">Autarquia quer definir padrões de API e governança de dados antes do prazo de adesão obrigatória das seguradoras ao ecossistema aberto.</p>
+            <div class="ncard-meta">Há 2 dias</div>
+          </div>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500&h=280&fit=crop&q=75" alt="Resseguros internacionais"/>
+            <span class="ncard-cat">Mercado</span>
+          </div>
+          <div class="ncard-content">
+            <h3 class="ncard-title">Mercado de resseguros cresce 18% no Brasil e atrai gigantes internacionais</h3>
+            <p class="ncard-excerpt">Munich Re e Swiss Re ampliam operações no país, impulsionadas pela demanda por cobertura de riscos cibernéticos e catástrofes naturais.</p>
+            <div class="ncard-meta">Há 2 dias</div>
+          </div>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=500&h=280&fit=crop&q=75" alt="Seguro carro elétrico"/>
+            <span class="ncard-cat">Auto</span>
+          </div>
+          <div class="ncard-content">
+            <h3 class="ncard-title">Seguro de carros elétricos: como funciona a cobertura de baterias no Brasil</h3>
+            <p class="ncard-excerpt">Enquanto mercado cresce 89% ao ano, seguradoras ainda divergem sobre a inclusão de baterias como cobertura padrão nas apólices.</p>
+            <div class="ncard-meta">Há 3 dias</div>
+          </div>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=500&h=280&fit=crop&q=75" alt="Plano de saúde coletivo"/>
+            <span class="ncard-cat">Saúde</span>
+          </div>
+          <div class="ncard-content">
+            <h3 class="ncard-title">Plano de saúde coletivo pode ser cancelado pela empresa? Entenda seus direitos</h3>
+            <p class="ncard-excerpt">Análise das regras da ANS mostra que beneficiário tem garantias específicas em casos de demissão e rescisão contratual.</p>
+            <div class="ncard-meta">Há 3 dias</div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Carregar mais -->
+      <div class="load-more-wrap">
+        <a href="#" class="btn-load-more">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Carregar mais notícias
+        </a>
+        <span class="load-progress">Mostrando 13 de 248 notícias</span>
+      </div>
+
+    </div>
+
+    <!-- ─── SIDEBAR ────────────────────────────── -->
+    <aside class="listing-sidebar">
+
+      <!-- Mais lidas -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-head">
+          <span class="sidebar-card-title">Mais Lidas</span>
+        </div>
+        <div class="sidebar-card-body">
+
+          <a href="#" class="sidebar-mais-item">
+            <span class="sidebar-mais-num">1</span>
+            <div class="sidebar-mais-info">
+              <div class="sidebar-mais-cat">SUSEP</div>
+              <h4 class="sidebar-mais-title">SUSEP divulga lista das seguradoras com mais reclamações no 1º semestre</h4>
+            </div>
+          </a>
+
+          <a href="#" class="sidebar-mais-item">
+            <span class="sidebar-mais-num">2</span>
+            <div class="sidebar-mais-info">
+              <div class="sidebar-mais-cat">Para o Segurado</div>
+              <h4 class="sidebar-mais-title">Como contestar uma recusa de sinistro na seguradora: guia prático</h4>
+            </div>
+          </a>
+
+          <a href="#" class="sidebar-mais-item">
+            <span class="sidebar-mais-num">3</span>
+            <div class="sidebar-mais-info">
+              <div class="sidebar-mais-cat">Vida</div>
+              <h4 class="sidebar-mais-title">Quais são as exclusões mais comuns nos contratos de seguro de vida</h4>
+            </div>
+          </a>
+
+          <a href="#" class="sidebar-mais-item">
+            <span class="sidebar-mais-num">4</span>
+            <div class="sidebar-mais-info">
+              <div class="sidebar-mais-cat">Saúde</div>
+              <h4 class="sidebar-mais-title">Portabilidade de plano de saúde: o que mudou com a nova resolução da ANS</h4>
+            </div>
+          </a>
+
+          <a href="#" class="sidebar-mais-item">
+            <span class="sidebar-mais-num">5</span>
+            <div class="sidebar-mais-info">
+              <div class="sidebar-mais-cat">Mercado</div>
+              <h4 class="sidebar-mais-title">IRB Brasil: resultados do 2T26 surpreendem com lucro acima do esperado</h4>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Anúncio vertical -->
+      <div class="ad-v" style="min-height: 280px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        <span>Espaço Publicitário</span>
+        <span>300 × 280 px</span>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="sidebar-nl">
+        <div class="sidebar-nl-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h3 class="sidebar-nl-title">Receba as notícias no e-mail</h3>
+        <p class="sidebar-nl-sub">Todo dia útil, o resumo do mercado de seguros direto na sua caixa de entrada.</p>
+        <input class="sidebar-nl-input" type="email" placeholder="Seu melhor e-mail" />
+        <button class="sidebar-nl-btn">Assinar gratuitamente</button>
+      </div>
+
+    </aside>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     5. NEWSLETTER COMPACTA
+═══════════════════════════════════════════════ -->
+<section class="nl-compact-section" style="margin-top: 48px; margin-bottom: 0;">
+  <div class="nl-compact-block">
+    <div class="nl-compact-left">
+      <div class="nl-compact-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div>
+        <div class="nl-compact-title">Newsletter Safe Mídia</div>
+        <div class="nl-compact-sub">O mercado de seguros no seu e-mail, todo dia útil</div>
+      </div>
+    </div>
+    <div class="nl-compact-form">
+      <input class="nl-compact-input" type="email" placeholder="Digite seu e-mail" />
+      <button class="nl-compact-btn">Assinar</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     6. FOOTER
+═══════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-main">
+
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo">
+        <div class="logo-shield">
+          <svg width="18" height="20" viewBox="0 0 18 22" fill="none"><path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/></svg>
+        </div>
+        <span class="footer-logo-text">Safe <span>Mídia</span></span>
+      </a>
+      <p class="footer-desc">Portal independente de notícias, análises e regulação do mercado de seguros brasileiro. Conteúdo para corretores, atuários, gestores e segurados.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-soc" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#" class="footer-soc" title="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="footer-soc" title="X"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="footer-soc" title="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Editorias</div>
+      <ul class="footer-links">
+        <li><a href="#">Mercado</a></li>
+        <li><a href="#">Auto</a></li>
+        <li><a href="#">Saúde</a></li>
+        <li><a href="#">Vida</a></li>
+        <li><a href="#">Empresarial</a></li>
+        <li><a href="#">SUSEP</a></li>
+        <li><a href="#">Regulação</a></li>
+        <li><a href="#">Para o Segurado</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Newsletter</div>
+      <p class="footer-nl-sub">Receba as principais notícias do setor direto no seu e-mail, todo dia útil.</p>
+      <div class="footer-nl-form">
+        <input class="footer-nl-input" type="email" placeholder="Seu e-mail" />
+        <button class="footer-nl-btn">Assinar</button>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Contato</div>
+      <div class="footer-contact-block">
+        <div class="footer-contact-label">Conteúdo e pauta</div>
+        <a href="mailto:redacao@safemidia.com.br" class="footer-contact-email">redacao@safemidia.com.br</a>
+      </div>
+      <div class="footer-contact-block">
+        <div class="footer-contact-label">Comercial</div>
+        <a href="mailto:direcao@safemidia.com.br" class="footer-contact-email">direcao@safemidia.com.br</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Safe Mídia. Todos os direitos reservados.</span>
+    <span>Portal independente — não possui vínculo com seguradoras ou órgãos reguladores</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Hamburger menu
+  var hamburger = document.getElementById('navHamburger');
+  var menu = document.getElementById('mobileMenu');
+  if (!hamburger || !menu) return;
+
+  hamburger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    menu.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+
+  menu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() { menu.classList.remove('open'); });
+  });
+
+  // Filter pills
+  document.querySelectorAll('.pill').forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.pill').forEach(function(p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

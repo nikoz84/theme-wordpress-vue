@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safe Mídia — Portal de Notícias do Setor de Seguros</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0B1E3D;
+    --blue:       #1E50D4;
+    --blue-hover: #1A46C0;
+    --gold:       #F5C418;
+    --gold-dark:  #DFB000;
+    --forest:     #0D3B27;
+    --forest-mid: #0F4C35;
+    --white:      #FFFFFF;
+    --off-white:  #F4F6FB;
+    --gray-100:   #EDF0F8;
+    --gray-200:   #DDE2EF;
+    --gray-text:  #5C6E8A;
+    --dark:       #0F1C30;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  img { display: block; width: 100%; object-fit: cover; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ─── NAVBAR ──────────────────────────────────── */
+  .navbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 16px rgba(11,30,61,0.07);
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .logo-shield {
+    width: 34px;
+    height: 34px;
+    background: var(--blue);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-text {
+    font-family: 'Merriweather', serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.4px;
+  }
+
+  .logo-text span { color: var(--blue); }
+
+  .nav-sep {
+    width: 1px;
+    height: 26px;
+    background: var(--gray-200);
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .nav-links a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--gray-text);
+    padding: 7px 13px;
+    border-radius: 7px;
+    white-space: nowrap;
+    transition: color .18s, background .18s;
+  }
+
+  .nav-links a:hover { color: var(--blue); background: rgba(30,80,212,.07); }
+  .nav-links a.active { color: var(--blue); font-weight: 600; background: rgba(30,80,212,.08); }
+
+  .nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .soc {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-text);
+    transition: border-color .18s, color .18s;
+  }
+
+  .soc:hover { border-color: var(--blue); color: var(--blue); }
+
+  .btn-sub {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: background .18s, transform .15s;
+  }
+
+  .btn-sub:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+  /* ─── HERO ────────────────────────────────────── */
+  .hero {
+    max-width: 1280px;
+    margin: 36px auto 0;
+    padding: 0 28px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .hero-main {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .hero-main img {
+    height: 500px;
+    object-fit: cover;
+    transition: transform .6s ease;
+    display: block;
+  }
+
+  .hero-main:hover img { transform: scale(1.035); }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+      rgba(7,15,32,.93) 35%,
+      rgba(7,15,32,.25) 70%,
+      transparent 100%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px 32px;
+  }
+
+  .hero-meta-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 5px;
+    margin-bottom: 14px;
+  }
+
+  .hero-meta-bar .hero-cat {
+    color: var(--blue);
+    font-weight: 700;
+  }
+
+  .hero-title-wrap { display: block; }
+
+  .hero-title {
+    font-family: 'Merriweather', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.52;
+    letter-spacing: -.3px;
+    display: inline;
+    background: var(--blue);
+    padding: 3px 10px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* Sidebar */
+  .hero > aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .spost {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--gray-100);
+    cursor: pointer;
+    transition: opacity .18s;
+  }
+
+  .spost:first-child { padding-top: 0; }
+  .spost:last-child { border-bottom: none; padding-bottom: 0; }
+  .spost:hover { opacity: .78; }
+  .spost:hover .spost-title { color: var(--blue); }
+
+  .spost-thumb {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2.5px solid var(--gray-100);
+  }
+
+  .spost-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  .spost-cat {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 5px;
+  }
+
+  .spost-title {
+    font-family: 'Merriweather', serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--dark);
+    transition: color .18s;
+  }
+
+  /* ─── AD BANNER ───────────────────────────────── */
+  .ad-wrap {
+    max-width: 1280px;
+    margin: 32px auto 0;
+    padding: 0 28px;
+  }
+
+  .ad-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-text);
+    margin-bottom: 7px;
+    opacity: .7;
+  }
+
+  .ad-h {
+    width: 100%;
+    height: 90px;
+    background: var(--gray-100);
+    border-radius: 10px;
+    border: 1.5px dashed var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--gray-text);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .ad-v {
+    width: 100%;
+    flex: 1;
+    background: var(--gray-100);
+    border-radius: 10px;
+    border: 1.5px dashed var(--gray-200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--gray-text);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .ad-v span:last-child { font-size: 11px; opacity: .6; }
+
+  /* ─── SECTION HEADER ──────────────────────────── */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 26px;
+  }
+
+  .sec-title {
+    font-family: 'Merriweather', serif;
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .sec-line {
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+  }
+
+  /* ─── NEWS GRID ───────────────────────────────── */
+  .news-section {
+    max-width: 1280px;
+    margin: 36px auto 0;
+    padding: 0 28px;
+  }
+
+  .news-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .news-pub-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-text);
+    opacity: .7;
+    width: 260px;
+    flex-shrink: 0;
+    text-align: center;
+    margin-left: 16px;
+  }
+
+  .news-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .news-see-more {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+
+  .news-layout {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 30px;
+    align-items: stretch;
+  }
+
+  .news-layout > aside {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .ncard {
+    cursor: pointer;
+  }
+
+  .ncard-img {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 13px;
+  }
+
+  .ncard-img img {
+    height: 195px;
+    object-fit: cover;
+    transition: transform .4s ease;
+  }
+
+  .ncard:hover .ncard-img img { transform: scale(1.05); }
+
+  .ncard-cat {
+    position: absolute;
+    top: 11px;
+    left: 11px;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .9px;
+    padding: 3px 9px;
+    border-radius: 4px;
+  }
+
+  .ncard-title {
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--dark);
+    transition: color .18s;
+  }
+
+  .ncard:hover .ncard-title { color: var(--blue); }
+
+  /* ─── PARA O SEGURADO ─────────────────────────── */
+  .segurado-section {
+    margin: 44px 0 0;
+    padding: 0 28px;
+  }
+
+  .segurado-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .segurado-block {
+    background: #0B1E3D;
+    border-radius: 20px;
+    padding: 32px 36px 36px;
+  }
+
+  .segurado-hd {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .segurado-title {
+    font-family: 'Merriweather', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    white-space: nowrap;
+  }
+
+  .segurado-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,.5);
+    white-space: nowrap;
+    flex-shrink: 1;
+  }
+
+  .segurado-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .segurado-btn-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,.35);
+    color: rgba(255,255,255,.85);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 100px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background .2s, border-color .2s, color .2s;
+  }
+
+  .segurado-btn-all:hover {
+    background: rgba(255,255,255,.1);
+    border-color: rgba(255,255,255,.6);
+    color: var(--white);
+  }
+
+  /* card: image fills full height, text overlaid */
+  .scard {
+    border-radius: 13px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: transform .22s;
+  }
+
+  .scard:hover { transform: translateY(-5px); }
+
+  .scard-wrap {
+    position: relative;
+    height: 410px;
+  }
+
+  .scard-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .45s ease;
+  }
+
+  .scard:hover .scard-wrap img { transform: scale(1.06); }
+
+  .scard-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+      rgba(5,12,30,.88) 40%,
+      rgba(5,12,30,.2) 75%,
+      transparent 100%);
+  }
+
+  .scard-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 14px 15px;
+  }
+
+  .scard-meta {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    color: rgba(255,255,255,.62);
+    margin-bottom: 6px;
+  }
+
+  .scard-title {
+    font-family: 'Merriweather', serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.42;
+    color: var(--white);
+  }
+
+  /* ─── NEWSLETTER ──────────────────────────────── */
+  .nl-section {
+    max-width: 1280px;
+    margin: 44px auto 64px;
+    padding: 0 28px;
+  }
+
+  .nl-block {
+    background: var(--navy);
+    border-radius: 20px;
+    padding: 52px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 52px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nl-block::before {
+    content: '';
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: rgba(30,80,212,.14);
+    right: -60px;
+    top: -110px;
+    pointer-events: none;
+  }
+
+  .nl-block::after {
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(30,80,212,.09);
+    right: 120px;
+    bottom: -70px;
+    pointer-events: none;
+  }
+
+  .nl-left { position: relative; z-index: 1; }
+
+  .nl-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 15px;
+  }
+
+  .nl-headline {
+    font-family: 'Merriweather', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    letter-spacing: -.4px;
+    margin-bottom: 14px;
+  }
+
+  .nl-desc {
+    color: rgba(255,255,255,.5);
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+
+  .nl-right {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nl-perks {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    margin-bottom: 26px;
+  }
+
+  .perk {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: rgba(255,255,255,.78);
+    font-size: 14px;
+  }
+
+  .perk-dot {
+    width: 20px;
+    height: 20px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+  .nl-form {
+    display: flex;
+    background: rgba(255,255,255,.1);
+    border-radius: 100px;
+    padding: 5px 5px 5px 20px;
+    border: 1px solid rgba(255,255,255,.14);
+    gap: 4px;
+  }
+
+  .nl-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    min-width: 0;
+  }
+
+  .nl-input::placeholder { color: rgba(255,255,255,.38); }
+
+  .nl-btn {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    border: none;
+    border-radius: 100px;
+    padding: 11px 22px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .18s;
+    flex-shrink: 0;
+  }
+
+  .nl-btn:hover { background: var(--gold-dark); }
+
+  .nl-note {
+    font-size: 11.5px;
+    color: rgba(255,255,255,.3);
+    margin-top: 11px;
+    padding-left: 2px;
+  }
+
+  /* ─── VER MAIS ───────────────────────────────── */
+  .see-more-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  .btn-see-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    border: 1.5px solid var(--blue);
+    color: var(--blue);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 100px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background .2s, color .2s;
+  }
+
+  .btn-see-more:hover { background: var(--blue); color: var(--white); }
+
+  /* ─── NEWSLETTER COMPACTA ─────────────────────── */
+  .nl-compact-section {
+    max-width: 1280px;
+    margin: 32px auto 0;
+    padding: 0 28px;
+  }
+
+  .nl-compact-block {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 22px 32px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nl-compact-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+  }
+
+  .nl-compact-icon {
+    width: 42px;
+    height: 42px;
+    background: rgba(245,196,24,.14);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .nl-compact-title {
+    font-family: 'Merriweather', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+
+  .nl-compact-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,.48);
+  }
+
+  .nl-compact-form {
+    display: flex;
+    background: rgba(255,255,255,.09);
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 100px;
+    padding: 5px 5px 5px 20px;
+    min-width: 360px;
+  }
+
+  .nl-compact-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+  }
+
+  .nl-compact-input::placeholder { color: rgba(255,255,255,.35); }
+
+  .nl-compact-btn {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    border: none;
+    border-radius: 100px;
+    padding: 10px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .18s;
+  }
+
+  .nl-compact-btn:hover { background: var(--gold-dark); }
+
+  /* ─── ANÁLISE DE MERCADO ──────────────────────── */
+  .analise-section {
+    max-width: 1280px;
+    margin: 44px auto 56px;
+    padding: 0 28px;
+  }
+
+  .analise-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 30px;
+    align-items: start;
+  }
+
+  .analise-main {
+    position: relative;
+    border-radius: 13px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .analise-main img {
+    height: 430px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease;
+  }
+
+  .analise-main:hover img { transform: scale(1.03); }
+
+  .analise-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(5,12,30,.92) 40%, rgba(5,12,30,.15) 100%);
+  }
+
+  .analise-main-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 26px;
+  }
+
+  .analise-main-meta {
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: rgba(255,255,255,.58);
+    margin-bottom: 10px;
+  }
+
+  .analise-main-title {
+    font-family: 'Merriweather', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.35;
+  }
+
+  .analise-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .aitem {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--gray-200);
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity .18s;
+  }
+
+  .aitem:first-child { padding-top: 0; }
+  .aitem:last-child { border-bottom: none; }
+  .aitem:hover { opacity: .72; }
+  .aitem:hover .aitem-title { color: var(--blue); }
+
+  .aitem-img {
+    width: 88px;
+    height: 68px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .aitem-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  .aitem-meta {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+
+  .aitem-title {
+    font-family: 'Merriweather', serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--dark);
+    transition: color .18s;
+  }
+
+  /* ─── FOOTER ──────────────────────────────────── */
+  .footer {
+    background: var(--off-white);
+    border-top: 1px solid var(--gray-200);
+    padding: 24px 28px;
+    text-align: center;
+    color: var(--gray-text);
+    font-size: 13px;
+  }
+
+  /* ══════════════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════════════ */
+
+  /* ─── TABLET (≤1024px) ─────────────────────── */
+  @media (max-width: 1024px) {
+
+    .nav-links { display: none; }
+    .nav-sep:last-of-type { display: none; }
+
+    .hero { grid-template-columns: 1fr; gap: 0; }
+    .hero-main img { height: 420px; }
+    .hero > aside {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-top: 4px;
+    }
+    .spost {
+      width: 50%;
+      padding: 14px 12px 14px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .spost:nth-child(odd) { border-right: 1px solid var(--gray-100); padding-right: 16px; }
+    .spost:nth-child(even) { padding-left: 16px; }
+    .spost:last-child,
+    .spost:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+
+    .news-layout { grid-template-columns: 1fr; }
+    .news-layout > aside { display: none; }
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .segurado-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .nl-compact-block { gap: 18px; }
+    .nl-compact-form { min-width: 280px; }
+
+    .analise-layout { grid-template-columns: 1fr; }
+    .analise-main img { height: 340px; }
+  }
+
+  /* ─── MOBILE (≤768px) ──────────────────────── */
+  @media (max-width: 768px) {
+
+    /* Navbar */
+    .nav-inner { padding: 0 16px; gap: 10px; height: 58px; }
+    .nav-sep { display: none; }
+    .nav-links { display: none; }
+    .nav-socials { display: none; }
+    .logo-text { font-size: 18px; }
+    .btn-sub { font-size: 12px; padding: 8px 14px; gap: 5px; }
+    .btn-sub svg { display: none; }
+
+    /* Hero */
+    .hero { padding: 0 16px; margin-top: 20px; }
+    .hero-main img { height: 260px; }
+    .hero-content { padding: 20px; }
+    .hero-title { font-size: 20px; line-height: 1.5; }
+    .hero-meta-bar { font-size: 11px; padding: 4px 10px; margin-bottom: 10px; }
+    .hero > aside { flex-direction: column; margin-top: 0; }
+    .spost { width: 100%; border-right: none !important; padding: 13px 0 !important; }
+    .spost:last-child { border-bottom: none; }
+    .spost-thumb { width: 58px; height: 58px; }
+    .spost-title { font-size: 13.5px; }
+
+    /* Ad banner */
+    .ad-wrap { padding: 0 16px; margin-top: 20px; }
+    .ad-h { height: 64px; font-size: 11px; }
+
+    /* News section */
+    .news-section { padding: 0 16px; margin-top: 28px; }
+    .sec-title { font-size: 19px; }
+    .btn-see-more { font-size: 11.5px; padding: 6px 13px; }
+    .news-layout { grid-template-columns: 1fr; }
+    .news-layout > aside { display: none; }
+    .news-grid { grid-template-columns: 1fr; gap: 20px; }
+    .ncard-img img { height: 210px; }
+
+    /* Newsletter compacta */
+    .nl-compact-section { padding: 0 16px; margin-top: 24px; }
+    .nl-compact-block { flex-direction: column; align-items: flex-start; padding: 18px 20px; gap: 14px; }
+    .nl-compact-form { min-width: unset; width: 100%; }
+    .nl-compact-title { font-size: 14px; }
+
+    /* Para o Segurado */
+    .segurado-section { padding: 0 16px; margin-top: 28px; }
+    .segurado-block { padding: 24px 20px 28px; border-radius: 14px; }
+    .segurado-hd { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .segurado-title { font-size: 19px; }
+    .segurado-sub { font-size: 12.5px; }
+    .segurado-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .scard-wrap { height: 240px; }
+    .scard-title { font-size: 13px; }
+    .segurado-footer { margin-top: 20px; }
+    .segurado-btn-all { font-size: 13px; padding: 10px 20px; }
+
+    /* Análise de Mercado */
+    .analise-section { padding: 0 16px; margin-top: 28px; margin-bottom: 36px; }
+    .analise-layout { grid-template-columns: 1fr; gap: 0; }
+    .analise-main img { height: 240px; }
+    .analise-main-title { font-size: 17px; }
+    .analise-main { border-radius: 10px; }
+    .aitem { padding: 14px 0; gap: 12px; }
+    .aitem-img { width: 72px; height: 58px; border-radius: 6px; }
+    .aitem-title { font-size: 13.5px; }
+
+    /* Footer */
+    .footer { font-size: 12px; padding: 18px 16px; }
+  }
+
+  /* ─── SMALL MOBILE (≤420px) ────────────────── */
+  @media (max-width: 420px) {
+    .hero-main img { height: 220px; }
+    .hero-title { font-size: 18px; }
+    .segurado-grid { grid-template-columns: 1fr; }
+    .scard-wrap { height: 200px; }
+    .news-grid { grid-template-columns: 1fr; }
+    .nl-compact-input { font-size: 12.5px; }
+    .nl-compact-btn { font-size: 12px; padding: 9px 14px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     1. NAVBAR
+═══════════════════════════════════════════════ -->
+<header class="navbar">
+  <nav class="nav-inner">
+
+    <!-- Logo -->
+    <a href="#" class="nav-logo">
+      <div class="logo-shield">
+        <svg width="18" height="20" viewBox="0 0 18 22" fill="none">
+          <path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/>
+        </svg>
+      </div>
+      <span class="logo-text">Safe <span>Mídia</span></span>
+    </a>
+
+    <div class="nav-sep"></div>
+
+    <!-- Links -->
+    <div class="nav-links">
+      <a href="#" class="active">Mercado</a>
+      <a href="#">Auto</a>
+      <a href="#">Saúde</a>
+      <a href="#">Vida</a>
+      <a href="#">Empresarial</a>
+      <a href="#">SUSEP</a>
+      <a href="#">Regulação</a>
+      <a href="#">Opinião</a>
+    </div>
+
+    <div class="nav-sep"></div>
+
+    <!-- Socials -->
+    <div class="nav-socials">
+      <a href="#" class="soc" title="Facebook">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+      <a href="#" class="soc" title="Instagram">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" class="soc" title="X">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="soc" title="LinkedIn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+
+    <!-- Subscribe -->
+    <button class="btn-sub">
+      Assinar Newsletter
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+
+  </nav>
+</header>
+
+
+<!-- ═══════════════════════════════════════════════
+     2. HERO / DESTAQUE
+═══════════════════════════════════════════════ -->
+<section class="hero">
+
+  <!-- Notícia principal -->
+  <a href="#" class="hero-main">
+    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&h=500&fit=crop&q=80" alt="Destaque principal" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-meta-bar">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Há 2 horas / <span class="hero-cat">SUSEP</span>
+      </div>
+      <div class="hero-title-wrap">
+        <h1 class="hero-title">SUSEP anuncia novas regras para seguros de vida: cobertura obrigatória aumenta 40% e entra em vigor em janeiro de 2027</h1>
+      </div>
+    </div>
+  </a>
+
+  <!-- Sidebar com posts recentes -->
+  <aside>
+    <a href="#" class="spost">
+      <div class="spost-thumb">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&h=80&fit=crop&q=80" alt="" />
+      </div>
+      <div>
+        <div class="spost-cat">Auto · Há 1h</div>
+        <div class="spost-title">Seguro auto com rastreador: novo decreto muda franquia para condutores na faixa A</div>
+      </div>
+    </a>
+    <a href="#" class="spost">
+      <div class="spost-thumb">
+        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=80&h=80&fit=crop&q=80" alt="" />
+      </div>
+      <div>
+        <div class="spost-cat">Saúde · Há 4h</div>
+        <div class="spost-title">ANS limita reajuste de planos coletivos a 8,5% para o segundo semestre de 2026</div>
+      </div>
+    </a>
+    <a href="#" class="spost">
+      <div class="spost-thumb">
+        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=80&h=80&fit=crop&q=80" alt="" />
+      </div>
+      <div>
+        <div class="spost-cat">Mercado · Há 6h</div>
+        <div class="spost-title">Seguradoras digitais crescem 37% e atraem novos investidores no Brasil</div>
+      </div>
+    </a>
+    <a href="#" class="spost">
+      <div class="spost-thumb">
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=80&h=80&fit=crop&q=80" alt="" />
+      </div>
+      <div>
+        <div class="spost-cat">Regulação · Há 9h</div>
+        <div class="spost-title">CNSP publica resolução sobre microsseguros para população de baixa renda</div>
+      </div>
+    </a>
+  </aside>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     3. BANNER PUBLICITÁRIO (horizontal)
+═══════════════════════════════════════════════ -->
+<div class="ad-wrap" style="margin-top: 32px;">
+  <div class="ad-label">Publicidade</div>
+  <div class="ad-h">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+    Espaço Publicitário — Banner Horizontal (970 × 90)
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     4. MAIS NOTÍCIAS + ANÚNCIO VERTICAL
+═══════════════════════════════════════════════ -->
+<section class="news-section">
+  <div class="news-head">
+    <h2 class="sec-title">Últimas Notícias</h2>
+    <div class="sec-line"></div>
+    <a href="#" class="btn-see-more">
+      Ver todas
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <span class="news-pub-label">Publicidade</span>
+  </div>
+
+  <div class="news-layout">
+
+    <!-- Grid de cards + botão -->
+    <div class="news-col">
+      <div class="news-grid">
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&h=195&fit=crop&q=80" alt="" />
+            <span class="ncard-cat">Empresarial</span>
+          </div>
+          <h3 class="ncard-title">Grandes empresas ampliam cobertura de seguro D&O diante da escalada de responsabilidade civil</h3>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=195&fit=crop&q=80" alt="" />
+            <span class="ncard-cat">Tecnologia</span>
+          </div>
+          <h3 class="ncard-title">IA reduz fraudes em seguros de saúde em até 62%, aponta relatório da FenaSaúde</h3>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=195&fit=crop&q=80" alt="" />
+            <span class="ncard-cat">Previdência</span>
+          </div>
+          <h3 class="ncard-title">Reforma da previdência complementar entra na pauta do Congresso e agita o mercado segurador</h3>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=195&fit=crop&q=80" alt="" />
+            <span class="ncard-cat">Residencial</span>
+          </div>
+          <h3 class="ncard-title">Seguro residencial cresce nas grandes capitais após alta nos registros de alagamento em 2026</h3>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=195&fit=crop&q=80" alt="" />
+            <span class="ncard-cat">Corretores</span>
+          </div>
+          <h3 class="ncard-title">CNseg propõe nova certificação obrigatória para corretores de seguros com início em 2027</h3>
+        </a>
+
+        <a href="#" class="ncard">
+          <div class="ncard-img">
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&h=195&fit=crop&q=80" alt="" />
+            <span class="ncard-cat">Agro</span>
+          </div>
+          <h3 class="ncard-title">Seguro rural amplia cobertura para eventos climáticos extremos no Nordeste após seca histórica</h3>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Anúncio vertical (sem label — label está no header) -->
+    <aside>
+      <div class="ad-v">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        <span>Espaço Publicitário</span>
+        <span>300 × 600</span>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+
+<!-- NEWSLETTER COMPACTA -->
+<section class="nl-compact-section">
+  <div class="nl-compact-block">
+    <div class="nl-compact-left">
+      <div class="nl-compact-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </div>
+      <div>
+        <div class="nl-compact-title">Newsletter Safe Mídia</div>
+        <div class="nl-compact-sub">O mercado de seguros na sua caixa de entrada, todo dia útil.</div>
+      </div>
+    </div>
+    <div class="nl-compact-form">
+      <input class="nl-compact-input" type="email" placeholder="Seu e-mail profissional" />
+      <button class="nl-compact-btn">Assinar grátis →</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     5. PARA O SEGURADO
+═══════════════════════════════════════════════ -->
+<section class="segurado-section">
+  <div class="segurado-inner">
+    <div class="segurado-block">
+
+      <div class="segurado-hd">
+        <h2 class="segurado-title">Para o Segurado</h2>
+        <div class="sec-line" style="background:rgba(255,255,255,.14);"></div>
+        <span class="segurado-sub">Direitos, dicas e orientações para quem já tem ou quer contratar um seguro</span>
+        <div class="sec-line" style="background:rgba(255,255,255,.14);"></div>
+        <a href="#" class="segurado-btn-all">
+          Veja mais
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="segurado-grid">
+
+        <a href="#" class="scard">
+          <div class="scard-wrap">
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=230&fit=crop&q=80" alt="" />
+            <div class="scard-overlay"></div>
+            <div class="scard-content">
+              <span class="scard-meta">Há 2h · Direitos</span>
+              <div class="scard-title">O que fazer quando a seguradora nega um sinistro? Conheça seus direitos</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="scard">
+          <div class="scard-wrap">
+            <img src="https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=400&h=230&fit=crop&q=80" alt="" />
+            <div class="scard-overlay"></div>
+            <div class="scard-content">
+              <span class="scard-meta">Há 5h · Seguro de Vida</span>
+              <div class="scard-title">Como calcular o valor ideal de cobertura para proteger sua família em 2026</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="scard">
+          <div class="scard-wrap">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=230&fit=crop&q=80" alt="" />
+            <div class="scard-overlay"></div>
+            <div class="scard-content">
+              <span class="scard-meta">Há 8h · Comparativo</span>
+              <div class="scard-title">Plano de saúde individual vs. coletivo: qual escolher e o que mudou com a ANS</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="scard">
+          <div class="scard-wrap">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=230&fit=crop&q=80" alt="" />
+            <div class="scard-overlay"></div>
+            <div class="scard-content">
+              <span class="scard-meta">Há 12h · Portabilidade</span>
+              <div class="scard-title">Como mudar de seguradora sem perder benefícios: guia passo a passo</div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     7. ANÁLISE DE MERCADO
+═══════════════════════════════════════════════ -->
+<section class="analise-section">
+  <div class="sec-head">
+    <h2 class="sec-title">Análise de Mercado</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="analise-layout">
+
+    <!-- Card principal grande -->
+    <a href="#" class="analise-main">
+      <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=700&h=430&fit=crop&q=80" alt="" />
+      <div class="analise-overlay"></div>
+      <div class="analise-main-content">
+        <div class="analise-main-meta">Há 3h · Mercado</div>
+        <h3 class="analise-main-title">Porto Seguro e Bradesco Seguros disputam liderança no mercado de saúde empresarial em 2026</h3>
+      </div>
+    </a>
+
+    <!-- Lista de itens -->
+    <div class="analise-list">
+
+      <a href="#" class="aitem">
+        <div class="aitem-img">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=176&h=136&fit=crop&q=80" alt="" />
+        </div>
+        <div>
+          <div class="aitem-meta">Saúde · Há 5h</div>
+          <div class="aitem-title">Reajuste médio dos planos de saúde bate 11,2% no primeiro semestre de 2026</div>
+        </div>
+      </a>
+
+      <a href="#" class="aitem">
+        <div class="aitem-img">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=176&h=136&fit=crop&q=80" alt="" />
+        </div>
+        <div>
+          <div class="aitem-meta">Resseguro · Há 7h</div>
+          <div class="aitem-title">IRB Brasil lucra R$ 380 mi no trimestre e reverte ciclo de perdas históricas</div>
+        </div>
+      </a>
+
+      <a href="#" class="aitem">
+        <div class="aitem-img">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=176&h=136&fit=crop&q=80" alt="" />
+        </div>
+        <div>
+          <div class="aitem-meta">Insurtech · Há 10h</div>
+          <div class="aitem-title">Corretoras apostam em seguros por assinatura para aumentar penetração entre jovens</div>
+        </div>
+      </a>
+
+      <a href="#" class="aitem">
+        <div class="aitem-img">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=176&h=136&fit=crop&q=80" alt="" />
+        </div>
+        <div>
+          <div class="aitem-meta">Investimento · Há 14h</div>
+          <div class="aitem-title">Startups de insurtech recebem R$ 2,4 bilhões em investimentos no Brasil em 2026</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── FOOTER ────────────────────────────────── -->
+<footer class="footer">
+  © 2026 Safe Mídia — Portal independente de notícias do setor de seguros brasileiro
+</footer>
+
+</body>
+</html>

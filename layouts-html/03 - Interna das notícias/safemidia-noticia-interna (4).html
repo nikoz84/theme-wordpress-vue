@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grandes empresas ampliam cobertura de seguro D&O — Safe Mídia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0B1E3D;
+    --blue:       #1E50D4;
+    --blue-hover: #1A46C0;
+    --gold:       #F5C418;
+    --gold-dark:  #DFB000;
+    --forest:     #0D3B27;
+    --forest-mid: #0F4C35;
+    --white:      #FFFFFF;
+    --off-white:  #F4F6FB;
+    --gray-100:   #EDF0F8;
+    --gray-200:   #DDE2EF;
+    --gray-text:  #5C6E8A;
+    --dark:       #0F1C30;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  img { display: block; width: 100%; object-fit: cover; }
+  a { text-decoration: none; color: inherit; }
+
+  .navbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 16px rgba(11,30,61,0.07);
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .logo-shield {
+    width: 34px;
+    height: 34px;
+    background: var(--blue);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-text {
+    font-family: 'Merriweather', serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.4px;
+  }
+
+  .logo-text span { color: var(--blue); }
+
+  .nav-sep { width: 1px; height: 26px; background: var(--gray-200); flex-shrink: 0; }
+
+  .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; }
+  .nav-links a {
+    font-size: 13.5px; font-weight: 500; color: var(--gray-text); padding: 7px 13px;
+    border-radius: 7px; white-space: nowrap; transition: color .18s, background .18s;
+  }
+  .nav-links a:hover { color: var(--blue); background: rgba(30,80,212,.07); }
+  .nav-links a.active { color: var(--blue); font-weight: 600; background: rgba(30,80,212,.08); }
+
+  .nav-socials { display: flex; align-items: center; gap: 8px; }
+  .soc {
+    width: 32px; height: 32px; border: 1.5px solid var(--gray-200); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: var(--gray-text);
+    transition: border-color .18s, color .18s;
+  }
+  .soc:hover { border-color: var(--blue); color: var(--blue); }
+
+  .btn-sub {
+    background: var(--gold); color: var(--navy); font-family: 'Inter', sans-serif;
+    font-weight: 700; font-size: 13.5px; padding: 10px 20px; border-radius: 100px;
+    border: none; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 7px;
+    transition: background .18s, transform .15s;
+  }
+  .btn-sub:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+  .article-section {
+    max-width: 1280px;
+    margin: 36px auto 0;
+    padding: 0 28px;
+  }
+
+  .article-main {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    font-size: 12.5px;
+    color: var(--gray-text);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--blue); font-weight: 500; transition: opacity .2s; }
+  .breadcrumb a:hover { opacity: .72; }
+  .breadcrumb span { opacity: .6; }
+
+  .article-header { margin-bottom: 32px; }
+
+  .article-cat {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .9px;
+    color: var(--white);
+    margin-bottom: 14px;
+    background: var(--blue);
+    padding: 3px 9px;
+    border-radius: 4px;
+  }
+
+  .article-title {
+    font-family: 'Merriweather', serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--navy);
+    letter-spacing: -.5px;
+    margin-bottom: 18px;
+  }
+
+  .article-lead {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--gray-text);
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+
+  .article-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-200);
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .article-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .author-info { display: flex; flex-direction: column; }
+  .author-name { font-weight: 600; color: var(--dark); font-size: 14px; }
+  .author-date { font-size: 13px; color: var(--gray-text); display: flex; align-items: center; gap: 6px; }
+  .author-date span::before { content: "·"; font-weight: bold; margin-right: 6px; opacity: .5; }
+
+  .article-share { display: flex; align-items: center; gap: 8px; }
+  .share-label { font-size: 12px; font-weight: 600; color: var(--gray-text); margin-right: 4px; text-transform: uppercase; }
+  .btn-share {
+    width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: var(--off-white); color: var(--gray-text); transition: background .18s ease, color .18s ease, transform .18s ease; border: none; cursor: pointer;
+  }
+  .btn-share:hover { color: var(--white); transform: translateY(-2px); }
+  .btn-share.fb:hover { background: #1877F2; }
+  .btn-share.tw:hover { background: #000000; }
+  .btn-share.in:hover { background: #0A66C2; }
+  .btn-share.wa:hover { background: #25D366; }
+  .btn-share.link:hover { background: var(--gray-text); }
+
+  .article-featured-img { margin-bottom: 40px; border-radius: 13px; overflow: hidden; }
+  .article-featured-img img { width: 100%; max-height: 500px; object-fit: cover; display: block; }
+  .article-caption {
+    font-size: 13px; color: var(--gray-text); text-align: center; padding: 12px; background: var(--off-white);
+    border-bottom-left-radius: 13px; border-bottom-right-radius: 13px;
+  }
+
+  .article-body {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--dark);
+  }
+
+  .article-body p { margin-bottom: 24px; }
+  .article-body p:first-of-type::first-letter {
+    font-family: 'Merriweather', serif;
+    font-size: 64px;
+    line-height: 50px;
+    float: left;
+    margin-right: 10px;
+    margin-top: 6px;
+    color: var(--blue);
+    font-weight: 900;
+  }
+
+  .article-body h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 48px 0 20px;
+    line-height: 1.4;
+  }
+
+  .article-body h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 36px 0 16px;
+  }
+
+  .article-body ul { margin: 0 0 24px 24px; }
+  .article-body li { margin-bottom: 10px; padding-left: 8px; }
+  .article-body li::marker { color: var(--blue); font-size: 1.2em; }
+
+  .article-body blockquote {
+    border-left: 4px solid var(--blue);
+    background: var(--off-white);
+    padding: 24px 32px;
+    margin: 36px 0;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .article-body blockquote p {
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--navy);
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
+
+  .article-body blockquote p::first-letter { font-size: 20px; float: none; color: inherit; font-weight: normal; margin: 0; line-height: inherit; }
+
+  .article-inline-ad {
+    margin: 40px 0; padding: 20px; background: var(--gray-100); border: 1.5px dashed var(--gray-200);
+    border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--gray-text); font-size: 12px; font-weight: 500; min-height: 120px; text-align: center;
+  }
+
+  .article-footer { margin-top: 48px; border-top: 1px solid var(--gray-200); padding-top: 32px; }
+
+  /* ── SHARE BOTTOM ── */
+  .article-share-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: var(--off-white);
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 18px 24px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .share-bottom-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .share-bottom-btns {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .article-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+  .article-tags a {
+    background: var(--off-white); color: var(--gray-text); font-size: 13px; font-weight: 500;
+    padding: 6px 14px; border-radius: 100px; transition: background .18s ease, color .18s ease, border-color .18s ease; border: 1px solid var(--gray-200);
+  }
+  .article-tags a:hover { background: var(--blue); color: var(--white); border-color: var(--blue); }
+
+  .author-box {
+    display: flex; gap: 20px; background: var(--off-white); border: 1px solid var(--gray-200);
+    border-radius: 16px; padding: 32px; align-items: center;
+  }
+  .author-box-avatar { width: 80px; height: 80px; border-radius: 50%; flex-shrink: 0; }
+  .author-box-content h4 { font-size: 18px; color: var(--navy); margin-bottom: 6px; }
+  .author-box-content p { font-size: 14.5px; color: var(--gray-text); margin-bottom: 12px; line-height: 1.5; }
+  .author-box-social { display: flex; gap: 12px; }
+  .author-box-social a { color: var(--blue); font-size: 13px; font-weight: 600; text-decoration: none; }
+  .author-box-social a:hover { text-decoration: underline; }
+
+  /* ── SEPARADOR LEIA TAMBÉM ── */
+  .leia-separator {
+    max-width: 1280px;
+    margin: 64px auto 0;
+    padding: 0 28px;
+  }
+  .leia-separator-line {
+    border: none;
+    border-top: 1px solid var(--gray-200);
+    margin: 0;
+  }
+
+  /* ── BARRA DE PROGRESSO ── */
+  .read-progress {
+    position: fixed;
+    top: 66px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--blue);
+    z-index: 199;
+    transition: width .08s linear;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* ── VOLTAR AO TOPO ── */
+  .back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(11,30,61,.22);
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease, background .18s ease;
+    z-index: 500;
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .back-to-top:hover { background: var(--blue); }
+
+  /* ── LEIA TAMBÉM ── */
+  .leia-section {
+    max-width: 1280px;
+    margin: 48px auto 80px;
+    padding: 0 28px;
+  }
+
+  .leia-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .leia-title {
+    font-family: 'Merriweather', serif;
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .leia-line {
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+  }
+
+  .leia-ver-mais {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    border: 1.5px solid var(--blue);
+    color: var(--blue);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background .18s ease, color .18s ease;
+  }
+  .leia-ver-mais:hover { background: var(--blue); color: var(--white); }
+
+  .leia-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .leia-card {
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+    background: var(--white);
+    text-decoration: none;
+    transition: box-shadow .2s;
+  }
+  .leia-card:hover { box-shadow: 0 4px 18px rgba(11,30,61,.08); }
+
+  .leia-card-img {
+    position: relative;
+    height: 195px;
+    overflow: hidden;
+  }
+  .leia-card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+  }
+  .leia-card:hover .leia-card-img img { transform: scale(1.05); }
+
+  .leia-card-cat {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .9px;
+    padding: 3px 9px;
+    border-radius: 4px;
+  }
+
+  .leia-card-body { padding: 16px 18px 20px; }
+
+  .leia-card-title {
+    font-family: 'Merriweather', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--navy);
+    line-height: 1.45;
+    margin-bottom: 10px;
+    transition: color .18s;
+  }
+  .leia-card:hover .leia-card-title { color: var(--blue); }
+
+  .leia-card-time {
+    font-size: 12px;
+    color: var(--gray-text);
+  }
+
+  .site-footer { background: var(--navy); margin-top: 0; }
+  .footer-main { max-width: 1280px; margin: 0 auto; padding: 56px 28px 48px; display: grid; grid-template-columns: 1.6fr 1fr 1.4fr 1.2fr; gap: 48px; }
+  .footer-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; margin-bottom: 16px; }
+  .footer-logo .logo-shield { background: var(--blue); }
+  .footer-logo-text { font-family: 'Merriweather', serif; font-size: 19px; font-weight: 700; color: var(--white); letter-spacing: -.3px; }
+  .footer-logo-text span { color: var(--gold); }
+  .footer-desc { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.7; margin-bottom: 20px; }
+  .footer-socials { display: flex; gap: 10px; }
+  .footer-soc { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.55); text-decoration: none; transition: border-color .18s, color .18s; }
+  .footer-soc:hover { border-color: rgba(255,255,255,.5); color: var(--white); }
+  .footer-col-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: rgba(255,255,255,.35); margin-bottom: 18px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 13.5px; color: rgba(255,255,255,.6); text-decoration: none; transition: color .18s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-nl-sub { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.6; margin-bottom: 16px; }
+  .footer-nl-form { display: flex; flex-direction: column; gap: 8px; }
+  .footer-nl-input { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; padding: 10px 14px; color: var(--white); font-family: 'Inter', sans-serif; font-size: 13px; outline: none; transition: border-color .18s; }
+  .footer-nl-input::placeholder { color: rgba(255,255,255,.3); }
+  .footer-nl-input:focus { border-color: rgba(255,255,255,.35); }
+  .footer-nl-btn { background: var(--gold); color: var(--navy); font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; border: none; border-radius: 8px; padding: 10px; cursor: pointer; transition: background .18s; }
+  .footer-nl-btn:hover { background: var(--gold-dark); }
+  .footer-contact-block { margin-bottom: 20px; }
+  .footer-contact-label { font-size: 12px; color: rgba(255,255,255,.35); margin-bottom: 5px; font-weight: 500; }
+  .footer-contact-email { font-size: 13.5px; color: rgba(255,255,255,.7); text-decoration: none; transition: color .18s; word-break: break-all; }
+  .footer-contact-email:hover { color: var(--white); }
+  .footer-bottom { max-width: 1280px; margin: 0 auto; padding: 20px 28px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 12px; color: rgba(255,255,255,.3); }
+
+  .nav-hamburger { display: none; background: none; border: 1.5px solid var(--gray-200); cursor: pointer; color: var(--navy); padding: 7px 9px; border-radius: 9px; align-items: center; justify-content: center; flex-shrink: 0; transition: background .18s, border-color .18s; }
+  .nav-hamburger:hover { background: var(--gray-100); }
+  .mobile-menu { position: fixed; top: 58px; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--gray-200); box-shadow: 0 8px 32px rgba(11,30,61,.12); z-index: 199; padding: 8px 16px 16px; flex-direction: column; gap: 2px; display: none; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 15px; font-weight: 500; color: var(--gray-text); padding: 11px 14px; border-radius: 8px; text-decoration: none; transition: color .18s, background .18s; }
+  .mobile-menu a:hover, .mobile-menu a.active { color: var(--blue); background: rgba(30,80,212,.06); font-weight: 600; }
+
+  /* Msg Toast para copiar link */
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--navy); color: var(--white); font-size: 14px; font-weight: 500; padding: 12px 24px; border-radius: 100px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Media Queries */
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .nav-sep:last-of-type { display: none; }
+    .leia-grid { grid-template-columns: 1fr 1fr; }
+    .read-progress { top: 66px; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 16px; height: 58px; position: relative; gap: 0; }
+    .nav-sep { display: none; }
+    .nav-socials { display: none; }
+    .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); background: var(--white); padding: 0 4px; z-index: 1; }
+    .logo-text { font-size: 15px; }
+    .nav-hamburger { display: flex; }
+    .btn-sub { font-size: 10.5px; padding: 7px 10px; gap: 0; white-space: nowrap; }
+    .btn-sub svg { display: none; }
+
+    .article-section { padding: 0 16px; margin-top: 24px; }
+    .article-title { font-size: 28px; line-height: 1.3; }
+    .article-lead { font-size: 17px; }
+    .article-meta-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+    .article-body { font-size: 17px; }
+    .article-body p:first-of-type::first-letter { font-size: 52px; line-height: 42px; }
+    .article-body h2 { font-size: 22px; }
+    .article-body blockquote { padding: 20px; margin: 28px 0; }
+    .article-body blockquote p { font-size: 18px; }
+
+    .author-box { flex-direction: column; text-align: center; padding: 24px; }
+    .author-box-social { justify-content: center; }
+
+    .read-progress { top: 58px; }
+    .back-to-top { bottom: 20px; right: 16px; width: 40px; height: 40px; }
+    .article-share-bottom { padding: 14px 16px; }
+
+    .leia-section { padding: 0 16px; margin-top: 48px; margin-bottom: 48px; }
+    .leia-separator { padding: 0 16px; }
+    .leia-grid { grid-template-columns: 1fr; }
+
+    .footer-main { grid-template-columns: 1fr; padding: 36px 16px 28px; gap: 32px; }
+    .footer-bottom { flex-direction: column; text-align: center; padding: 16px; gap: 8px; font-size: 11px; }
+    .footer-nl-form { flex-direction: column; }
+    .footer-nl-btn { width: 100%; padding: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="navbar">
+<div id="readProgress" class="read-progress"></div>
+  <nav class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logo-shield">
+        <svg width="18" height="20" viewBox="0 0 18 22" fill="none">
+          <path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/>
+        </svg>
+      </div>
+      <span class="logo-text">Safe <span>Mídia</span></span>
+    </a>
+
+    <div class="nav-sep"></div>
+
+    <div class="nav-links">
+      <a href="#">Mercado</a>
+      <a href="#">Auto</a>
+      <a href="#">Saúde</a>
+      <a href="#">Vida</a>
+      <a href="#" class="active">Empresarial</a>
+      <a href="#">SUSEP</a>
+      <a href="#">Regulação</a>
+      <a href="#">Opinião</a>
+    </div>
+
+    <div class="nav-sep"></div>
+
+    <div class="nav-socials">
+      <a href="#" class="soc" title="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      <a href="#" class="soc" title="Instagram"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      <a href="#" class="soc" title="X"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" class="soc" title="LinkedIn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+    </div>
+
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+    <button class="btn-sub">
+      Assinar Newsletter
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </nav>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#">Mercado</a>
+  <a href="#">Auto</a>
+  <a href="#">Saúde</a>
+  <a href="#">Vida</a>
+  <a href="#" class="active">Empresarial</a>
+  <a href="#">SUSEP</a>
+  <a href="#">Regulação</a>
+  <a href="#">Opinião</a>
+</nav>
+
+<main class="article-section">
+    <article class="article-main">
+      
+      <div class="breadcrumb">
+        <a href="#">Página Inicial</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="#">Empresarial</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <span>Artigo</span>
+      </div>
+
+      <header class="article-header">
+        <span class="article-cat">Empresarial</span>
+        <h1 class="article-title">Grandes empresas ampliam cobertura de seguro D&O diante da escalada de responsabilidade civil</h1>
+        <p class="article-lead">A procura por seguros de Responsabilidade Civil de Diretores e Administradores (D&O) registrou um aumento de 32% no último trimestre, impulsionado por novos marcos regulatórios e a necessidade de proteção patrimonial de executivos de alto escalão.</p>
+        
+        <div class="article-meta-row">
+          <div class="article-author">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80" alt="Marcos Figueiredo" class="author-avatar" />
+            <div class="author-info">
+              <span class="author-name">Marcos Figueiredo</span>
+              <div class="author-date">
+                17 de Julho de 2026 <span>5 min de leitura</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="article-share">
+            <span class="share-label">Compartilhar:</span>
+            <button class="btn-share wa" title="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></button>
+            <button class="btn-share in" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></button>
+            <button class="btn-share tw" title="X (Twitter)"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
+            <button class="btn-share fb" title="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></button>
+            <button class="btn-share link" id="btnCopyLink" title="Copiar link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+          </div>
+        </div>
+      </header>
+
+      <figure class="article-featured-img">
+        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&h=500&fit=crop&q=80" alt="Reunião de diretoria em empresa de tecnologia">
+        <figcaption class="article-caption">Executivos em reunião: a complexidade das decisões atuais aumenta a exposição a processos cíveis e trabalhistas. (Foto: Unsplash/Reprodução)</figcaption>
+      </figure>
+
+      <div class="article-body">
+        <p>O mercado de seguros corporativos no Brasil vive um momento de forte aquecimento em um nicho muito específico: o seguro D&O (Directors and Officers). Dados recentes divulgados pela CNseg (Confederação Nacional das Seguradoras) apontam que as emissões de prêmios nessa modalidade saltaram 32% apenas no primeiro semestre de 2026, atingindo cifras inéditas para o setor.</p>
+        
+        <p>O seguro D&O, projetado para proteger o patrimônio de executivos do alto escalão (diretores, administradores e conselheiros) contra reclamações judiciais e administrativas relacionadas a atos de gestão, antes era visto como exclusividade de corporações listadas em bolsa. Hoje, no entanto, o perfil do contratante mudou drasticamente.</p>
+
+        <h2>A influência da pauta ESG e novas regulações</h2>
+        
+        <p>Especialistas apontam que a popularização da apólice entre empresas de médio porte está diretamente ligada ao aumento da severidade dos órgãos reguladores, como a CVM (Comissão de Valores Mobiliários) e o CADE, além da crescente pressão de investidores e da sociedade por práticas ESG (Governança Ambiental, Social e Corporativa).</p>
+        
+        <ul>
+          <li><strong>Responsabilidade Ambiental:</strong> Decisões que impactam negativamente o meio ambiente agora podem gerar bloqueio de bens pessoais dos diretores de forma mais célere, graças a precedentes jurídicos recentes.</li>
+          <li><strong>Crises Cibernéticas:</strong> Falhas na proteção de dados e vazamentos sob a vigência da LGPD têm resultado em processos civis onde os diretores de tecnologia (CTOs) e presidentes são arrolados diretamente como réus.</li>
+          <li><strong>Questões Trabalhistas e de Diversidade:</strong> A inação diante de denúncias de assédio ou práticas discriminatórias também tem se tornado um gatilho frequente para o acionamento dessas apólices.</li>
+        </ul>
+
+        <blockquote>
+          <p>"Não se trata mais de 'se' um executivo será questionado por uma decisão, mas 'quando'. O nível de escrutínio público e regulatório nunca foi tão alto. Trabalhar no alto escalão hoje sem uma apólice D&O robusta é considerado um risco patrimonial inaceitável."</p>
+        </blockquote>
+        
+        <p>A citação é de Carlos Menezes, diretor de subscrição de linhas financeiras de uma das maiores seguradoras globais operando no Brasil. Ele relata que as cláusulas estão sendo constantemente revisadas. "As seguradoras precisaram refinar seus questionários de risco. Hoje, a análise para aprovar uma apólice de D&O envolve uma devassa nas políticas de compliance da empresa", explica Menezes.</p>
+
+        <div class="article-inline-ad">
+          <span>Publicidade</span>
+          <span>Banner In-text (728x90)</span>
+        </div>
+
+        <h3>Ajuste de preços e o futuro do mercado</h3>
+        
+        <p>Com o aumento da frequência de sinistros — a taxa de acionamento das apólices subiu de 12% para 18% nos últimos dois anos —, as seguradoras precisaram ajustar o prêmio (valor pago pelo seguro). O aumento médio no custo da apólice D&O foi de 15% na renovação deste ano, segundo corretores especializados.</p>
+        
+        <p>Ainda assim, a demanda não dá sinais de arrefecimento. Pelo contrário: com a reforma tributária exigindo adaptações complexas na contabilidade das empresas até 2027, o temor de erros de gestão não intencionais por parte de diretores financeiros (CFOs) deve sustentar as vendas do produto nos próximos trimestres.</p>
+        
+        <p>Para o corretor que atua no segmento PJ, o recado é claro: dominar as nuances das linhas financeiras deixou de ser um diferencial e passou a ser uma exigência básica para quem atende contas empresariais.</p>
+      </div>
+
+      <div class="article-share-bottom">
+        <span class="share-bottom-label">Gostou? Compartilhe este artigo:</span>
+        <div class="share-bottom-btns">
+          <button class="btn-share wa" title="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></button>
+          <button class="btn-share in" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></button>
+          <button class="btn-share tw" title="X (Twitter)"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></button>
+          <button class="btn-share fb" title="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></button>
+          <button class="btn-share link" title="Copiar link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+        </div>
+      </div>
+
+      <div class="article-footer">
+        <div class="article-tags">
+          <a href="#">#LinhasFinanceiras</a>
+          <a href="#">#D&O</a>
+          <a href="#">#Compliance</a>
+          <a href="#">#Governança</a>
+          <a href="#">#MercadoCorporativo</a>
+        </div>
+
+        <div class="author-box">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&q=80" alt="Marcos Figueiredo" class="author-box-avatar" />
+          <div class="author-box-content">
+            <h4>Sobre Marcos Figueiredo</h4>
+            <p>Atuário formado pela UFRJ, mestre em Finanças e professor convidado da FGV. Conta com mais de 15 anos de experiência no mercado de seguros corporativos e resseguro. Cobre as pautas de grandes riscos e regulação para o Safe Mídia.</p>
+            <div class="author-box-social">
+              <a href="#">LinkedIn</a>
+              <a href="#">Mais artigos deste autor</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </article>
+</main>
+
+<div class="leia-separator">
+  <hr class="leia-separator-line">
+</div>
+
+<button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
+
+<section class="leia-section">
+  <div class="leia-head">
+    <h2 class="leia-title">Leia também</h2>
+    <div class="leia-line"></div>
+    <a href="#" class="leia-ver-mais">Ver todas as notícias →</a>
+  </div>
+  <div class="leia-grid">
+
+    <a href="#" class="leia-card">
+      <div class="leia-card-img">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop&q=80" alt="Regulação">
+        <span class="leia-card-cat">Regulação</span>
+      </div>
+      <div class="leia-card-body">
+        <div class="leia-card-title">CNSP publica resolução sobre microsseguros para população de baixa renda</div>
+        <div class="leia-card-time">Há 9 horas</div>
+      </div>
+    </a>
+
+    <a href="#" class="leia-card">
+      <div class="leia-card-img">
+        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=400&fit=crop&q=80" alt="Previdência">
+        <span class="leia-card-cat">Previdência</span>
+      </div>
+      <div class="leia-card-body">
+        <div class="leia-card-title">Captação de previdência privada aberta bate R$ 8,3 bilhões em junho, maior valor do ano</div>
+        <div class="leia-card-time">Há 18 horas</div>
+      </div>
+    </a>
+
+    <a href="#" class="leia-card">
+      <div class="leia-card-img">
+        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop&q=80" alt="SUSEP">
+        <span class="leia-card-cat">SUSEP</span>
+      </div>
+      <div class="leia-card-body">
+        <div class="leia-card-title">SUSEP abre consulta pública sobre framework de open insurance para 2027</div>
+        <div class="leia-card-time">Há 2 dias</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">
+        <div class="logo-shield">
+          <svg width="18" height="20" viewBox="0 0 18 22" fill="none"><path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/></svg>
+        </div>
+        <span class="footer-logo-text">Safe <span>Mídia</span></span>
+      </a>
+      <p class="footer-desc">Portal independente de notícias, análises e regulação do mercado de seguros brasileiro. Conteúdo para corretores, atuários, gestores e segurados.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-soc" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#" class="footer-soc" title="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="footer-soc" title="X"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="footer-soc" title="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Editorias</div>
+      <ul class="footer-links">
+        <li><a href="#">Mercado</a></li>
+        <li><a href="#">Auto</a></li>
+        <li><a href="#">Saúde</a></li>
+        <li><a href="#">Vida</a></li>
+        <li><a href="#">Empresarial</a></li>
+        <li><a href="#">SUSEP</a></li>
+        <li><a href="#">Regulação</a></li>
+        <li><a href="#">Para o Segurado</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Newsletter</div>
+      <p class="footer-nl-sub">Receba as principais notícias do setor direto no seu e-mail, todo dia útil.</p>
+      <div class="footer-nl-form">
+        <input class="footer-nl-input" type="email" placeholder="Seu e-mail" />
+        <button class="footer-nl-btn">Assinar</button>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Contato</div>
+      <div class="footer-contact-block">
+        <div class="footer-contact-label">Conteúdo e pauta</div>
+        <a href="mailto:redacao@safemidia.com.br" class="footer-contact-email">redacao@safemidia.com.br</a>
+      </div>
+      <div class="footer-contact-block">
+        <div class="footer-contact-label">Comercial</div>
+        <a href="mailto:direcao@safemidia.com.br" class="footer-contact-email">direcao@safemidia.com.br</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Safe Mídia. Todos os direitos reservados.</span>
+    <span>Portal independente — não possui vínculo com seguradoras ou órgãos reguladores</span>
+  </div>
+</footer>
+
+<div id="toastMsg" class="toast">Link copiado para a área de transferência!</div>
+
+<script>
+(function(){
+  // Mobile Menu
+  var hamburger = document.getElementById('navHamburger');
+  var menu = document.getElementById('mobileMenu');
+  if (hamburger && menu) {
+    hamburger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      menu.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e) {
+      if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+        menu.classList.remove('open');
+      }
+    });
+    menu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() { menu.classList.remove('open'); });
+    });
+  }
+
+  // Barra de progresso de leitura
+  var progressBar = document.getElementById('readProgress');
+  var article = document.querySelector('.article-main');
+  if (progressBar && article) {
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    function updateProgress() {
+      var rect = article.getBoundingClientRect();
+      var articleTop = rect.top + window.scrollY;
+      var articleHeight = article.offsetHeight;
+      var scrolled = window.scrollY;
+      var winH = window.innerHeight;
+      var progress = (scrolled - articleTop + winH * 0.5) / articleHeight;
+      progress = Math.max(0, Math.min(1, progress));
+      progressBar.style.width = (progress * 100) + '%';
+    }
+    updateProgress();
+  }
+
+  // Botão Voltar ao Topo
+  var btnTop = document.getElementById('backToTop');
+  if (btnTop) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 400) {
+        btnTop.classList.add('visible');
+      } else {
+        btnTop.classList.remove('visible');
+      }
+    }, { passive: true });
+    btnTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Copiar link (todos os botões .btn-share.link)
+  var toast = document.getElementById('toastMsg');
+  document.querySelectorAll('.btn-share.link').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var dummy = document.createElement('input');
+      document.body.appendChild(dummy);
+      dummy.value = window.location.href;
+      dummy.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+      if (toast) {
+        toast.classList.add('show');
+        setTimeout(function() { toast.classList.remove('show'); }, 3000);
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

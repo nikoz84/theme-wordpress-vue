@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUSEP anuncia novas regras para seguros de vida: cobertura obrigatória aumenta 40% — Safe Mídia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0B1E3D;
+    --blue:       #1E50D4;
+    --blue-hover: #1A46C0;
+    --gold:       #F5C418;
+    --gold-dark:  #DFB000;
+    --forest:     #0D3B27;
+    --forest-mid: #0F4C35;
+    --white:      #FFFFFF;
+    --off-white:  #F4F6FB;
+    --gray-100:   #EDF0F8;
+    --gray-200:   #DDE2EF;
+    --gray-text:  #5C6E8A;
+    --dark:       #0F1C30;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  img { display: block; width: 100%; object-fit: cover; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ─── NAVBAR ──────────────────────────────────── */
+  .navbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 16px rgba(11,30,61,0.07);
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .logo-shield {
+    width: 34px;
+    height: 34px;
+    background: var(--blue);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-text {
+    font-family: 'Merriweather', serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.4px;
+  }
+
+  .logo-text span { color: var(--blue); }
+
+  .nav-sep {
+    width: 1px;
+    height: 26px;
+    background: var(--gray-200);
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .nav-links a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--gray-text);
+    padding: 7px 13px;
+    border-radius: 7px;
+    white-space: nowrap;
+    transition: color .18s, background .18s;
+  }
+
+  .nav-links a:hover { color: var(--blue); background: rgba(30,80,212,.07); }
+  .nav-links a.active { color: var(--blue); font-weight: 600; background: rgba(30,80,212,.08); }
+
+  .nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .soc {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-text);
+    transition: border-color .18s, color .18s;
+  }
+
+  .soc:hover { border-color: var(--blue); color: var(--blue); }
+
+  .btn-sub {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: background .18s, transform .15s;
+  }
+
+  .btn-sub:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+  /* ─── MOBILE MENU & HAMBURGER ───────────────── */
+  .nav-hamburger {
+    display: none;
+    background: none;
+    border: 1.5px solid var(--gray-200);
+    cursor: pointer;
+    color: var(--navy);
+    padding: 7px 9px;
+    border-radius: 9px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background .18s, border-color .18s;
+  }
+
+  .nav-hamburger:hover { background: var(--gray-100); }
+
+  .mobile-menu {
+    position: fixed;
+    top: 58px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    box-shadow: 0 8px 32px rgba(11,30,61,.12);
+    z-index: 199;
+    padding: 8px 16px 16px;
+    flex-direction: column;
+    gap: 2px;
+    display: none;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gray-text);
+    padding: 11px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: color .18s, background .18s;
+  }
+
+  .mobile-menu a:hover,
+  .mobile-menu a.active { color: var(--blue); background: rgba(30,80,212,.06); font-weight: 600; }
+
+  /* ─── ARTICLE HEADER ──────────────────────────── */
+  .article-header {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 28px 0;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--gray-text);
+    margin-bottom: 22px;
+  }
+
+  .breadcrumb a { color: var(--blue); font-weight: 500; transition: opacity .18s; }
+  .breadcrumb a:hover { opacity: .7; }
+
+  .breadcrumb-sep {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gray-200);
+  }
+
+  .article-cat {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    padding: 5px 12px;
+    border-radius: 5px;
+    margin-bottom: 16px;
+  }
+
+  .article-title {
+    font-family: 'Merriweather', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.25;
+    letter-spacing: -0.6px;
+    max-width: 860px;
+  }
+
+  .article-lead {
+    font-size: 17px;
+    color: var(--gray-text);
+    line-height: 1.65;
+    margin-top: 16px;
+    max-width: 720px;
+  }
+
+  /* ─── ARTICLE META ────────────────────────────── */
+  .article-meta {
+    max-width: 1280px;
+    margin: 24px auto 0;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .meta-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .meta-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--gray-100);
+  }
+
+  .meta-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  .meta-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .meta-role {
+    font-size: 12px;
+    color: var(--gray-text);
+  }
+
+  .meta-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--gray-200);
+  }
+
+  .meta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .meta-date {
+    font-size: 12.5px;
+    color: var(--gray-text);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .meta-readtime {
+    font-size: 12.5px;
+    color: var(--gray-text);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* ─── SHARE BAR ───────────────────────────────── */
+  .share-bar {
+    max-width: 1280px;
+    margin: 20px auto 0;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .share-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-text);
+    margin-right: 4px;
+  }
+
+  .share-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--gray-200);
+    background: var(--white);
+    color: var(--gray-text);
+    cursor: pointer;
+    transition: all .18s;
+  }
+
+  .share-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+  .share-btn.copy {
+    width: auto;
+    padding: 0 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    gap: 6px;
+  }
+
+  /* ─── HERO IMAGE ──────────────────────────────── */
+  .article-hero {
+    max-width: 1280px;
+    margin: 28px auto 0;
+    padding: 0 28px;
+  }
+
+  .article-hero-img {
+    width: 100%;
+    height: 520px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .article-hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .article-hero-caption {
+    font-size: 12px;
+    color: var(--gray-text);
+    margin-top: 10px;
+    padding-left: 2px;
+  }
+
+  .article-hero-caption span {
+    color: var(--gray-200);
+    margin: 0 6px;
+  }
+
+  /* ─── ARTICLE LAYOUT ──────────────────────────── */
+  .article-layout {
+    max-width: 1280px;
+    margin: 36px auto 0;
+    padding: 0 28px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* ─── ARTICLE BODY ────────────────────────────── */
+  .article-body {
+    font-family: 'Merriweather', serif;
+    font-size: 17.5px;
+    line-height: 1.85;
+    color: #1a2332;
+  }
+
+  .article-body p {
+    margin-bottom: 24px;
+  }
+
+  .article-body p:first-of-type::first-letter {
+    font-size: 64px;
+    font-weight: 700;
+    float: left;
+    line-height: 0.85;
+    padding-right: 10px;
+    padding-top: 6px;
+    color: var(--navy);
+  }
+
+  .article-body h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 40px 0 18px;
+    line-height: 1.35;
+  }
+
+  .article-body h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--blue);
+    margin: 32px 0 14px;
+  }
+
+  .article-body ul {
+    margin: 0 0 24px 0;
+    padding-left: 24px;
+    list-style: none;
+  }
+
+  .article-body ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    font-family: 'Merriweather', serif;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .article-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+
+  .article-body strong {
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .article-body a {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: rgba(30,80,212,.3);
+    transition: text-decoration-color .18s;
+  }
+
+  .article-body a:hover {
+    text-decoration-color: var(--blue);
+  }
+
+  /* ─── BLOCKQUOTE ──────────────────────────────── */
+  .article-quote {
+    border-left: 4px solid var(--gold);
+    padding: 16px 0 16px 24px;
+    margin: 32px 0;
+    background: var(--off-white);
+    border-radius: 0 12px 12px 0;
+  }
+
+  .article-quote p {
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--navy);
+    margin-bottom: 10px !important;
+  }
+
+  .article-quote p:first-of-type::first-letter {
+    font-size: inherit;
+    float: none;
+    padding: 0;
+    font-weight: inherit;
+  }
+
+  .quote-author {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-text);
+  }
+
+  .quote-role {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--gray-text);
+    opacity: .7;
+  }
+
+  /* ─── INLINE IMAGE ────────────────────────────── */
+  .inline-img {
+    margin: 32px 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .inline-img img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+  }
+
+  .inline-caption {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--gray-text);
+    margin-top: 8px;
+    padding-left: 2px;
+  }
+
+  /* ─── HIGHLIGHT BOX ───────────────────────────── */
+  .highlight-box {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 28px 30px;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .highlight-box::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(30,80,212,.12);
+    right: -50px;
+    top: -60px;
+    pointer-events: none;
+  }
+
+  .highlight-box h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .highlight-box p {
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    color: rgba(255,255,255,.85);
+    line-height: 1.7;
+    margin-bottom: 0 !important;
+    position: relative;
+  }
+
+  .highlight-box p:first-of-type::first-letter {
+    font-size: inherit;
+    float: none;
+    padding: 0;
+    font-weight: inherit;
+    color: inherit;
+  }
+
+  /* ─── TAGS ────────────────────────────────────── */
+  .article-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .tags-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-text);
+    margin-right: 4px;
+  }
+
+  .tag {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--blue);
+    background: rgba(30,80,212,.07);
+    padding: 5px 12px;
+    border-radius: 100px;
+    transition: background .18s;
+  }
+
+  .tag:hover { background: rgba(30,80,212,.14); }
+
+  /* ─── AUTHOR BOX ──────────────────────────────── */
+  .author-box {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    margin-top: 40px;
+    padding: 24px;
+    background: var(--off-white);
+    border-radius: 14px;
+  }
+
+  .author-box-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid var(--white);
+  }
+
+  .author-box-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  .author-box-info { flex: 1; }
+
+  .author-box-name {
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+
+  .author-box-role {
+    font-size: 12.5px;
+    color: var(--gray-text);
+    margin-bottom: 8px;
+  }
+
+  .author-box-bio {
+    font-size: 13.5px;
+    color: var(--gray-text);
+    line-height: 1.6;
+  }
+
+  /* ─── READ ALSO ───────────────────────────────── */
+  .read-also {
+    margin-top: 48px;
+  }
+
+  .read-also-title {
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 18px;
+  }
+
+  .read-also-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .ralso-card {
+    display: flex;
+    gap: 14px;
+    text-decoration: none;
+    transition: opacity .18s;
+  }
+
+  .ralso-card:hover { opacity: .78; }
+  .ralso-card:hover .ralso-title { color: var(--blue); }
+
+  .ralso-thumb {
+    width: 90px;
+    height: 70px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .ralso-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  .ralso-cat {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--blue);
+    margin-bottom: 5px;
+  }
+
+  .ralso-title {
+    font-family: 'Merriweather', serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--dark);
+    transition: color .18s;
+  }
+
+  /* ─── SIDEBAR ─────────────────────────────────── */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: sticky;
+    top: 86px;
+  }
+
+  .sidebar-block {
+    border: 0.5px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 22px;
+  }
+
+  .sidebar-title {
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  /* Newsletter sidebar */
+  .sidebar-nl {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 26px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sidebar-nl::before {
+    content: '';
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(30,80,212,.14);
+    right: -40px;
+    top: -50px;
+    pointer-events: none;
+  }
+
+  .sidebar-nl-title {
+    font-family: 'Merriweather', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar-nl-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,.5);
+    line-height: 1.55;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar-nl-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar-nl-input {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 10px;
+    padding: 11px 14px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    outline: none;
+  }
+
+  .sidebar-nl-input::placeholder { color: rgba(255,255,255,.35); }
+
+  .sidebar-nl-btn {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    border: none;
+    border-radius: 10px;
+    padding: 11px;
+    cursor: pointer;
+    transition: background .18s;
+  }
+
+  .sidebar-nl-btn:hover { background: var(--gold-dark); }
+
+  /* Trending sidebar */
+  .trend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gray-100);
+    text-decoration: none;
+    transition: opacity .18s;
+  }
+
+  .trend-item:first-child { padding-top: 0; }
+  .trend-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .trend-item:hover { opacity: .75; }
+  .trend-item:hover .trend-title { color: var(--blue); }
+
+  .trend-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gray-200);
+    line-height: 1;
+    min-width: 26px;
+    flex-shrink: 0;
+  }
+
+  .trend-title {
+    font-family: 'Merriweather', serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--dark);
+    transition: color .18s;
+  }
+
+  /* Related sidebar */
+  .rel-item {
+    display: flex;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--gray-100);
+    text-decoration: none;
+    transition: opacity .18s;
+  }
+
+  .rel-item:first-child { padding-top: 0; }
+  .rel-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .rel-item:hover { opacity: .75; }
+  .rel-item:hover .rel-title { color: var(--blue); }
+
+  .rel-thumb {
+    width: 72px;
+    height: 54px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .rel-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  .rel-cat {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--blue);
+    margin-bottom: 4px;
+  }
+
+  .rel-title {
+    font-family: 'Merriweather', serif;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--dark);
+    transition: color .18s;
+  }
+
+  /* Ad sidebar */
+  .ad-v {
+    width: 100%;
+    min-height: 280px;
+    background: var(--gray-100);
+    border-radius: 10px;
+    border: 1.5px dashed var(--gray-200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--gray-text);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .ad-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-text);
+    margin-bottom: 7px;
+    opacity: .7;
+  }
+
+  /* ─── FOOTER ──────────────────────────────────── */
+  .site-footer {
+    background: var(--navy);
+    margin-top: 72px;
+  }
+
+  .footer-main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 56px 28px 48px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.4fr 1.2fr;
+    gap: 48px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    margin-bottom: 16px;
+  }
+
+  .footer-logo .logo-shield {
+    background: var(--blue);
+  }
+
+  .footer-logo-text {
+    font-family: 'Merriweather', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -.3px;
+  }
+
+  .footer-logo-text span { color: var(--gold); }
+
+  .footer-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,.45);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 10px;
+  }
+
+  .footer-soc {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,.55);
+    text-decoration: none;
+    transition: border-color .18s, color .18s;
+  }
+
+  .footer-soc:hover {
+    border-color: rgba(255,255,255,.5);
+    color: var(--white);
+  }
+
+  .footer-col-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: rgba(255,255,255,.35);
+    margin-bottom: 18px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    font-size: 13.5px;
+    color: rgba(255,255,255,.6);
+    text-decoration: none;
+    transition: color .18s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-nl-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,.45);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .footer-nl-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-nl-input {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color .18s;
+  }
+
+  .footer-nl-input::placeholder { color: rgba(255,255,255,.3); }
+  .footer-nl-input:focus { border-color: rgba(255,255,255,.35); }
+
+  .footer-nl-btn {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background .18s;
+  }
+
+  .footer-nl-btn:hover { background: var(--gold-dark); }
+
+  .footer-contact-block {
+    margin-bottom: 20px;
+  }
+
+  .footer-contact-label {
+    font-size: 12px;
+    color: rgba(255,255,255,.35);
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .footer-contact-email {
+    font-size: 13.5px;
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    transition: color .18s;
+    word-break: break-all;
+  }
+
+  .footer-contact-email:hover { color: var(--white); }
+
+  .footer-bottom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 28px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,.3);
+  }
+
+  /* ══════════════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════════════ */
+
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .nav-sep:last-of-type { display: none; }
+    .article-layout { grid-template-columns: 1fr; gap: 40px; }
+    .sidebar { position: static; display: grid; grid-template-columns: 1fr 1fr; }
+    .article-title { font-size: 30px; }
+    .article-hero-img { height: 400px; }
+    .read-also-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 16px; height: 58px; position: relative; gap: 0; }
+    .nav-sep { display: none; }
+    .nav-links { display: none; }
+    .nav-socials { display: none; }
+    .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); background: var(--white); padding: 0 4px; z-index: 1; }
+    .logo-text { font-size: 15px; }
+    .nav-hamburger { display: flex; }
+    .btn-sub { font-size: 10.5px; padding: 7px 10px; gap: 0; white-space: nowrap; }
+    .btn-sub svg { display: none; }
+
+    .article-header { padding: 20px 16px 0; }
+    .article-title { font-size: 24px; }
+    .article-lead { font-size: 15px; }
+    .article-cat { font-size: 10px; padding: 4px 10px; }
+
+    .article-meta { padding: 0 16px; gap: 12px; }
+    .meta-divider { display: none; }
+    .meta-info { width: 100%; flex-direction: row; gap: 12px; }
+
+    .share-bar { padding: 0 16px; flex-wrap: wrap; }
+
+    .article-hero { padding: 0 16px; margin-top: 20px; }
+    .article-hero-img { height: 240px; border-radius: 10px; }
+
+    .article-layout { padding: 0 16px; margin-top: 24px; gap: 32px; }
+    .article-body { font-size: 16px; }
+    .article-body p:first-of-type::first-letter { font-size: 48px; }
+    .article-body h2 { font-size: 20px; }
+    .article-body ul li { font-size: 15.5px; }
+    .article-quote p { font-size: 17px; }
+    .inline-img img { height: 220px; }
+
+    .author-box { flex-direction: column; text-align: center; align-items: center; }
+
+    .sidebar { grid-template-columns: 1fr; }
+
+    .site-footer { margin-top: 48px; }
+    .footer-main { grid-template-columns: 1fr; padding: 36px 16px 28px; gap: 32px; }
+    .footer-bottom { flex-direction: column; text-align: center; padding: 16px; gap: 8px; font-size: 11px; }
+    .footer-nl-form { flex-direction: column; }
+    .footer-nl-btn { width: 100%; padding: 11px; }
+  }
+
+  @media (max-width: 420px) {
+    .article-title { font-size: 21px; }
+    .article-body p:first-of-type::first-letter { font-size: 40px; }
+    .read-also-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════ -->
+<header class="navbar">
+  <nav class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-shield">
+        <svg width="18" height="20" viewBox="0 0 18 22" fill="none">
+          <path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/>
+        </svg>
+      </div>
+      <span class="logo-text">Safe <span>Mídia</span></span>
+    </a>
+
+    <div class="nav-sep"></div>
+
+    <div class="nav-links">
+      <a href="#">Mercado</a>
+      <a href="#">Auto</a>
+      <a href="#">Saúde</a>
+      <a href="#">Vida</a>
+      <a href="#">Empresarial</a>
+      <a href="#" class="active">SUSEP</a>
+      <a href="#">Regulação</a>
+      <a href="#">Opinião</a>
+    </div>
+
+    <div class="nav-sep"></div>
+
+    <div class="nav-socials">
+      <a href="#" class="soc" title="Facebook">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+      <a href="#" class="soc" title="Instagram">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" class="soc" title="X">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="soc" title="LinkedIn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+    <button class="btn-sub">
+      Assinar Newsletter
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </nav>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#">Mercado</a>
+  <a href="#">Auto</a>
+  <a href="#">Saúde</a>
+  <a href="#">Vida</a>
+  <a href="#">Empresarial</a>
+  <a href="#" class="active">SUSEP</a>
+  <a href="#">Regulação</a>
+  <a href="#">Opinião</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     ARTICLE HEADER
+═══════════════════════════════════════════════ -->
+<header class="article-header">
+  <div class="breadcrumb">
+    <a href="index.html">Início</a>
+    <span class="breadcrumb-sep"></span>
+    <a href="noticias.html">Últimas Notícias</a>
+    <span class="breadcrumb-sep"></span>
+    <span>SUSEP</span>
+  </div>
+
+  <div class="article-cat">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    Há 2 horas · SUSEP
+  </div>
+
+  <h1 class="article-title">SUSEP anuncia novas regras para seguros de vida: cobertura obrigatória aumenta 40% e entra em vigor em janeiro de 2027</h1>
+
+  <p class="article-lead">Mudança atinge apólices individuais e coletivas e exige readequação de reservas técnicas. Especialistas avaliam impacto sobre preços e acessibilidade.</p>
+</header>
+
+<!-- ═══════════════════════════════════════════════
+     ARTICLE META & SHARE
+═══════════════════════════════════════════════ -->
+<div class="article-meta">
+  <div class="meta-author">
+    <div class="meta-avatar">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&q=80" alt="" />
+    </div>
+    <div>
+      <div class="meta-name">Marcos Figueiredo</div>
+      <div class="meta-role">Editor de Regulação</div>
+    </div>
+  </div>
+  <div class="meta-divider"></div>
+  <div class="meta-info">
+    <div class="meta-date">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      17 de julho de 2026
+    </div>
+    <div class="meta-readtime">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Leitura de 6 min
+    </div>
+  </div>
+</div>
+
+<div class="share-bar">
+  <span class="share-label">Compartilhar</span>
+  <button class="share-btn" title="Facebook">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+  </button>
+  <button class="share-btn" title="X">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+  </button>
+  <button class="share-btn" title="LinkedIn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+  </button>
+  <button class="share-btn" title="WhatsApp">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </button>
+  <button class="share-btn copy" title="Copiar link">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+    Copiar link
+  </button>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     HERO IMAGE
+═══════════════════════════════════════════════ -->
+<div class="article-hero">
+  <div class="article-hero-img">
+    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=600&fit=crop&q=80" alt="Documentos regulatórios sobre seguros de vida" />
+  </div>
+  <p class="article-hero-caption">Documentos da Circular SUSEP nº 714/2026 publicados no Diário Oficial da União <span>·</span> Foto: Safe Mídia</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     ARTICLE BODY + SIDEBAR
+═══════════════════════════════════════════════ -->
+<div class="article-layout">
+
+  <article class="article-body">
+
+    <p>A Superintendência de Seguros Privados (SUSEP) publicou nesta quinta-feira, 17 de julho, a <strong>Circular nº 714/2026</strong>, que altera de forma significativa as regras de capitalização e eleva o patamar mínimo de cobertura para apólices de vida individuais e coletivas no Brasil. A medida, que entra em vigor em <strong>1º de janeiro de 2027</strong>, representa uma das maiores revisões regulatórias do segmento nos últimos cinco anos.</p>
+
+    <p>De acordo com o texto normativo, o capital segurado mínimo obrigatório para contratos de vida passa a ser equivalente a <strong>40 vezes o valor da renda mensal declarada</strong> pelo segurado no momento da contratação — um aumento de 40% em relação ao piso atual, fixado em 28,5 vezes. A mudança visa garantir maior proteção financeira aos beneficiários em caso de morte ou invalidez permanente do titular.</p>
+
+    <h2>Reservas técnicas e impacto no mercado</h2>
+
+    <p>A circular também estabelece novos critérios para a constituição de <strong>reservas técnicas</strong> por parte das seguradoras. A partir de 2027, as empresas do setor precisarão manter um coeficiente de solvência ajustado que considera o novo patamar de cobertura, além de fatores atuariais revisados como expectativa de vida e taxa de mortalidade por doenças crônicas.</p>
+
+    <div class="article-quote">
+      <p>"A elevação do piso de cobertura é uma resposta à realidade demográfica brasileira. A expectativa de vida aumentou, mas a incidência de doenças crônicas também cresceu, e o valor mínimo vigente já não oferecia proteção adequada às famílias."</p>
+      <div class="quote-author">Dr. Ricardo Mendonça</div>
+      <div class="quote-role">Superintendente-adjunto da SUSEP</div>
+    </div>
+
+    <p>Especialistas do mercado segurador estimam que a regra deverá impactar diretamente cerca de <strong>12 milhões de apólices ativas</strong> no país. Para as seguradoras, o ajuste implicará um aumento médio de 8% a 14% nos valores de prêmio, dependendo da faixa etária do segurado e do perfil de risco da carteira.</p>
+
+    <h2>O que muda para o consumidor</h2>
+
+    <p>A nova regulação traz mudanças concretas para quem já possui ou pretende contratar um seguro de vida. Entre os principais pontos estão:</p>
+
+    <ul>
+      <li><strong>Cobertura mínima elevada:</strong> o capital segurado obrigatório sobe de 28,5 para 40 vezes a renda mensal do contratante;</li>
+      <li><strong>Reserva técnica reforçada:</strong> seguradoras precisarão aumentar provisionamento em até 18% para atender ao novo coeficiente;</li>
+      <li><strong>Revisão atuarial obrigatória:</strong> tabelas de mortalidade devem ser atualizadas a cada dois anos, e não mais a cada quatro;</li>
+      <li><strong>Transparência nas condições gerais:</strong> as apólices deverão detalhar de forma didática como o valor de resgate é calculado;</li>
+      <li><strong>Portabilidade facilitada:</strong> segurados poderão migrar entre seguradoras sem perda de carência após 12 meses de vigência.</li>
+    </ul>
+
+    <div class="inline-img">
+      <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=400&fit=crop&q=80" alt="Gráfico de evolução do seguro de vida no Brasil" />
+      <p class="inline-caption">Evolução da cobertura mínima obrigatória de seguros de vida no Brasil (2016–2027) <span>·</span> Fonte: SUSEP / Safe Mídia</p>
+    </div>
+
+    <h3>Prazo de transição</h3>
+
+    <p>A SUSEP estabeleceu um período de transição de <strong>seis meses</strong>, até 30 de junho de 2027, para que as seguradoras readequem contratos existentes. Durante esse prazo, os segurados poderão optar por manter as condições atuais ou migrar para a nova cobertura, sem custo adicional de reavaliação de risco.</p>
+
+    <p>Contratos coletivos empresariais terão tratamento diferenciado: as empresas seguradoras deverão apresentar plano de adequação em até 90 dias após a vigência da norma, com negociação direta com os tomadores de seguro.</p>
+
+    <div class="highlight-box">
+      <h4>📌 Resumo para o segurado</h4>
+      <p>Se você já tem um seguro de vida, a cobertura mínima será automaticamente ajustada a partir de janeiro de 2027, sem necessidade de nova avaliação médica. O prêmio poderá sofrer reajuste, mas a SUSEP limitou o aumento a no máximo 15% no primeiro ano de vigência da nova regra.</p>
+    </div>
+
+    <h2>Reação do mercado</h2>
+
+    <p>A Federação Nacional de Seguros Gerais (FenSeg) divulgou nota em que classifica a medida como <strong>"necessária, mas desafiadora"</strong>. A entidade reconhece o benefício para os consumidores, mas alerta para a pressão sobre os resultados das seguradoras de médio porte, que podem enfrentar dificuldades para alocar capital adicional em curto prazo.</p>
+
+    <p>Já a Associação Brasileira de Corretores de Seguros (ABCor) saudou a publicação. "O consumidor brasileiro historicamente subestima a importância do seguro de vida. Com coberturas maiores, a percepção de valor do produto tende a melhorar", afirmou a presidente da entidade, Carla Duarte.</p>
+
+    <p>O setor de previdência privada também deve sentir efeitos colaterais. Fundos de investimento ligados a planos de vida e capitalização podem experimentar aumento de captação à medida que seguradoras busquem alternativas para honrar as novas reservas técnicas.</p>
+
+    <!-- Tags -->
+    <div class="article-tags">
+      <span class="tags-label">Tags:</span>
+      <a href="#" class="tag">SUSEP</a>
+      <a href="#" class="tag">Seguro de Vida</a>
+      <a href="#" class="tag">Regulação</a>
+      <a href="#" class="tag">Reservas Técnicas</a>
+      <a href="#" class="tag">Cobertura Obrigatória</a>
+      <a href="#" class="tag">Consumidor</a>
+    </div>
+
+    <!-- Author Box -->
+    <div class="author-box">
+      <div class="author-box-avatar">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&q=80" alt="" />
+      </div>
+      <div class="author-box-info">
+        <div class="author-box-name">Marcos Figueiredo</div>
+        <div class="author-box-role">Editor de Regulação · Safe Mídia</div>
+        <p class="author-box-bio">Jornalista especializado em mercado de seguros e regulação financeira. Acompanha a SUSEP, CNSP e ANS desde 2018. Doutorando em Direito Econômico pela USP.</p>
+      </div>
+    </div>
+
+    <!-- Read Also -->
+    <div class="read-also">
+      <h3 class="read-also-title">Leia também</h3>
+      <div class="read-also-grid">
+        <a href="#" class="ralso-card">
+          <div class="ralso-thumb">
+            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191011?w=180&h=140&fit=crop&q=80" alt="" />
+          </div>
+          <div>
+            <div class="ralso-cat">Vida</div>
+            <div class="ralso-title">Como calcular o valor ideal de cobertura para proteger sua família em 2026</div>
+          </div>
+        </a>
+        <a href="#" class="ralso-card">
+          <div class="ralso-thumb">
+            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=180&h=140&fit=crop&q=80" alt="" />
+          </div>
+          <div>
+            <div class="ralso-cat">Regulação</div>
+            <div class="ralso-title">CNSP publica resolução sobre microsseguros para população de baixa renda</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+
+    <!-- Newsletter -->
+    <div class="sidebar-nl">
+      <div class="sidebar-nl-title">Fique por dentro</div>
+      <p class="sidebar-nl-desc">Receba as principais notícias do mercado de seguros todo dia útil de manhã.</p>
+      <div class="sidebar-nl-form">
+        <input class="sidebar-nl-input" type="email" placeholder="Seu melhor e-mail" />
+        <button class="sidebar-nl-btn">Assinar grátis</button>
+      </div>
+    </div>
+
+    <!-- Mais Lidas -->
+    <div class="sidebar-block">
+      <div class="sidebar-title">Mais Lidas</div>
+      <a href="#" class="trend-item">
+        <span class="trend-num">01</span>
+        <span class="trend-title">SUSEP anuncia novas regras para seguros de vida em 2027</span>
+      </a>
+      <a href="#" class="trend-item">
+        <span class="trend-num">02</span>
+        <span class="trend-title">ANS limita reajuste de planos coletivos a 8,5%</span>
+      </a>
+      <a href="#" class="trend-item">
+        <span class="trend-num">03</span>
+        <span class="trend-title">O que fazer quando a seguradora nega um sinistro?</span>
+      </a>
+      <a href="#" class="trend-item">
+        <span class="trend-num">04</span>
+        <span class="trend-title">IA reduz fraudes em seguros de saúde em até 62%</span>
+      </a>
+      <a href="#" class="trend-item">
+        <span class="trend-num">05</span>
+        <span class="trend-title">Seguro auto com rastreador: novo decreto muda franquia</span>
+      </a>
+    </div>
+
+    <!-- Relacionados -->
+    <div class="sidebar-block">
+      <div class="sidebar-title">Relacionados</div>
+      <a href="#" class="rel-item">
+        <div class="rel-thumb">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=144&h=108&fit=crop&q=80" alt="" />
+        </div>
+        <div>
+          <div class="rel-cat">Previdência</div>
+          <div class="rel-title">Previdência privada bate recorde de captação com R$ 12 bilhões no trimestre</div>
+        </div>
+      </a>
+      <a href="#" class="rel-item">
+        <div class="rel-thumb">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=144&h=108&fit=crop&q=80" alt="" />
+        </div>
+        <div>
+          <div class="rel-cat">Previdência</div>
+          <div class="rel-title">Reforma da previdência complementar entra na pauta do Congresso</div>
+        </div>
+      </a>
+      <a href="#" class="rel-item">
+        <div class="rel-thumb">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=144&h=108&fit=crop&q=80" alt="" />
+        </div>
+        <div>
+          <div class="rel-cat">Para o Segurado</div>
+          <div class="rel-title">Como mudar de seguradora sem perder benefícios: guia passo a passo</div>
+        </div>
+      </a>
+      <a href="#" class="rel-item">
+        <div class="rel-thumb">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=144&h=108&fit=crop&q=80" alt="" />
+        </div>
+        <div>
+          <div class="rel-cat">Saúde</div>
+          <div class="rel-title">Plano de saúde individual vs. coletivo: o que mudou com a ANS</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Ad -->
+    <div>
+      <div class="ad-label">Publicidade</div>
+      <div class="ad-v">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        <span>Espaço Publicitário</span>
+        <span>300 × 600</span>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo">
+        <div class="logo-shield">
+          <svg width="18" height="20" viewBox="0 0 18 22" fill="none"><path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/></svg>
+        </div>
+        <span class="footer-logo-text">Safe <span>Mídia</span></span>
+      </a>
+      <p class="footer-desc">Portal independente de notícias, análises e regulação do mercado de seguros brasileiro. Conteúdo para corretores, atuários, gestores e segurados.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-soc" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#" class="footer-soc" title="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="footer-soc" title="X"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="footer-soc" title="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Editorias</div>
+      <ul class="footer-links">
+        <li><a href="#">Mercado</a></li>
+        <li><a href="#">Auto</a></li>
+        <li><a href="#">Saúde</a></li>
+        <li><a href="#">Vida</a></li>
+        <li><a href="#">Empresarial</a></li>
+        <li><a href="#">SUSEP</a></li>
+        <li><a href="#">Regulação</a></li>
+        <li><a href="#">Para o Segurado</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Newsletter</div>
+      <p class="footer-nl-sub">Receba as principais notícias do setor direto no seu e-mail, todo dia útil.</p>
+      <div class="footer-nl-form">
+        <input class="footer-nl-input" type="email" placeholder="Seu e-mail" />
+        <button class="footer-nl-btn">Assinar</button>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Contato</div>
+      <div class="footer-contact-block">
+        <div class="footer-contact-label">Conteúdo e pauta</div>
+        <a href="mailto:redacao@safemidia.com.br" class="footer-contact-email">redacao@safemidia.com.br</a>
+      </div>
+      <div class="footer-contact-block">
+        <div class="footer-contact-label">Comercial</div>
+        <a href="mailto:direcao@safemidia.com.br" class="footer-contact-email">direcao@safemidia.com.br</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Safe Mídia. Todos os direitos reservados.</span>
+    <span>Portal independente — não possui vínculo com seguradoras ou órgãos reguladores</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var hamburger = document.getElementById('navHamburger');
+  var menu = document.getElementById('mobileMenu');
+  if (!hamburger || !menu) return;
+
+  hamburger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    menu.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+
+  menu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      menu.classList.remove('open');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

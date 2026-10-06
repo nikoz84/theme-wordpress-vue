@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Últimas Notícias — Safe Mídia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0B1E3D;
+    --blue:       #1E50D4;
+    --blue-hover: #1A46C0;
+    --gold:       #F5C418;
+    --gold-dark:  #DFB000;
+    --forest:     #0D3B27;
+    --forest-mid: #0F4C35;
+    --white:      #FFFFFF;
+    --off-white:  #F4F6FB;
+    --gray-100:   #EDF0F8;
+    --gray-200:   #DDE2EF;
+    --gray-text:  #5C6E8A;
+    --dark:       #0F1C30;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  img { display: block; width: 100%; object-fit: cover; }
+  a { text-decoration: none; color: inherit; }
+
+  .navbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 16px rgba(11,30,61,0.07);
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .logo-shield {
+    width: 34px;
+    height: 34px;
+    background: var(--blue);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-text {
+    font-family: 'Merriweather', serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.4px;
+  }
+
+  .logo-text span { color: var(--blue); }
+
+  .nav-sep {
+    width: 1px;
+    height: 26px;
+    background: var(--gray-200);
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .nav-links a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--gray-text);
+    padding: 7px 13px;
+    border-radius: 7px;
+    white-space: nowrap;
+    transition: color .18s, background .18s;
+  }
+
+  .nav-links a:hover { color: var(--blue); background: rgba(30,80,212,.07); }
+  .nav-links a.active { color: var(--blue); font-weight: 600; background: rgba(30,80,212,.08); }
+
+  .nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .soc {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-text);
+    transition: border-color .18s, color .18s;
+  }
+
+  .soc:hover { border-color: var(--blue); color: var(--blue); }
+
+  .btn-sub {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: background .18s, transform .15s;
+  }
+
+  .btn-sub:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+  .archive-section {
+    max-width: 1280px;
+    margin: 36px auto 60px;
+    padding: 0 28px;
+  }
+  .archive-section > .archive-layout { /* layout lives here now */ }
+
+  .breadcrumb {
+    font-size: 12.5px;
+    color: var(--gray-text);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .breadcrumb a {
+    color: var(--blue);
+    font-weight: 500;
+    transition: opacity .2s;
+  }
+
+  .breadcrumb a:hover { opacity: .7; }
+  .breadcrumb span { opacity: .6; }
+
+  .archive-header {
+    margin-bottom: 36px;
+  }
+
+  .archive-title {
+    font-family: 'Merriweather', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -.3px;
+    margin-bottom: 8px;
+  }
+
+  .archive-desc {
+    font-size: 15px;
+    color: var(--gray-text);
+  }
+
+  .archive-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .archive-sidebar {
+    position: sticky;
+    top: 130px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .list-card {
+    display: flex;
+    gap: 28px;
+    padding-bottom: 28px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--gray-200);
+    transition: transform .2s;
+  }
+
+  .list-card:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .list-card-img-wrap {
+    width: 300px;
+    height: 190px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .list-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease;
+  }
+
+  .list-card:hover .list-card-img-wrap img {
+    transform: scale(1.05);
+  }
+
+  .list-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .list-card-cat {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: var(--blue);
+    margin-bottom: 10px;
+  }
+
+  .list-card-title {
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--dark);
+    margin-bottom: 10px;
+    transition: color .2s;
+  }
+
+  .list-card:hover .list-card-title {
+    color: var(--blue);
+  }
+
+  .list-card-excerpt {
+    font-size: 14px;
+    color: var(--gray-text);
+    line-height: 1.6;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .list-card-meta {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-text);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .meta-dot {
+    width: 4px; height: 4px;
+    background: var(--gray-200);
+    border-radius: 50%;
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 2px solid var(--gray-100);
+  }
+
+  .page-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 10px;
+    border-radius: 8px;
+    border: 1px solid var(--gray-200);
+    color: var(--gray-text);
+    font-weight: 600;
+    font-size: 13px;
+    transition: all .2s;
+  }
+
+  .page-btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    background: var(--off-white);
+  }
+
+  .page-btn.active {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: var(--white);
+  }
+
+  .ad-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-text);
+    margin-bottom: 7px;
+    opacity: .7;
+  }
+
+  .ad-v {
+    width: 100%;
+    height: 300px;
+    background: var(--gray-100);
+    border-radius: 12px;
+    border: 1.5px dashed var(--gray-200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--gray-text);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+
+  .ad-v span:last-child { font-size: 11px; opacity: .6; }
+
+  .widget {
+    background: var(--off-white);
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .widget-title {
+    font-family: 'Merriweather', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .widget-title::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 18px;
+    background: var(--blue);
+    border-radius: 4px;
+  }
+
+  .w-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--gray-200);
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  
+  .w-item:first-of-type { padding-top: 0; }
+  .w-item:last-of-type { border-bottom: none; padding-bottom: 0; }
+  .w-item:hover { opacity: .75; }
+  .w-item:hover .w-title { color: var(--blue); }
+
+  .w-num {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gray-200);
+    line-height: 1;
+    min-width: 28px;
+    margin-top: -2px;
+  }
+
+  .w-cat {
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--blue);
+    margin-bottom: 4px;
+  }
+
+  .w-title {
+    font-family: 'Merriweather', serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.45;
+    transition: color .2s;
+  }
+
+  .site-footer {
+    background: var(--navy);
+    margin-top: 60px;
+  }
+
+  .footer-main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 56px 28px 48px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.4fr 1.2fr;
+    gap: 48px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    margin-bottom: 16px;
+  }
+
+  .footer-logo .logo-shield { background: var(--blue); }
+
+  .footer-logo-text {
+    font-family: 'Merriweather', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -.3px;
+  }
+
+  .footer-logo-text span { color: var(--gold); }
+
+  .footer-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,.45);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .footer-socials { display: flex; gap: 10px; }
+
+  .footer-soc {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,.55);
+    text-decoration: none;
+    transition: border-color .18s, color .18s;
+  }
+
+  .footer-soc:hover { border-color: rgba(255,255,255,.5); color: var(--white); }
+
+  .footer-col-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: rgba(255,255,255,.35);
+    margin-bottom: 18px;
+  }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 13.5px; color: rgba(255,255,255,.6); text-decoration: none; transition: color .18s; }
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-nl-sub { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.6; margin-bottom: 16px; }
+  .footer-nl-form { display: flex; flex-direction: column; gap: 8px; }
+  .footer-nl-input {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color .18s;
+  }
+  .footer-nl-input::placeholder { color: rgba(255,255,255,.3); }
+  .footer-nl-input:focus { border-color: rgba(255,255,255,.35); }
+
+  .footer-nl-btn {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background .18s;
+  }
+  .footer-nl-btn:hover { background: var(--gold-dark); }
+
+  .footer-contact-block { margin-bottom: 20px; }
+  .footer-contact-label { font-size: 12px; color: rgba(255,255,255,.35); margin-bottom: 5px; font-weight: 500; }
+  .footer-contact-email { font-size: 13.5px; color: rgba(255,255,255,.7); text-decoration: none; transition: color .18s; word-break: break-all; }
+  .footer-contact-email:hover { color: var(--white); }
+
+  .footer-bottom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 28px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,.3);
+  }
+
+  .nav-hamburger {
+    display: none;
+    background: none;
+    border: 1.5px solid var(--gray-200);
+    cursor: pointer;
+    color: var(--navy);
+    padding: 7px 9px;
+    border-radius: 9px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background .18s, border-color .18s;
+  }
+  .nav-hamburger:hover { background: var(--gray-100); }
+
+  .mobile-menu {
+    position: fixed;
+    top: 58px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    box-shadow: 0 8px 32px rgba(11,30,61,.12);
+    z-index: 199;
+    padding: 8px 16px 16px;
+    flex-direction: column;
+    gap: 2px;
+    display: none;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gray-text);
+    padding: 11px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: color .18s, background .18s;
+  }
+  .mobile-menu a:hover,
+  .mobile-menu a.active { color: var(--blue); background: rgba(30,80,212,.06); font-weight: 600; }
+
+  /* Media Queries */
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .nav-sep:last-of-type { display: none; }
+    .archive-layout { grid-template-columns: 1fr; gap: 32px; }
+    .ad-v { display: none; /* Hide large vertical ad on tablet/mobile */ }
+    .list-card-img-wrap { width: 260px; height: 170px; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 16px; height: 58px; position: relative; gap: 0; }
+    .nav-sep { display: none; }
+    .nav-socials { display: none; }
+    .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); background: var(--white); padding: 0 4px; z-index: 1; }
+    .logo-text { font-size: 15px; }
+    .nav-hamburger { display: flex; }
+    .btn-sub { font-size: 10.5px; padding: 7px 10px; gap: 0; white-space: nowrap; }
+    .btn-sub svg { display: none; }
+    .filter-bar { top: 58px; }
+    .filter-inner { padding: 0 16px; }
+    .pill { font-size: 12px; padding: 5px 12px; }
+    .page-hero-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .page-hero-ad-wrap { display: none; }
+
+    .archive-section { padding: 0 16px; margin-top: 24px; }
+    .archive-title { font-size: 26px; }
+    
+    .list-card { flex-direction: column; gap: 16px; }
+    .list-card-img-wrap { width: 100%; height: auto; aspect-ratio: 16/9; }
+    .list-card-title { font-size: 18px; }
+    
+    .site-footer { margin-top: 40px; }
+    .footer-main { grid-template-columns: 1fr; padding: 36px 16px 28px; gap: 32px; }
+    .footer-bottom { flex-direction: column; text-align: center; padding: 16px; gap: 8px; font-size: 11px; }
+    .footer-nl-form { flex-direction: column; }
+    .footer-nl-btn { width: 100%; padding: 11px; }
+  }
+
+  /* ─── PAGE HERO ──────────────────────────────── */
+  .page-hero {
+    background: var(--off-white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 32px 0 36px;
+  }
+  .page-hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .page-hero-content { flex: 1; min-width: 0; }
+  .page-hero .breadcrumb {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12.5px; color: var(--gray-text);
+    margin-bottom: 14px;
+  }
+  .page-hero .breadcrumb a { color: var(--blue); }
+  .page-hero .breadcrumb a:hover { text-decoration: underline; }
+  .page-hero .breadcrumb svg { flex-shrink: 0; opacity: .5; }
+  .page-title {
+    font-family: 'Merriweather', serif;
+    font-size: 36px; font-weight: 900;
+    color: var(--navy); line-height: 1.15;
+    letter-spacing: -.5px; margin-bottom: 8px;
+  }
+  .page-meta {
+    font-size: 13px; color: var(--gray-text);
+  }
+
+  .page-hero-ad-wrap {
+    flex-shrink: 0;
+  }
+  .page-hero-ad-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-text);
+    opacity: .6;
+    margin-bottom: 7px;
+  }
+  .page-hero-ad {
+    width: 480px;
+    height: 100px;
+    background: var(--gray-100);
+    border: 1.5px dashed var(--gray-200);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--gray-text);
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .filter-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky; top: 66px; z-index: 150;
+  }
+  .filter-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 28px; height: 52px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .filter-pills {
+    display: flex; align-items: center; gap: 5px;
+    flex: 1; overflow-x: auto; scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .filter-pills::-webkit-scrollbar { display: none; }
+  .pill {
+    flex-shrink: 0; padding: 5px 14px; border-radius: 100px;
+    font-size: 12.5px; font-weight: 600; color: var(--gray-text);
+    background: none; border: 1.5px solid var(--gray-200);
+    cursor: pointer; white-space: nowrap;
+    font-family: 'Inter', sans-serif; transition: all .18s;
+  }
+  .pill:hover { border-color: var(--blue); color: var(--blue); }
+  .pill.active { background: var(--blue); border-color: var(--blue); color: var(--white); }
+  .filter-sep { width: 1px; height: 22px; background: var(--gray-200); flex-shrink: 0; }
+  .sort-select {
+    flex-shrink: 0; appearance: none;
+    font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 600;
+    color: var(--gray-text); background: var(--white);
+    border: 1.5px solid var(--gray-200); border-radius: 8px;
+    padding: 5px 30px 5px 12px; cursor: pointer; outline: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235C6E8A' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 10px center;
+    transition: border-color .18s;
+  }
+  .sort-select:hover { border-color: var(--blue); }
+
+  /* ─── SIDEBAR NEWSLETTER ─────────────────────── */
+  .sidebar-nl {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 26px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sidebar-nl::before {
+    content: '';
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(30,80,212,.14);
+    right: -40px;
+    top: -50px;
+    pointer-events: none;
+  }
+
+  .sidebar-nl-title {
+    font-family: 'Merriweather', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar-nl-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar-nl-input {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 10px;
+    padding: 11px 14px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    outline: none;
+  }
+
+  .sidebar-nl-input::placeholder { color: rgba(255,255,255,.35); }
+
+  .sidebar-nl-btn {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    border: none;
+    border-radius: 10px;
+    padding: 11px;
+    cursor: pointer;
+    transition: background .18s;
+  }
+
+  .sidebar-nl-btn:hover { background: var(--gold-dark); }
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logo-shield">
+        <svg width="18" height="20" viewBox="0 0 18 22" fill="none">
+          <path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/>
+        </svg>
+      </div>
+      <span class="logo-text">Safe <span>Mídia</span></span>
+    </a>
+
+    <div class="nav-sep"></div>
+
+    <div class="nav-links">
+      <a href="#" class="active">Mercado</a>
+      <a href="#">Auto</a>
+      <a href="#">Saúde</a>
+      <a href="#">Vida</a>
+      <a href="#">Empresarial</a>
+      <a href="#">SUSEP</a>
+      <a href="#">Regulação</a>
+      <a href="#">Opinião</a>
+    </div>
+
+    <div class="nav-sep"></div>
+
+    <div class="nav-socials">
+      <a href="#" class="soc" title="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      <a href="#" class="soc" title="Instagram"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      <a href="#" class="soc" title="X"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" class="soc" title="LinkedIn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+    </div>
+
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+    <button class="btn-sub">
+      Assinar Newsletter
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </nav>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#" class="active">Mercado</a>
+  <a href="#">Auto</a>
+  <a href="#">Saúde</a>
+  <a href="#">Vida</a>
+  <a href="#">Empresarial</a>
+  <a href="#">SUSEP</a>
+  <a href="#">Regulação</a>
+  <a href="#">Opinião</a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════════════ -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <a href="#">Home</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <span>Últimas Notícias</span>
+      </div>
+      <h1 class="page-title">Últimas Notícias</h1>
+      <div class="page-meta">Fique por dentro das atualizações mais recentes e análises completas do mercado segurador brasileiro.</div>
+    </div>
+    <div class="page-hero-ad-wrap">
+      <div class="page-hero-ad-label">Publicidade</div>
+      <div class="page-hero-ad">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        <span>Espaço Publicitário</span>
+        <span style="font-size:11px;opacity:.55">480 × 100</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     FILTER BAR
+═══════════════════════════════════════════════ -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div class="filter-pills">
+      <button class="pill active">Todas</button>
+      <button class="pill">Mercado</button>
+      <button class="pill">Auto</button>
+      <button class="pill">Saúde</button>
+      <button class="pill">Vida</button>
+      <button class="pill">Empresarial</button>
+      <button class="pill">SUSEP</button>
+      <button class="pill">Regulação</button>
+      <button class="pill">Agro</button>
+      <button class="pill">Previdência</button>
+      <button class="pill">Opinião</button>
+    </div>
+    <div class="filter-sep"></div>
+    <select class="sort-select" aria-label="Ordenar por">
+      <option>Mais recentes</option>
+      <option>Mais lidas</option>
+      <option>Mais comentadas</option>
+    </select>
+  </div>
+</div>
+
+<main class="archive-section">
+  <div class="archive-layout">
+    
+    <div class="archive-main">
+      
+      <!-- Card 1 -->
+      <article class="list-card">
+        <a href="#" class="list-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&h=380&fit=crop&q=80" alt="Empresarial" />
+        </a>
+        <div class="list-card-content">
+          <span class="list-card-cat">Empresarial</span>
+          <a href="#"><h2 class="list-card-title">Grandes empresas ampliam cobertura de seguro D&O diante da escalada de responsabilidade civil</h2></a>
+          <p class="list-card-excerpt">A procura por seguros de Responsabilidade Civil de Diretores e Administradores (D&O) registrou um aumento de 32% no último trimestre, impulsionado por novos marcos regulatórios e a necessidade de proteção patrimonial de executivos.</p>
+          <div class="list-card-meta">
+            <span>Por Marcos Figueiredo</span>
+            <span class="meta-dot"></span>
+            <span>Há 3 horas</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="list-card">
+        <a href="#" class="list-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=600&h=380&fit=crop&q=80" alt="Tecnologia" />
+        </a>
+        <div class="list-card-content">
+          <span class="list-card-cat">Tecnologia</span>
+          <a href="#"><h2 class="list-card-title">IA reduz fraudes em seguros de saúde em até 62%, aponta relatório da FenaSaúde</h2></a>
+          <p class="list-card-excerpt">O uso de algoritmos de aprendizado de máquina para cruzamento de dados de reembolsos e sinistros médicos gerou uma economia bilionária para as operadoras, que agora investem massivamente na expansão desses sistemas preventivos.</p>
+          <div class="list-card-meta">
+            <span>Por Redação</span>
+            <span class="meta-dot"></span>
+            <span>Há 5 horas</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="list-card">
+        <a href="#" class="list-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=380&fit=crop&q=80" alt="Previdência" />
+        </a>
+        <div class="list-card-content">
+          <span class="list-card-cat">Previdência</span>
+          <a href="#"><h2 class="list-card-title">Reforma da previdência complementar entra na pauta do Congresso e agita o mercado segurador</h2></a>
+          <p class="list-card-excerpt">Deputados iniciam hoje as discussões sobre o novo pacote que flexibiliza as regras de resgate para fundos PGBL e VGBL. A proposta prevê a redução de alíquotas para investimentos de longo prazo, buscando incentivar a poupança.</p>
+          <div class="list-card-meta">
+            <span>Por Ana Luz</span>
+            <span class="meta-dot"></span>
+            <span>Há 8 horas</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="list-card">
+        <a href="#" class="list-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=380&fit=crop&q=80" alt="Residencial" />
+        </a>
+        <div class="list-card-content">
+          <span class="list-card-cat">Residencial</span>
+          <a href="#"><h2 class="list-card-title">Seguro residencial cresce nas grandes capitais após alta nos registros de alagamento em 2026</h2></a>
+          <p class="list-card-excerpt">O mercado de seguros patrimoniais registrou uma alta histórica na contratação de apólices com cobertura para desastres naturais. O fenômeno El Niño e tempestades atípicas acenderam o alerta na população de São Paulo e Rio de Janeiro.</p>
+          <div class="list-card-meta">
+            <span>Por Ricardo Costa</span>
+            <span class="meta-dot"></span>
+            <span>Há 11 horas</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="list-card">
+        <a href="#" class="list-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=380&fit=crop&q=80" alt="Corretores" />
+        </a>
+        <div class="list-card-content">
+          <span class="list-card-cat">Corretores</span>
+          <a href="#"><h2 class="list-card-title">CNseg propõe nova certificação obrigatória para corretores de seguros com início em 2027</h2></a>
+          <p class="list-card-excerpt">A medida visa aumentar a qualificação técnica dos profissionais frente aos novos produtos digitais e as regulamentações complexas da SUSEP. Sindicatos da categoria avaliam o prazo de transição estabelecido na minuta.</p>
+          <div class="list-card-meta">
+            <span>Por Redação</span>
+            <span class="meta-dot"></span>
+            <span>Ontem</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="list-card">
+        <a href="#" class="list-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&h=380&fit=crop&q=80" alt="Agro" />
+        </a>
+        <div class="list-card-content">
+          <span class="list-card-cat">Agro</span>
+          <a href="#"><h2 class="list-card-title">Seguro rural amplia cobertura para eventos climáticos extremos no Nordeste após seca histórica</h2></a>
+          <p class="list-card-excerpt">Com o apoio de subsídios governamentais repaginados, seguradoras lançam novos produtos paramétricos focados em pequenos e médios produtores da região do semiárido brasileiro, garantindo liquidez imediata em caso de perdas severas.</p>
+          <div class="list-card-meta">
+            <span>Por Marcos Figueiredo</span>
+            <span class="meta-dot"></span>
+            <span>Ontem</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="pagination">
+        <a href="#" class="page-btn" aria-label="Página anterior">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </a>
+        <a href="#" class="page-btn active">1</a>
+        <a href="#" class="page-btn">2</a>
+        <a href="#" class="page-btn">3</a>
+        <span style="color: var(--gray-text);">...</span>
+        <a href="#" class="page-btn">12</a>
+        <a href="#" class="page-btn" aria-label="Próxima página">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6" transform="rotate(180 12 12)"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <aside class="archive-sidebar">
+
+      <!-- Newsletter sidebar -->
+      <div class="sidebar-nl">
+        <div class="sidebar-nl-title">Receba as notícias no e-mail</div>
+        <div class="sidebar-nl-form">
+          <input class="sidebar-nl-input" type="text" placeholder="Seu nome" />
+          <input class="sidebar-nl-input" type="email" placeholder="Seu melhor e-mail" />
+          <button class="sidebar-nl-btn">Assinar grátis</button>
+        </div>
+      </div>
+
+      <!-- Mais Lidas Widget -->
+      <div class="widget">
+        <h3 class="widget-title">Mais lidas</h3>
+        <a href="#" class="w-item">
+          <div class="w-num">1</div>
+          <div>
+            <div class="w-cat">SUSEP</div>
+            <div class="w-title">Novas regras para seguros de vida: cobertura obrigatória aumenta 40% em 2027</div>
+          </div>
+        </a>
+        <a href="#" class="w-item">
+          <div class="w-num">2</div>
+          <div>
+            <div class="w-cat">Saúde</div>
+            <div class="w-title">ANS limita reajuste de planos coletivos a 8,5% para o segundo semestre de 2026</div>
+          </div>
+        </a>
+        <a href="#" class="w-item">
+          <div class="w-num">3</div>
+          <div>
+            <div class="w-cat">Para o Segurado</div>
+            <div class="w-title">O que fazer quando a seguradora nega um sinistro? Conheça seus direitos</div>
+          </div>
+        </a>
+        <a href="#" class="w-item">
+          <div class="w-num">4</div>
+          <div>
+            <div class="w-cat">Auto</div>
+            <div class="w-title">Seguro auto com rastreador: novo decreto muda franquia para condutores na faixa A</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Ad Vertical -->
+      <div>
+        <div class="ad-label">Publicidade</div>
+        <div class="ad-v">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          <span>Espaço Publicitário</span>
+          <span style="font-size:11px;opacity:.6">300 × 300</span>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-main">
+
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">
+        <div class="logo-shield">
+          <svg width="18" height="20" viewBox="0 0 18 22" fill="none"><path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/></svg>
+        </div>
+        <span class="footer-logo-text">Safe <span>Mídia</span></span>
+      </a>
+      <p class="footer-desc">Portal independente de notícias, análises e regulação do mercado de seguros brasileiro. Conteúdo para corretores, atuários, gestores e segurados.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-soc" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#" class="footer-soc" title="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="footer-soc" title="X"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="footer-soc" title="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Editorias</div>
+      <ul class="footer-links">
+        <li><a href="#">Mercado</a></li>
+        <li><a href="#">Auto</a></li>
+        <li><a href="#">Saúde</a></li>
+        <li><a href="#">Vida</a></li>
+        <li><a href="#">Empresarial</a></li>
+        <li><a href="#">SUSEP</a></li>
+        <li><a href="#">Regulação</a></li>
+        <li><a href="#">Para o Segurado</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Newsletter</div>
+      <p class="footer-nl-sub">Receba as principais notícias do setor direto no seu e-mail, todo dia útil.</p>
+      <div class="footer-nl-form">
+        <input class="footer-nl-input" type="email" placeholder="Seu e-mail" />
+        <button class="footer-nl-btn">Assinar</button>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Contato</div>
+      <div class="footer-contact-block">
+        <div class="footer-contact-label">Conteúdo e pauta</div>
+        <a href="mailto:redacao@safemidia.com.br" class="footer-contact-email">redacao@safemidia.com.br</a>
+      </div>
+      <div class="footer-contact-block">
+        <div class="footer-contact-label">Comercial</div>
+        <a href="mailto:direcao@safemidia.com.br" class="footer-contact-email">direcao@safemidia.com.br</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Safe Mídia. Todos os direitos reservados.</span>
+    <span>Portal independente — não possui vínculo com seguradoras ou órgãos reguladores</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var hamburger = document.getElementById('navHamburger');
+  var menu = document.getElementById('mobileMenu');
+  if (!hamburger || !menu) return;
+
+  hamburger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    menu.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+
+  menu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      menu.classList.remove('open');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

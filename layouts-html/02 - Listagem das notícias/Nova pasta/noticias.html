@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Últimas Notícias — Safe Mídia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0B1E3D;
+    --blue:       #1E50D4;
+    --blue-hover: #1A46C0;
+    --gold:       #F5C418;
+    --gold-dark:  #DFB000;
+    --forest:     #0D3B27;
+    --forest-mid: #0F4C35;
+    --white:      #FFFFFF;
+    --off-white:  #F4F6FB;
+    --gray-100:   #EDF0F8;
+    --gray-200:   #DDE2EF;
+    --gray-text:  #5C6E8A;
+    --dark:       #0F1C30;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  img { display: block; width: 100%; object-fit: cover; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ─── NAVBAR ──────────────────────────────────── */
+  .navbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 16px rgba(11,30,61,0.07);
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .logo-shield {
+    width: 34px;
+    height: 34px;
+    background: var(--blue);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-text {
+    font-family: 'Merriweather', serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.4px;
+  }
+
+  .logo-text span { color: var(--blue); }
+
+  .nav-sep {
+    width: 1px;
+    height: 26px;
+    background: var(--gray-200);
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .nav-links a {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--gray-text);
+    padding: 7px 13px;
+    border-radius: 7px;
+    white-space: nowrap;
+    transition: color .18s, background .18s;
+  }
+
+  .nav-links a:hover { color: var(--blue); background: rgba(30,80,212,.07); }
+  .nav-links a.active { color: var(--blue); font-weight: 600; background: rgba(30,80,212,.08); }
+
+  .nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .soc {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-text);
+    transition: border-color .18s, color .18s;
+  }
+
+  .soc:hover { border-color: var(--blue); color: var(--blue); }
+
+  .btn-sub {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: background .18s, transform .15s;
+  }
+
+  .btn-sub:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+  /* ─── MOBILE MENU & HAMBURGER ───────────────── */
+  .nav-hamburger {
+    display: none;
+    background: none;
+    border: 1.5px solid var(--gray-200);
+    cursor: pointer;
+    color: var(--navy);
+    padding: 7px 9px;
+    border-radius: 9px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background .18s, border-color .18s;
+  }
+
+  .nav-hamburger:hover { background: var(--gray-100); }
+
+  .mobile-menu {
+    position: fixed;
+    top: 58px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    box-shadow: 0 8px 32px rgba(11,30,61,.12);
+    z-index: 199;
+    padding: 8px 16px 16px;
+    flex-direction: column;
+    gap: 2px;
+    display: none;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gray-text);
+    padding: 11px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: color .18s, background .18s;
+  }
+
+  .mobile-menu a:hover,
+  .mobile-menu a.active { color: var(--blue); background: rgba(30,80,212,.06); font-weight: 600; }
+
+  /* ─── PAGE HEADER ─────────────────────────────── */
+  .page-header {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 28px 0;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--gray-text);
+    margin-bottom: 18px;
+  }
+
+  .breadcrumb a { color: var(--blue); font-weight: 500; transition: opacity .18s; }
+  .breadcrumb a:hover { opacity: .7; }
+
+  .breadcrumb-sep {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gray-200);
+  }
+
+  .page-title {
+    font-family: 'Merriweather', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  .page-subtitle {
+    font-size: 14.5px;
+    color: var(--gray-text);
+    margin-top: 8px;
+    max-width: 640px;
+  }
+
+  /* ─── SECTION HEADER ──────────────────────────── */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 26px;
+  }
+
+  .sec-title {
+    font-family: 'Merriweather', serif;
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .sec-line {
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+  }
+
+  /* ─── MAIN LAYOUT ─────────────────────────────── */
+  .list-layout {
+    max-width: 1280px;
+    margin: 32px auto 0;
+    padding: 0 28px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ─── NEWS LIST ───────────────────────────────── */
+  .news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .list-item {
+    display: flex;
+    gap: 22px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--gray-100);
+    text-decoration: none;
+    transition: opacity .18s;
+    align-items: flex-start;
+  }
+
+  .list-item:first-child { padding-top: 0; }
+  .list-item:last-child { border-bottom: none; }
+  .list-item:hover { opacity: .78; }
+  .list-item:hover .list-title { color: var(--blue); }
+
+  .list-thumb {
+    width: 260px;
+    height: 170px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .list-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .45s ease;
+  }
+
+  .list-item:hover .list-thumb img { transform: scale(1.05); }
+
+  .list-cat-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    padding: 3px 9px;
+    border-radius: 4px;
+  }
+
+  .list-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+    padding-top: 2px;
+  }
+
+  .list-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .list-time {
+    font-size: 12px;
+    color: var(--gray-text);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .list-cat {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--blue);
+  }
+
+  .list-title {
+    font-family: 'Merriweather', serif;
+    font-size: 18.5px;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--dark);
+    margin-bottom: 10px;
+    transition: color .18s;
+  }
+
+  .list-excerpt {
+    font-size: 14px;
+    color: var(--gray-text);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ─── PAGINATION ──────────────────────────────── */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 36px;
+    padding-top: 10px;
+  }
+
+  .page-btn {
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    border: 1.5px solid var(--gray-200);
+    background: var(--white);
+    color: var(--dark);
+    cursor: pointer;
+    transition: all .18s;
+    padding: 0 12px;
+  }
+
+  .page-btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+  }
+
+  .page-btn.active {
+    background: var(--blue);
+    color: var(--white);
+    border-color: var(--blue);
+  }
+
+  .page-btn.prev-next {
+    gap: 6px;
+    padding: 0 14px;
+  }
+
+  .page-btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+  }
+
+  /* ─── SIDEBAR ─────────────────────────────────── */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: sticky;
+    top: 86px;
+  }
+
+  .sidebar-block {
+    border: 0.5px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 22px;
+  }
+
+  .sidebar-title {
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  /* Newsletter sidebar */
+  .sidebar-nl {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 26px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sidebar-nl::before {
+    content: '';
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(30,80,212,.14);
+    right: -40px;
+    top: -50px;
+    pointer-events: none;
+  }
+
+  .sidebar-nl-title {
+    font-family: 'Merriweather', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar-nl-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,.5);
+    line-height: 1.55;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar-nl-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar-nl-input {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 10px;
+    padding: 11px 14px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    outline: none;
+  }
+
+  .sidebar-nl-input::placeholder { color: rgba(255,255,255,.35); }
+
+  .sidebar-nl-btn {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    border: none;
+    border-radius: 10px;
+    padding: 11px;
+    cursor: pointer;
+    transition: background .18s;
+  }
+
+  .sidebar-nl-btn:hover { background: var(--gold-dark); }
+
+  /* Categories sidebar */
+  .cat-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cat-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--dark);
+    transition: background .15s, color .15s;
+  }
+
+  .cat-list a:hover {
+    background: var(--gray-100);
+    color: var(--blue);
+  }
+
+  .cat-list a.active {
+    background: rgba(30,80,212,.08);
+    color: var(--blue);
+    font-weight: 600;
+  }
+
+  .cat-count {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--gray-text);
+    background: var(--gray-100);
+    padding: 2px 8px;
+    border-radius: 100px;
+  }
+
+  .cat-list a.active .cat-count {
+    background: rgba(30,80,212,.12);
+    color: var(--blue);
+  }
+
+  /* Trending sidebar */
+  .trend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gray-100);
+    text-decoration: none;
+    transition: opacity .18s;
+  }
+
+  .trend-item:first-child { padding-top: 0; }
+  .trend-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .trend-item:hover { opacity: .75; }
+  .trend-item:hover .trend-title { color: var(--blue); }
+
+  .trend-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gray-200);
+    line-height: 1;
+    min-width: 26px;
+    flex-shrink: 0;
+  }
+
+  .trend-title {
+    font-family: 'Merriweather', serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--dark);
+    transition: color .18s;
+  }
+
+  /* Ad sidebar */
+  .ad-v {
+    width: 100%;
+    min-height: 340px;
+    background: var(--gray-100);
+    border-radius: 10px;
+    border: 1.5px dashed var(--gray-200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--gray-text);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .ad-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-text);
+    margin-bottom: 7px;
+    opacity: .7;
+  }
+
+  /* ─── FOOTER ──────────────────────────────────── */
+  .site-footer {
+    background: var(--navy);
+    margin-top: 72px;
+  }
+
+  .footer-main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 56px 28px 48px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.4fr 1.2fr;
+    gap: 48px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    margin-bottom: 16px;
+  }
+
+  .footer-logo .logo-shield {
+    background: var(--blue);
+  }
+
+  .footer-logo-text {
+    font-family: 'Merriweather', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -.3px;
+  }
+
+  .footer-logo-text span { color: var(--gold); }
+
+  .footer-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,.45);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 10px;
+  }
+
+  .footer-soc {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,.55);
+    text-decoration: none;
+    transition: border-color .18s, color .18s;
+  }
+
+  .footer-soc:hover {
+    border-color: rgba(255,255,255,.5);
+    color: var(--white);
+  }
+
+  .footer-col-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: rgba(255,255,255,.35);
+    margin-bottom: 18px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    font-size: 13.5px;
+    color: rgba(255,255,255,.6);
+    text-decoration: none;
+    transition: color .18s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-nl-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,.45);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .footer-nl-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-nl-input {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color .18s;
+  }
+
+  .footer-nl-input::placeholder { color: rgba(255,255,255,.3); }
+  .footer-nl-input:focus { border-color: rgba(255,255,255,.35); }
+
+  .footer-nl-btn {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background .18s;
+  }
+
+  .footer-nl-btn:hover { background: var(--gold-dark); }
+
+  .footer-contact-block {
+    margin-bottom: 20px;
+  }
+
+  .footer-contact-label {
+    font-size: 12px;
+    color: rgba(255,255,255,.35);
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .footer-contact-email {
+    font-size: 13.5px;
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    transition: color .18s;
+    word-break: break-all;
+  }
+
+  .footer-contact-email:hover { color: var(--white); }
+
+  .footer-bottom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 28px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,.3);
+  }
+
+  /* ══════════════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════════════ */
+
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .nav-sep:last-of-type { display: none; }
+    .list-layout { grid-template-columns: 1fr; gap: 36px; }
+    .sidebar { position: static; display: grid; grid-template-columns: 1fr 1fr; }
+    .ad-v { min-height: 200px; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 16px; height: 58px; position: relative; gap: 0; }
+    .nav-sep { display: none; }
+    .nav-links { display: none; }
+    .nav-socials { display: none; }
+    .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); background: var(--white); padding: 0 4px; z-index: 1; }
+    .logo-text { font-size: 15px; }
+    .nav-hamburger { display: flex; }
+    .btn-sub { font-size: 10.5px; padding: 7px 10px; gap: 0; white-space: nowrap; }
+    .btn-sub svg { display: none; }
+
+    .page-header { padding: 20px 16px 0; }
+    .page-title { font-size: 26px; }
+    .page-subtitle { font-size: 13.5px; }
+
+    .list-layout { padding: 0 16px; margin-top: 24px; gap: 28px; }
+    .list-item { flex-direction: column; gap: 14px; padding: 20px 0; }
+    .list-thumb { width: 100%; height: 210px; }
+    .list-title { font-size: 16px; }
+    .list-excerpt { font-size: 13.5px; }
+
+    .sidebar { grid-template-columns: 1fr; }
+
+    .site-footer { margin-top: 48px; }
+    .footer-main { grid-template-columns: 1fr; padding: 36px 16px 28px; gap: 32px; }
+    .footer-bottom { flex-direction: column; text-align: center; padding: 16px; gap: 8px; font-size: 11px; }
+    .footer-nl-form { flex-direction: column; }
+    .footer-nl-btn { width: 100%; padding: 11px; }
+  }
+
+  @media (max-width: 420px) {
+    .page-title { font-size: 22px; }
+    .list-thumb { height: 180px; }
+    .pagination { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════════ -->
+<header class="navbar">
+  <nav class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-shield">
+        <svg width="18" height="20" viewBox="0 0 18 22" fill="none">
+          <path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/>
+        </svg>
+      </div>
+      <span class="logo-text">Safe <span>Mídia</span></span>
+    </a>
+
+    <div class="nav-sep"></div>
+
+    <div class="nav-links">
+      <a href="#">Mercado</a>
+      <a href="#">Auto</a>
+      <a href="#">Saúde</a>
+      <a href="#">Vida</a>
+      <a href="#">Empresarial</a>
+      <a href="#">SUSEP</a>
+      <a href="#">Regulação</a>
+      <a href="#">Opinião</a>
+    </div>
+
+    <div class="nav-sep"></div>
+
+    <div class="nav-socials">
+      <a href="#" class="soc" title="Facebook">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+      <a href="#" class="soc" title="Instagram">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" class="soc" title="X">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="soc" title="LinkedIn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+    <button class="btn-sub">
+      Assinar Newsletter
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </nav>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#">Mercado</a>
+  <a href="#">Auto</a>
+  <a href="#">Saúde</a>
+  <a href="#">Vida</a>
+  <a href="#">Empresarial</a>
+  <a href="#">SUSEP</a>
+  <a href="#">Regulação</a>
+  <a href="#">Opinião</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     PAGE HEADER
+═══════════════════════════════════════════════ -->
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="index.html">Início</a>
+    <span class="breadcrumb-sep"></span>
+    <span>Últimas Notícias</span>
+  </div>
+  <h1 class="page-title">Últimas Notícias</h1>
+  <p class="page-subtitle">Acompanhe em tempo real as principais novidades do mercado de seguros, regulação e finanças.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     LIST + SIDEBAR
+═══════════════════════════════════════════════ -->
+<div class="list-layout">
+
+  <!-- Main list -->
+  <main>
+    <div class="news-list">
+
+      <a href="#" class="list-item">
+        <div class="list-thumb">
+          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=520&h=340&fit=crop&q=80" alt="" />
+          <span class="list-cat-badge">SUSEP</span>
+        </div>
+        <div class="list-body">
+          <div class="list-meta">
+            <span class="list-cat">SUSEP</span>
+            <span class="list-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Há 2 horas
+            </span>
+          </div>
+          <h2 class="list-title">SUSEP anuncia novas regras para seguros de vida: cobertura obrigatória aumenta 40% e entra em vigor em janeiro de 2027</h2>
+          <p class="list-excerpt">A Superintendência de Seguros Privados publicou nesta quinta-feira a Circular nº 714/2026, que altera as regras de capitalização e eleva o patamar mínimo de cobertura para apólices de vida individuais e coletivas.</p>
+        </div>
+      </a>
+
+      <a href="#" class="list-item">
+        <div class="list-thumb">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=520&h=340&fit=crop&q=80" alt="" />
+          <span class="list-cat-badge">Auto</span>
+        </div>
+        <div class="list-body">
+          <div class="list-meta">
+            <span class="list-cat">Auto</span>
+            <span class="list-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Há 3 horas
+            </span>
+          </div>
+          <h2 class="list-title">Seguro auto com rastreador: novo decreto muda franquia para condutores na faixa A</h2>
+          <p class="list-excerpt">Publicado no Diário Oficial da União, o decreto estabelece redução progressiva de franquia para motoristas com bom histórico que adotarem dispositivos de rastreamento ativo.</p>
+        </div>
+      </a>
+
+      <a href="#" class="list-item">
+        <div class="list-thumb">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=520&h=340&fit=crop&q=80" alt="" />
+          <span class="list-cat-badge">Saúde</span>
+        </div>
+        <div class="list-body">
+          <div class="list-meta">
+            <span class="list-cat">Saúde</span>
+            <span class="list-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Há 5 horas
+            </span>
+          </div>
+          <h2 class="list-title">ANS limita reajuste de planos coletivos a 8,5% para o segundo semestre de 2026</h2>
+          <p class="list-excerpt">A Agência Nacional de Saúde Suplementar divulgou os índices de reajuste máximo para planos coletivos empresariais, com variação por faixa etária e segmento de atuação.</p>
+        </div>
+      </a>
+
+      <a href="#" class="list-item">
+        <div class="list-thumb">
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=520&h=340&fit=crop&q=80" alt="" />
+          <span class="list-cat-badge">Mercado</span>
+        </div>
+        <div class="list-body">
+          <div class="list-meta">
+            <span class="list-cat">Mercado</span>
+            <span class="list-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Há 7 horas
+            </span>
+          </div>
+          <h2 class="list-title">Seguradoras digitais crescem 37% e atraem novos investidores no Brasil</h2>
+          <p class="list-excerpt">Levantamento da FenaSeg mostra que insurtechs brasileiras captaram R$ 2,4 bilhões em 2026, com destaque para modelos de seguro por assinatura e coberturas paramétricas.</p>
+        </div>
+      </a>
+
+      <a href="#" class="list-item">
+        <div class="list-thumb">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=520&h=340&fit=crop&q=80" alt="" />
+          <span class="list-cat-badge">Empresarial</span>
+        </div>
+        <div class="list-body">
+          <div class="list-meta">
+            <span class="list-cat">Empresarial</span>
+            <span class="list-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Há 8 horas
+            </span>
+          </div>
+          <h2 class="list-title">Grandes empresas ampliam cobertura de seguro D&O diante da escalada de responsabilidade civil</h2>
+          <p class="list-excerpt">Com o aumento de ações coletivas e processos administrativos, corporações listadas na B3 elevaram em média 28% os limites de cobertura de Diretores e Administradores.</p>
+        </div>
+      </a>
+
+      <a href="#" class="list-item">
+        <div class="list-thumb">
+          <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=520&h=340&fit=crop&q=80" alt="" />
+          <span class="list-cat-badge">Tecnologia</span>
+        </div>
+        <div class="list-body">
+          <div class="list-meta">
+            <span class="list-cat">Tecnologia</span>
+            <span class="list-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Há 10 horas
+            </span>
+          </div>
+          <h2 class="list-title">IA reduz fraudes em seguros de saúde em até 62%, aponta relatório da FenaSaúde</h2>
+          <p class="list-excerpt">Estudo inédito mapeia o impacto de algoritmos de machine learning na detecção de glosas indevidas e fraudes de alto custo em operadoras de planos de saúde.</p>
+        </div>
+      </a>
+
+      <a href="#" class="list-item">
+        <div class="list-thumb">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=520&h=340&fit=crop&q=80" alt="" />
+          <span class="list-cat-badge">Previdência</span>
+        </div>
+        <div class="list-body">
+          <div class="list-meta">
+            <span class="list-cat">Previdência</span>
+            <span class="list-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Há 12 horas
+            </span>
+          </div>
+          <h2 class="list-title">Reforma da previdência complementar entra na pauta do Congresso e agita o mercado segurador</h2>
+          <p class="list-excerpt">O projeto de lei prevê mudanças na tributação dos planos de previdência privada e novas regras para portabilidade entre entidades abertas e fechadas.</p>
+        </div>
+      </a>
+
+      <a href="#" class="list-item">
+        <div class="list-thumb">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=520&h=340&fit=crop&q=80" alt="" />
+          <span class="list-cat-badge">Residencial</span>
+        </div>
+        <div class="list-body">
+          <div class="list-meta">
+            <span class="list-cat">Residencial</span>
+            <span class="list-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Há 14 horas
+            </span>
+          </div>
+          <h2 class="list-title">Seguro residencial cresce nas grandes capitais após alta nos registros de alagamento em 2026</h2>
+          <p class="list-excerpt">Dados da CNseg indicam aumento de 45% na contratação de seguros residenciais em São Paulo, Rio de Janeiro e Belo Horizonte no primeiro semestre.</p>
+        </div>
+      </a>
+
+      <a href="#" class="list-item">
+        <div class="list-thumb">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=520&h=340&fit=crop&q=80" alt="" />
+          <span class="list-cat-badge">Corretores</span>
+        </div>
+        <div class="list-body">
+          <div class="list-meta">
+            <span class="list-cat">Corretores</span>
+            <span class="list-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Há 16 horas
+            </span>
+          </div>
+          <h2 class="list-title">CNseg propõe nova certificação obrigatória para corretores de seguros com início em 2027</h2>
+          <p class="list-excerpt">A entidade defende a criação de exame nacional unificado e carga horária mínima de atualização anual para manutenção do registro profissional.</p>
+        </div>
+      </a>
+
+      <a href="#" class="list-item">
+        <div class="list-thumb">
+          <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=520&h=340&fit=crop&q=80" alt="" />
+          <span class="list-cat-badge">Agro</span>
+        </div>
+        <div class="list-body">
+          <div class="list-meta">
+            <span class="list-cat">Agro</span>
+            <span class="list-time">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Há 18 horas
+            </span>
+          </div>
+          <h2 class="list-title">Seguro rural amplia cobertura para eventos climáticos extremos no Nordeste após seca histórica</h2>
+          <p class="list-excerpt">Seguradoras lançam novos produtos paramétricos voltados ao semiárido, com pagamento automático baseado em índices de precipitação e temperatura.</p>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button class="page-btn prev-next" disabled>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Anterior
+      </button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <span style="color:var(--gray-text);font-size:13px;padding:0 4px;">…</span>
+      <button class="page-btn">12</button>
+      <button class="page-btn prev-next">
+        Próxima
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </main>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+
+    <!-- Newsletter -->
+    <div class="sidebar-nl">
+      <div class="sidebar-nl-title">Fique por dentro</div>
+      <p class="sidebar-nl-desc">Receba as principais notícias do mercado de seguros todo dia útil de manhã.</p>
+      <div class="sidebar-nl-form">
+        <input class="sidebar-nl-input" type="email" placeholder="Seu melhor e-mail" />
+        <button class="sidebar-nl-btn">Assinar grátis</button>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="sidebar-block">
+      <div class="sidebar-title">Editorias</div>
+      <ul class="cat-list">
+        <li><a href="#" class="active">Todas <span class="cat-count">142</span></a></li>
+        <li><a href="#">Mercado <span class="cat-count">38</span></a></li>
+        <li><a href="#">Auto <span class="cat-count">24</span></a></li>
+        <li><a href="#">Saúde <span class="cat-count">19</span></a></li>
+        <li><a href="#">Vida <span class="cat-count">15</span></a></li>
+        <li><a href="#">Empresarial <span class="cat-count">12</span></a></li>
+        <li><a href="#">Regulação <span class="cat-count">21</span></a></li>
+        <li><a href="#">Previdência <span class="cat-count">8</span></a></li>
+        <li><a href="#">Agro <span class="cat-count">5</span></a></li>
+      </ul>
+    </div>
+
+    <!-- Trending -->
+    <div class="sidebar-block">
+      <div class="sidebar-title">Mais Lidas</div>
+      <a href="#" class="trend-item">
+        <span class="trend-num">01</span>
+        <span class="trend-title">SUSEP anuncia novas regras para seguros de vida em 2027</span>
+      </a>
+      <a href="#" class="trend-item">
+        <span class="trend-num">02</span>
+        <span class="trend-title">ANS limita reajuste de planos coletivos a 8,5%</span>
+      </a>
+      <a href="#" class="trend-item">
+        <span class="trend-num">03</span>
+        <span class="trend-title">O que fazer quando a seguradora nega um sinistro?</span>
+      </a>
+      <a href="#" class="trend-item">
+        <span class="trend-num">04</span>
+        <span class="trend-title">IA reduz fraudes em seguros de saúde em até 62%</span>
+      </a>
+      <a href="#" class="trend-item">
+        <span class="trend-num">05</span>
+        <span class="trend-title">Seguro auto com rastreador: novo decreto muda franquia</span>
+      </a>
+    </div>
+
+    <!-- Ad -->
+    <div>
+      <div class="ad-label">Publicidade</div>
+      <div class="ad-v">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        <span>Espaço Publicitário</span>
+        <span>300 × 600</span>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo">
+        <div class="logo-shield">
+          <svg width="18" height="20" viewBox="0 0 18 22" fill="none"><path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/></svg>
+        </div>
+        <span class="footer-logo-text">Safe <span>Mídia</span></span>
+      </a>
+      <p class="footer-desc">Portal independente de notícias, análises e regulação do mercado de seguros brasileiro. Conteúdo para corretores, atuários, gestores e segurados.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-soc" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#" class="footer-soc" title="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="footer-soc" title="X"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="footer-soc" title="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Editorias</div>
+      <ul class="footer-links">
+        <li><a href="#">Mercado</a></li>
+        <li><a href="#">Auto</a></li>
+        <li><a href="#">Saúde</a></li>
+        <li><a href="#">Vida</a></li>
+        <li><a href="#">Empresarial</a></li>
+        <li><a href="#">SUSEP</a></li>
+        <li><a href="#">Regulação</a></li>
+        <li><a href="#">Para o Segurado</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Newsletter</div>
+      <p class="footer-nl-sub">Receba as principais notícias do setor direto no seu e-mail, todo dia útil.</p>
+      <div class="footer-nl-form">
+        <input class="footer-nl-input" type="email" placeholder="Seu e-mail" />
+        <button class="footer-nl-btn">Assinar</button>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Contato</div>
+      <div class="footer-contact-block">
+        <div class="footer-contact-label">Conteúdo e pauta</div>
+        <a href="mailto:redacao@safemidia.com.br" class="footer-contact-email">redacao@safemidia.com.br</a>
+      </div>
+      <div class="footer-contact-block">
+        <div class="footer-contact-label">Comercial</div>
+        <a href="mailto:direcao@safemidia.com.br" class="footer-contact-email">direcao@safemidia.com.br</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Safe Mídia. Todos os direitos reservados.</span>
+    <span>Portal independente — não possui vínculo com seguradoras ou órgãos reguladores</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var hamburger = document.getElementById('navHamburger');
+  var menu = document.getElementById('mobileMenu');
+  if (!hamburger || !menu) return;
+
+  hamburger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    menu.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+
+  menu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      menu.classList.remove('open');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

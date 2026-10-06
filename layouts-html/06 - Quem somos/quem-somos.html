@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quem Somos — Safe Mídia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0B1E3D;
+    --blue:       #1E50D4;
+    --blue-hover: #1A46C0;
+    --gold:       #F5C418;
+    --gold-dark:  #DFB000;
+    --white:      #FFFFFF;
+    --off-white:  #F4F6FB;
+    --gray-100:   #EDF0F8;
+    --gray-200:   #DDE2EF;
+    --gray-text:  #5C6E8A;
+    --dark:       #0F1C30;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--off-white);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  img { display: block; width: 100%; object-fit: cover; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ─── NAVBAR ──────────────────────────────────── */
+  .navbar { background: var(--white); border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 16px rgba(11,30,61,0.07); }
+  .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 28px; height: 66px; display: flex; align-items: center; gap: 28px; }
+  .nav-logo { display: flex; align-items: center; gap: 9px; flex-shrink: 0; text-decoration: none; }
+  .logo-shield { width: 34px; height: 34px; background: var(--blue); border-radius: 9px; display: flex; align-items: center; justify-content: center; }
+  .logo-text { font-family: 'Merriweather', serif; font-size: 21px; font-weight: 700; color: var(--navy); letter-spacing: -0.4px; }
+  .logo-text span { color: var(--blue); }
+  .nav-sep { width: 1px; height: 26px; background: var(--gray-200); flex-shrink: 0; }
+  .nav-links { display: flex; align-items: center; gap: 2px; flex: 1; }
+  .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--gray-text); padding: 7px 13px; border-radius: 7px; white-space: nowrap; transition: color .18s, background .18s; }
+  .nav-links a:hover { color: var(--blue); background: rgba(30,80,212,.07); }
+  .nav-links a.active { color: var(--blue); font-weight: 600; background: rgba(30,80,212,.08); }
+  .nav-socials { display: flex; align-items: center; gap: 8px; }
+  .soc { width: 32px; height: 32px; border: 1.5px solid var(--gray-200); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gray-text); transition: border-color .18s, color .18s; }
+  .soc:hover { border-color: var(--blue); color: var(--blue); }
+  .btn-sub { background: var(--gold); color: var(--navy); font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13.5px; padding: 10px 20px; border-radius: 100px; border: none; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 7px; transition: background .18s, transform .15s; }
+  .btn-sub:hover { background: var(--gold-dark); transform: translateY(-1px); }
+  .nav-hamburger { display: none; background: none; border: 1.5px solid var(--gray-200); cursor: pointer; color: var(--navy); padding: 7px 9px; border-radius: 9px; align-items: center; justify-content: center; flex-shrink: 0; transition: background .18s; }
+  .nav-hamburger:hover { background: var(--gray-100); }
+  .mobile-menu { position: fixed; top: 58px; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--gray-200); box-shadow: 0 8px 32px rgba(11,30,61,.12); z-index: 199; padding: 8px 16px 16px; flex-direction: column; gap: 2px; display: none; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 15px; font-weight: 500; color: var(--gray-text); padding: 11px 14px; border-radius: 8px; transition: color .18s, background .18s; }
+  .mobile-menu a:hover, .mobile-menu a.active { color: var(--blue); background: rgba(30,80,212,.06); font-weight: 600; }
+
+  /* ─── PAGE HERO ───────────────────────────────── */
+  .page-hero { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 40px 0 44px; }
+  .page-hero-inner { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+
+  .breadcrumb { font-size: 12.5px; color: var(--gray-text); margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--blue); font-weight: 500; transition: opacity .2s; }
+  .breadcrumb a:hover { opacity: .72; }
+  .breadcrumb span { opacity: .6; }
+
+  .page-title { font-family: 'Merriweather', serif; font-size: 36px; font-weight: 700; color: var(--navy); letter-spacing: -.4px; margin-bottom: 8px; line-height: 1.2; }
+  .page-desc { font-size: 15px; color: var(--gray-text); }
+
+  /* ─── STORY SECTION ───────────────────────────── */
+  .story-section {
+    max-width: 1280px;
+    margin: 52px auto 0;
+    padding: 0 28px;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .story-lead {
+    font-family: 'Merriweather', serif;
+    font-size: 22px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.5;
+    margin-bottom: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .story-body p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--dark);
+    margin-bottom: 22px;
+  }
+
+  .story-body p:last-child { margin-bottom: 0; }
+
+  .story-body strong { color: var(--navy); font-weight: 600; }
+
+  /* ─── ASIDE: PULL QUOTE + PILLARS ────────────── */
+  .story-aside {
+    position: sticky;
+    top: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .pull-quote {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pull-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-family: 'Merriweather', serif;
+    font-size: 120px;
+    color: rgba(30,80,212,.25);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .pull-quote-text {
+    font-family: 'Merriweather', serif;
+    font-size: 17px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
+  }
+
+  .pull-quote-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pull-quote-line {
+    width: 28px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .pull-quote-credit {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold);
+  }
+
+  .aside-stats {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .stat-item:first-child { padding-top: 0; }
+  .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .stat-label { font-size: 13px; color: var(--gray-text); }
+  .stat-value { font-family: 'Merriweather', serif; font-size: 17px; font-weight: 700; color: var(--navy); }
+
+  /* ─── MISSION BLOCK ───────────────────────────── */
+  .mission-block {
+    background: var(--blue);
+    margin: 72px 0 0;
+    padding: 64px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mission-block::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: rgba(255,255,255,.04);
+    border-radius: 50%;
+    top: -200px; right: -100px;
+    pointer-events: none;
+  }
+
+  .mission-block::after {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    background: rgba(255,255,255,.04);
+    border-radius: 50%;
+    bottom: -100px; left: -80px;
+    pointer-events: none;
+  }
+
+  .mission-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mission-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: rgba(255,255,255,.55);
+    margin-bottom: 18px;
+    display: block;
+  }
+
+  .mission-headline {
+    font-family: 'Merriweather', serif;
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    letter-spacing: -.5px;
+  }
+
+  .mission-headline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  /* ─── FOUNDERS ────────────────────────────────── */
+  .founders-section {
+    max-width: 1280px;
+    margin: 72px auto 0;
+    padding: 0 28px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .section-title {
+    font-family: 'Merriweather', serif;
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+  }
+
+  .founders-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .founder-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .founder-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .founder-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 3px solid var(--gray-100);
+  }
+
+  .founder-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  .founder-name {
+    font-family: 'Merriweather', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .founder-role {
+    font-size: 13px;
+    color: var(--blue);
+    font-weight: 600;
+  }
+
+  .founder-bio {
+    font-size: 14.5px;
+    color: var(--gray-text);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  /* ─── VALUES STRIP ────────────────────────────── */
+  .values-section {
+    background: var(--white);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    margin: 72px 0 0;
+    padding: 56px 28px;
+  }
+
+  .values-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 32px;
+  }
+
+  .value-item {
+    padding: 0 40px;
+    border-right: 1px solid var(--gray-200);
+  }
+
+  .value-item:first-child { padding-left: 0; }
+  .value-item:last-child { border-right: none; padding-right: 0; }
+
+  .value-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--gray-100);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+
+  .value-title {
+    font-family: 'Merriweather', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+
+  .value-desc {
+    font-size: 14px;
+    color: var(--gray-text);
+    line-height: 1.65;
+  }
+
+  /* ─── FOOTER ──────────────────────────────────── */
+  .site-footer { background: var(--navy); margin-top: 0; }
+  .footer-main { max-width: 1280px; margin: 0 auto; padding: 56px 28px 48px; display: grid; grid-template-columns: 1.6fr 1fr 1.4fr 1.2fr; gap: 48px; }
+  .footer-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; margin-bottom: 16px; }
+  .footer-logo .logo-shield { background: var(--blue); }
+  .footer-logo-text { font-family: 'Merriweather', serif; font-size: 19px; font-weight: 700; color: var(--white); letter-spacing: -.3px; }
+  .footer-logo-text span { color: var(--gold); }
+  .footer-desc { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.7; margin-bottom: 20px; }
+  .footer-socials { display: flex; gap: 10px; }
+  .footer-soc { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.55); text-decoration: none; transition: border-color .18s, color .18s; }
+  .footer-soc:hover { border-color: rgba(255,255,255,.5); color: var(--white); }
+  .footer-col-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: rgba(255,255,255,.35); margin-bottom: 18px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 13.5px; color: rgba(255,255,255,.6); text-decoration: none; transition: color .18s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-nl-sub { font-size: 13px; color: rgba(255,255,255,.45); line-height: 1.6; margin-bottom: 16px; }
+  .footer-nl-form { display: flex; flex-direction: column; gap: 8px; }
+  .footer-nl-input { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; padding: 10px 14px; color: var(--white); font-family: 'Inter', sans-serif; font-size: 13px; outline: none; transition: border-color .18s; }
+  .footer-nl-input::placeholder { color: rgba(255,255,255,.3); }
+  .footer-nl-input:focus { border-color: rgba(255,255,255,.35); }
+  .footer-nl-btn { background: var(--gold); color: var(--navy); font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; border: none; border-radius: 8px; padding: 10px; cursor: pointer; transition: background .18s; }
+  .footer-nl-btn:hover { background: var(--gold-dark); }
+  .footer-contact-block { margin-bottom: 20px; }
+  .footer-contact-label { font-size: 12px; color: rgba(255,255,255,.35); margin-bottom: 5px; font-weight: 500; }
+  .footer-contact-email { font-size: 13.5px; color: rgba(255,255,255,.7); text-decoration: none; transition: color .18s; word-break: break-all; }
+  .footer-contact-email:hover { color: var(--white); }
+  .footer-bottom { max-width: 1280px; margin: 0 auto; padding: 20px 28px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 12px; color: rgba(255,255,255,.3); }
+
+  /* ─── RESPONSIVE ──────────────────────────────── */
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .nav-sep:last-of-type { display: none; }
+
+    .story-section { grid-template-columns: 1fr; gap: 36px; }
+    .story-aside { position: static; }
+    .pull-quote { order: -1; }
+
+    .values-grid { grid-template-columns: 1fr; gap: 0; }
+    .value-item { padding: 24px 0; border-right: none; border-bottom: 1px solid var(--gray-200); }
+    .value-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .value-item:first-child { padding-top: 0; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-inner { justify-content: space-between; padding: 0 16px; height: 58px; position: relative; gap: 0; }
+    .nav-sep { display: none; }
+    .nav-socials { display: none; }
+    .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); background: var(--white); padding: 0 4px; z-index: 1; }
+    .logo-text { font-size: 15px; }
+    .nav-hamburger { display: flex; }
+    .btn-sub { font-size: 10.5px; padding: 7px 10px; gap: 0; }
+    .btn-sub svg { display: none; }
+
+    .page-hero { padding: 28px 0 32px; }
+    .page-hero-inner { padding: 0 16px; }
+    .page-title { font-size: 26px; }
+
+    .story-section { padding: 0 16px; margin-top: 36px; }
+    .story-lead { font-size: 18px; }
+    .story-body p { font-size: 15px; }
+
+    .mission-block { padding: 48px 16px; }
+    .mission-headline { font-size: 26px; }
+
+    .founders-section { padding: 0 16px; margin-top: 56px; }
+    .founders-grid { grid-template-columns: 1fr; }
+    .founder-card { padding: 24px 20px; }
+
+    .values-section { padding: 40px 16px; margin-top: 56px; }
+
+    .footer-main { grid-template-columns: 1fr; padding: 36px 16px 28px; gap: 32px; }
+    .footer-bottom { flex-direction: column; text-align: center; padding: 16px; gap: 8px; font-size: 11px; }
+    .footer-nl-btn { width: 100%; padding: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logo-shield">
+        <svg width="18" height="20" viewBox="0 0 18 22" fill="none"><path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/></svg>
+      </div>
+      <span class="logo-text">Safe <span>Mídia</span></span>
+    </a>
+    <div class="nav-sep"></div>
+    <div class="nav-links">
+      <a href="#">Mercado</a>
+      <a href="#">Auto</a>
+      <a href="#">Saúde</a>
+      <a href="#">Vida</a>
+      <a href="#">Empresarial</a>
+      <a href="#">SUSEP</a>
+      <a href="#">Regulação</a>
+      <a href="#">Para o Segurado</a>
+    </div>
+    <div class="nav-sep"></div>
+    <div class="nav-socials">
+      <a href="#" class="soc" title="Facebook"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      <a href="#" class="soc" title="Instagram"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      <a href="#" class="soc" title="X"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" class="soc" title="LinkedIn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <button class="btn-sub">
+      Assinar Newsletter
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </nav>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#">Mercado</a>
+  <a href="#">Auto</a>
+  <a href="#">Saúde</a>
+  <a href="#">Vida</a>
+  <a href="#">Empresarial</a>
+  <a href="#">SUSEP</a>
+  <a href="#">Regulação</a>
+  <a href="#">Para o Segurado</a>
+</nav>
+
+<main>
+
+  <!-- Header -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="#">Página Inicial</a>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <span>Quem Somos</span>
+      </div>
+      <h1 class="page-title">Quem Somos</h1>
+      <p class="page-desc">A história por trás do portal de seguros que fala com o mercado e com o segurado.</p>
+    </div>
+  </div>
+
+  <!-- Story: texto + aside -->
+  <div class="story-section">
+
+    <div class="story-main">
+      <p class="story-lead">Safe Mídia nasceu da percepção de que o mercado de seguros brasileiro merecia um jornalismo à altura da sua relevância: rigoroso, independente e, acima de tudo, acessível.</p>
+
+      <div class="story-body">
+        <p>Em 2023, Carla Mendes e Rafael Queiroz estavam do mesmo lado de uma mesa pela primeira vez. Ela, jornalista com doze anos cobrindo finanças e economia para grandes redações, acumulava um incômodo crescente: sempre que seguros entravam na pauta, o assunto era tratado ou com jargão impenetrável para o leitor comum, ou com uma superficialidade que não servia a ninguém. Ele, corretor habilitado pela SUSEP com quinze anos de carteira e clientes em três estados, via o problema pelo outro lado: passava boa parte do dia respondendo as mesmas dúvidas básicas porque não havia um lugar confiável para onde pudesse mandar os clientes lerem antes.</p>
+        <p>A conversa durou três horas. O portal, mais doze meses. Mas a ideia estava clara desde aquela tarde: era preciso criar um veículo que tratasse seguros como o que de fato é, um dos temas mais importantes da vida financeira de qualquer pessoa, com a profundidade que os profissionais exigem e a clareza que o segurado merece.</p>
+        <p>O que diferencia a Safe Mídia de outras publicações do setor é o olhar duplo sobre cada tema. Toda reportagem, análise e nota publicada aqui passa por um filtro duplo: precisa ser densa o suficiente para o profissional que acompanha o mercado, e clara o suficiente para o segurado que está tentando entender o que assinou. O resultado é um conteúdo que o corretor pode usar como ferramenta de relacionamento, compartilhando artigos com clientes nos momentos certos: quando uma apólice está para vencer, quando um sinistro foi negado, quando uma mudança regulatória afeta diretamente a vida daquele segurado específico.</p>
+        <p>A Safe Mídia não tem vínculo com seguradoras, corretoras, associações do setor ou órgãos reguladores. Nenhum anunciante define ou influencia a linha editorial. As opiniões dos colunistas são exclusivamente deles. Essa independência não é apenas um princípio: é a condição sem a qual o portal não teria razão de existir.</p>
+      </div>
+    </div>
+
+    <!-- Aside fixo -->
+    <aside class="story-aside">
+
+      <div class="pull-quote">
+        <p class="pull-quote-text">O segurado que entende o que está comprando é um segurado mais protegido. O corretor que tem conteúdo para compartilhar constrói relacionamentos mais sólidos. Essa equação simples é o coração da Safe Mídia.</p>
+        <div class="pull-quote-footer">
+          <div class="pull-quote-line"></div>
+          <span class="pull-quote-credit">Nossa missão</span>
+        </div>
+      </div>
+
+      <div class="aside-stats">
+        <div class="stat-item">
+          <span class="stat-label">Fundação</span>
+          <span class="stat-value">2024</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Editorias</span>
+          <span class="stat-value">8</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Colunistas</span>
+          <span class="stat-value">12</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Publicações mensais</span>
+          <span class="stat-value">+120</span>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- Mission block -->
+  <div class="mission-block">
+    <div class="mission-inner">
+      <span class="mission-eyebrow">Nossa crença</span>
+      <h2 class="mission-headline">Informação que protege<br><em>quem protege.</em></h2>
+    </div>
+  </div>
+
+  <!-- Founders -->
+  <section class="founders-section">
+    <div class="section-head">
+      <h2 class="section-title">Os fundadores</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="founders-grid">
+
+      <div class="founder-card">
+        <div class="founder-top">
+          <div class="founder-avatar">
+            <img src="https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=200&h=200&fit=crop&q=80" alt="Carla Mendes" />
+          </div>
+          <div>
+            <div class="founder-name">Carla Mendes</div>
+            <div class="founder-role">Cofundadora e Diretora de Redação</div>
+          </div>
+        </div>
+        <p class="founder-bio">Jornalista com doze anos de carreira em coberturas de economia e mercado financeiro. Passou por redações de São Paulo e Rio de Janeiro antes de decidir, com Rafael, que o jornalismo especializado em seguros que ela queria fazer precisaria ser construído do zero. Acredita que a boa reportagem é aquela que muda o comportamento de quem lê.</p>
+      </div>
+
+      <div class="founder-card">
+        <div class="founder-top">
+          <div class="founder-avatar">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&q=80" alt="Rafael Queiroz" />
+          </div>
+          <div>
+            <div class="founder-name">Rafael Queiroz</div>
+            <div class="founder-role">Cofundador e Diretor Comercial</div>
+          </div>
+        </div>
+        <p class="founder-bio">Corretor de seguros habilitado pela SUSEP, com quinze anos de experiência em gestão de carteiras de pessoas físicas e jurídicas no Sul e Sudeste do Brasil. Entrou no mercado por acidente e ficou por convicção. Viu de perto como a falta de informação de qualidade prejudica tanto o segurado na hora do sinistro quanto o corretor que precisa justificar o valor do seu trabalho.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Values -->
+  <div class="values-section">
+    <div class="values-inner">
+      <div class="section-head">
+        <h2 class="section-title">O que nos orienta</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="values-grid">
+
+        <div class="value-item">
+          <div class="value-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="value-title">Independência editorial</div>
+          <p class="value-desc">Nenhum anunciante, seguradora ou entidade do setor define ou influencia o que publicamos. Nossa única lealdade é com o leitor e com os fatos.</p>
+        </div>
+
+        <div class="value-item">
+          <div class="value-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          </div>
+          <div class="value-title">Dupla audiência</div>
+          <p class="value-desc">Cada pauta é pensada para funcionar nos dois sentidos: profunda o suficiente para o corretor e o atuário, clara o suficiente para o segurado que está descobrindo o tema.</p>
+        </div>
+
+        <div class="value-item">
+          <div class="value-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="value-title">O corretor como aliado</div>
+          <p class="value-desc">Acreditamos que o corretor bem informado é o maior ativo do segurado. Nosso conteúdo é feito para ser usado como ferramenta de relacionamento e educação financeira.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">
+        <div class="logo-shield">
+          <svg width="18" height="20" viewBox="0 0 18 22" fill="none"><path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/></svg>
+        </div>
+        <span class="footer-logo-text">Safe <span>Mídia</span></span>
+      </a>
+      <p class="footer-desc">Portal independente de notícias, análises e regulação do mercado de seguros brasileiro. Conteúdo para corretores, atuários, gestores e segurados.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-soc" title="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#" class="footer-soc" title="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="footer-soc" title="X"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="footer-soc" title="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Editorias</div>
+      <ul class="footer-links">
+        <li><a href="#">Mercado</a></li>
+        <li><a href="#">Auto</a></li>
+        <li><a href="#">Saúde</a></li>
+        <li><a href="#">Vida</a></li>
+        <li><a href="#">Empresarial</a></li>
+        <li><a href="#">SUSEP</a></li>
+        <li><a href="#">Regulação</a></li>
+        <li><a href="#">Para o Segurado</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Newsletter</div>
+      <p class="footer-nl-sub">Receba as principais notícias do setor direto no seu e-mail, todo dia útil.</p>
+      <div class="footer-nl-form">
+        <input class="footer-nl-input" type="email" placeholder="Seu e-mail" />
+        <button class="footer-nl-btn">Assinar</button>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contato</div>
+      <div class="footer-contact-block">
+        <div class="footer-contact-label">Conteúdo e pauta</div>
+        <a href="mailto:redacao@safemidia.com.br" class="footer-contact-email">redacao@safemidia.com.br</a>
+      </div>
+      <div class="footer-contact-block">
+        <div class="footer-contact-label">Comercial</div>
+        <a href="mailto:direcao@safemidia.com.br" class="footer-contact-email">direcao@safemidia.com.br</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Safe Mídia. Todos os direitos reservados.</span>
+    <span>Portal independente — não possui vínculo com seguradoras ou órgãos reguladores</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var hamburger = document.getElementById('navHamburger');
+  var menu = document.getElementById('mobileMenu');
+  if (!hamburger || !menu) return;
+  hamburger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    menu.classList.toggle('open');
+  });
+  document.addEventListener('click', function(e) {
+    if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+  menu.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', function() { menu.classList.remove('open'); }); });
+})();
+</script>
+
+</body>
+</html>

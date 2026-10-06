@@ -30,16 +30,6 @@ Thumbs.db
 .idea/
 *.iml
 
-# Agent / tooling directories (opencode, claude, skills)
-.agents/
-.claude/
-.opencode/
-skills-lock.json
-
-# Design exploration (HTML references in this directory are not
-# shipped with the theme; they informed the Safe Mídia layout).
-layouts-html/
-
 # WordPress runtime artifacts created by the Docker harness at runtime
 wp-content/
 
