@@ -145,7 +145,7 @@ install_wordpress() {
     --path="${WP_PATH}" \
     --allow-root \
     --url="http://localhost:${HOST_PORT}" \
-    --title="${WP_SITE_TITLE:-Vue Blocks (local)}" \
+    --title="${WP_SITE_TITLE:-Safe Mídia}" \
     --admin_user="${WP_ADMIN_USER:-admin}" \
     --admin_password="${WP_ADMIN_PASSWORD}" \
     --admin_email="${WP_ADMIN_EMAIL:-admin@example.test}" \

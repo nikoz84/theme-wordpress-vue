@@ -30,6 +30,47 @@ if ( ! defined( 'VB_USE_BUNDLED_ASSETS' ) ) {
 }
 
 /**
+ * Google Fonts (Safe Mídia typography).
+ *
+ * Emits the preconnect directives + the stylesheet <link> for the
+ * Safe Mídia fonts (Merriweather for headings, Inter for body). Loaded
+ * on both the CDN-first and the bundled-asset paths; the typography is
+ * independent of how the JS is built.
+ *
+ * See specs/004-theme-customizer-and-branding/contracts/fonts.contract.md.
+ */
+function vb_enqueue_google_fonts() {
+	wp_enqueue_style(
+		'vb-google-fonts',
+		'https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@300;400;500;600&display=swap',
+		array(),
+		null
+	);
+}
+add_action( 'wp_enqueue_scripts', 'vb_enqueue_google_fonts' );
+
+/**
+ * Preconnect to fonts.googleapis.com and fonts.gstatic.com so the
+ * browser opens the TLS handshake early. Filter `wp_resource_hints`
+ * runs at the right time during head emission.
+ */
+function vb_resource_hints( $hints, $relation_type ) {
+	if ( 'preconnect' !== $relation_type ) {
+		return $hints;
+	}
+	$hints[] = array(
+		'href'        => 'https://fonts.googleapis.com',
+		'crossorigin' => false,
+	);
+	$hints[] = array(
+		'href'        => 'https://fonts.gstatic.com',
+		'crossorigin' => 'anonymous',
+	);
+	return $hints;
+}
+add_filter( 'wp_resource_hints', 'vb_resource_hints', 10, 2 );
+
+/**
  * 1. THEME SETUP
  * Registra suporte a recursos do WordPress (title-tag, thumbnails, menus, etc.)
  */
@@ -267,3 +308,63 @@ remove_action( 'wp_head', 'wp_generator' );
  */
 require VB_THEME_DIR . '/inc/template-tags.php';
 require VB_THEME_DIR . '/inc/build-manifest.php';
+
+/**
+ * 10. WORDPRESS CUSTOMIZER — Social media URLs
+ *
+ * Exposes four URL fields (Facebook, Instagram, X, LinkedIn) under
+ * Appearance → Customize > "Social media". Empty URLs hide the icon
+ * (per FR-005 / FR-006).
+ *
+ * See specs/004-theme-customizer-and-branding/contracts/customizer.contract.md.
+ *
+ * @param WP_Customize_Manager $wp_customize The Customizer manager.
+ */
+function vb_customize_register_social( $wp_customize ) {
+	$wp_customize->add_section(
+		'vb_social',
+		array(
+			'title'       => __( 'Social media', 'vue-blocks' ),
+			'description' => __( 'URLs for the navbar and footer social icons. Leave a field empty to hide its icon.', 'vue-blocks' ),
+			'priority'    => 90,
+		)
+	);
+
+	$platforms = array(
+		'facebook'  => __( 'Facebook', 'vue-blocks' ),
+		'instagram' => __( 'Instagram', 'vue-blocks' ),
+		'x'         => __( 'X (Twitter)', 'vue-blocks' ),
+		'linkedin'  => __( 'LinkedIn', 'vue-blocks' ),
+	);
+
+	foreach ( $platforms as $slug => $label ) {
+		$setting_id = "vb_social_{$slug}";
+
+		$wp_customize->add_setting(
+			$setting_id,
+			array(
+				'default'           => '',
+				'sanitize_callback' => 'esc_url_raw',
+				'transport'         => 'refresh',
+			)
+		);
+
+		$wp_customize->add_control(
+			$setting_id,
+			array(
+				'type'        => 'url',
+				'section'     => 'vb_social',
+				'label'       => $label,
+				'description' => sprintf(
+					/* translators: %s: platform name */
+					__( 'Full URL of the %s profile or page. Leave empty to hide its icon.', 'vue-blocks' ),
+					$label
+				),
+				'input_attrs' => array(
+					'placeholder' => sprintf( 'https://%s.com/your-handle', $slug === 'x' ? 'x' : $slug ),
+				),
+			)
+		);
+	}
+}
+add_action( 'customize_register', 'vb_customize_register_social' );

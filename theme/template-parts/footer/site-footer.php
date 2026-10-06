@@ -31,10 +31,27 @@ $vb_site_title = get_bloginfo( 'name' );
 				<?php esc_html_e( 'Portal de notícias do setor. Conteúdo editorial independente, com curadoria e atualização diária.', 'vue-blocks' ); ?>
 			</p>
 			<div class="footer-socials">
-				<a href="#" class="footer-soc" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-				<a href="#" class="footer-soc" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-				<a href="#" class="footer-soc" aria-label="X"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H9.751l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-				<a href="#" class="footer-soc" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+				<?php
+				/*
+				 * Footer social icons — same Customizer source as the navbar
+				 * (per FR-006). Empty URL → icon hidden.
+				 */
+				$vb_socials_footer = array(
+					'facebook'  => '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>',
+					'instagram' => '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>',
+					'x'         => '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H9.751l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+					'linkedin'  => '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>',
+				);
+				foreach ( $vb_socials_footer as $vb_slug => $vb_svg ) :
+					$vb_url = get_theme_mod( "vb_social_{$vb_slug}", '' );
+					if ( '' === $vb_url ) {
+						continue;
+					}
+					?>
+					<a href="<?php echo esc_url( $vb_url ); ?>" class="footer-soc" aria-label="<?php echo esc_attr( ucfirst( $vb_slug ) ); ?>" target="_blank" rel="noopener">
+						<?php echo $vb_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</a>
+				<?php endforeach; ?>
 			</div>
 		</div>
 
@@ -90,6 +107,6 @@ $vb_site_title = get_bloginfo( 'name' );
 
 	<div class="footer-bottom">
 		<span>&copy; <?php echo (int) $vb_year; ?> <?php echo esc_html( $vb_site_title ); ?>. <?php esc_html_e( 'Todos os direitos reservados.', 'vue-blocks' ); ?></span>
-		<span><?php esc_html_e( 'Feito com WordPress', 'vue-blocks' ); ?></span>
+		<span><?php esc_html_e( 'Customizado por Nicolás Romero', 'vue-blocks' ); ?></span>
 	</div>
 </footer>
