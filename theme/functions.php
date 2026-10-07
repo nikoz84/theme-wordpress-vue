@@ -391,3 +391,70 @@ function vb_customize_register_social( $wp_customize ) {
 	}
 }
 add_action( 'customize_register', 'vb_customize_register_social' );
+
+/**
+ * Dev-only REST shim — exposes a no-auth POST route that updates the
+ * `blogname` WordPress option. Used by the e2e suite (feature
+ * 006) to verify that changing the Customizer's Site title
+ * updates only the document `<title>` and NOT the navbar brand.
+ *
+ * Gated on `VB_TEST_SHIM` constant — production hosts MUST NOT
+ * define this constant, so the route never registers there.
+ *
+ * @see specs/006-responsive-polish-and-e2e/contracts/e2e-suite.contract.md
+ */
+if ( getenv( 'VB_TEST_SHIM' ) !== false && getenv( 'VB_TEST_SHIM' ) !== '' ) {
+	add_action( 'rest_api_init', function () {
+		register_rest_route( 'vue-blocks/v1', '/test-set-blogname', array(
+				'methods'             => 'POST',
+				'permission_callback' => '__return_true',
+				'callback'            => function ( $req ) {
+					if ( ! isset( $req['blogname'] ) ) {
+						return new WP_Error( 'vb_missing_blogname', __( 'Missing blogname parameter.', 'vue-blocks' ), array( 'status' => 400 ) );
+					}
+					update_option( 'blogname', sanitize_text_field( (string) $req['blogname'] ) );
+					return array( 'ok' => true, 'blogname' => get_option( 'blogname' ) );
+				},
+			)
+		);
+
+		register_rest_route( 'vue-blocks/v1', '/test-create-draft-post', array(
+				'methods'             => 'POST',
+				'permission_callback' => '__return_true',
+				'callback'            => function ( $req ) {
+					$title = isset( $req['title'] ) ? sanitize_text_field( (string) $req['title'] ) : '';
+					if ( '' === $title ) {
+						return new WP_Error( 'vb_missing_title', __( 'Missing title.', 'vue-blocks' ), array( 'status' => 400 ) );
+					}
+					$id = wp_insert_post(
+						array(
+							'post_title'   => $title,
+							'post_content' => isset( $req['content'] ) ? wp_kses_post( (string) $req['content'] ) : 'placeholder',
+							'post_status'  => 'draft',
+							'post_type'    => 'post',
+							'post_author'  => 1,
+						),
+						true
+					);
+					if ( is_wp_error( $id ) ) {
+						return $id;
+					}
+					return array( 'id' => $id, 'title' => $title );
+				},
+			)
+		);
+
+		register_rest_route( 'vue-blocks/v1', '/test-delete-post', array(
+				'methods'             => 'POST',
+				'permission_callback' => '__return_true',
+				'callback'            => function ( $req ) {
+					if ( empty( $req['id'] ) ) {
+						return new WP_Error( 'vb_missing_id', __( 'Missing id.', 'vue-blocks' ), array( 'status' => 400 ) );
+					}
+					wp_delete_post( (int) $req['id'], true );
+					return array( 'ok' => true );
+				},
+			)
+		);
+	} );
+}

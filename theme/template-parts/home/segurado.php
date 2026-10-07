@@ -37,6 +37,7 @@ if ( ! $vb_segurado_q->have_posts() ) {
 <section class="segurado-section">
 	<div class="segurado-inner vb-container">
 		<div class="segurado-block">
+		<div class="segurado-block">
 			<div class="segurado-hd">
 				<h2 class="segurado-title"><?php esc_html_e( 'Para o Segurado', 'vue-blocks' ); ?></h2>
 				<span class="segurado-sub"><?php esc_html_e( 'Conteúdo feito para quem quer contratar um seguro com mais clareza.', 'vue-blocks' ); ?></span>

@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/>
 				</svg>
 			</span>
-			<span class="logo-text">Vue <span>Blocks</span></span>
+			<span class="logo-text">Safe <span>Mídia</span></span>
 		</a>
 
 		<span class="nav-sep" aria-hidden="true"></span>

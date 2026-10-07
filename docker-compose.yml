@@ -38,6 +38,10 @@ services:
       WP_ADMIN_PASSWORD: ${WP_ADMIN_PASSWORD:?WP_ADMIN_PASSWORD is required}
       WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL:?WP_ADMIN_EMAIL is required}
       WP_SITE_TITLE: ${WP_SITE_TITLE:?WP_SITE_TITLE is required}
+      # Dev-only e2e test shim gate — feature 006's Playwright suite uses
+      # this to verify the navbar brand / Site-title decoupling.
+      # Production hosts MUST NOT set this constant.
+      VB_TEST_SHIM: ${VB_TEST_SHIM:-1}
     volumes:
       - vb_uploads:/var/www/html/wp-content/uploads
       # The theme lives under theme/ (post-restructuring). Mount it under
