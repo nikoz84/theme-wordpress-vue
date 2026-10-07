@@ -106,7 +106,7 @@ $vb_site_title = get_bloginfo( 'name' );
 	</div>
 
 	<div class="footer-bottom">
-		<span>&copy; <?php echo (int) $vb_year; ?> <?php echo esc_html( $vb_site_title ); ?>. <?php esc_html_e( 'Todos os direitos reservados.', 'vue-blocks' ); ?></span>
+		<span>&copy; <?php echo (int) $vb_year; ?> <?php esc_html_e( 'Safe Mídia', 'vue-blocks' ); ?>. <?php esc_html_e( 'Todos os direitos reservados.', 'vue-blocks' ); ?></span>
 		<span><?php esc_html_e( 'Customizado por Nicolás Romero', 'vue-blocks' ); ?></span>
 	</div>
 </footer>

@@ -42,6 +42,11 @@ test('Customizer Site title updates <title> but NOT the navbar brand (US2 / FR-0
   const brandText = await page.locator('.logo-text').first().innerText();
   expect(brandText.trim()).toBe('Safe Mídia');
 
+  // 4b. Footer brand MUST remain "Safe Mídia" too (US2 — feature 007)
+  const footerBrand = await page.locator('.footer-bottom > span').first().innerText();
+  expect(footerBrand).toContain('Safe Mídia');
+  expect(footerBrand).not.toContain('Anything Here');
+
   // 5. Restore default blogname for downstream tests
   await api.post(`${base}/wp-json/vue-blocks/v1/test-set-blogname`, {
     data: { blogname: 'Safe Mídia' },

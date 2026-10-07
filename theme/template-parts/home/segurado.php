@@ -37,11 +37,23 @@ if ( ! $vb_segurado_q->have_posts() ) {
 <section class="segurado-section">
 	<div class="segurado-inner vb-container">
 		<div class="segurado-block">
-		<div class="segurado-block">
+			<?php
+			/* "Ver todos" link target — prefer the "Para o Segurado"
+			 * category archive if it exists; otherwise fall back to
+			 * the posts archive.
+			 */
+			$vb_segurado_cat = get_category_by_slug( 'segurado' );
+			if ( ! $vb_segurado_cat ) {
+				$vb_segurado_cat = get_category_by_slug( 'para-o-segurado' );
+			}
+			$vb_segurado_link = $vb_segurado_cat
+				? get_category_link( $vb_segurado_cat->term_id )
+				: ( get_permalink( get_option( 'page_for_posts' ) ) ?: home_url( '/?post_type=post' ) );
+			?>
 			<div class="segurado-hd">
 				<h2 class="segurado-title"><?php esc_html_e( 'Para o Segurado', 'vue-blocks' ); ?></h2>
-				<span class="segurado-sub"><?php esc_html_e( 'Conteúdo feito para quem quer contratar um seguro com mais clareza.', 'vue-blocks' ); ?></span>
-				<a href="#" class="segurado-btn-all"><?php esc_html_e( 'Ver todos', 'vue-blocks' ); ?> &raquo;</a>
+				<span class="segurado-sub"><?php esc_html_e( 'Direitos, dicas e orientações para quem já tem ou quer contratar um seguro.', 'vue-blocks' ); ?></span>
+				<a href="<?php echo esc_url( $vb_segurado_link ); ?>" class="segurado-btn-all"><?php esc_html_e( 'Ver todos', 'vue-blocks' ); ?> &raquo;</a>
 			</div>
 			<div class="segurado-grid">
 				<?php
