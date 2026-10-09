@@ -49,7 +49,7 @@ $vb_tabs_rest  = array_slice( $vb_tabs_cats, 1 );
 			<?php
 			$vb_tabs_q = new WP_Query(
 				array(
-					'category'      => $vb_tabs_first->term_id,
+					'cat'           => $vb_tabs_first->term_id,
 					'posts_per_page' => 4,
 					'orderby'        => 'date',
 					'order'          => 'DESC',

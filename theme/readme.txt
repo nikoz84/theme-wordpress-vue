@@ -58,6 +58,18 @@ para o Vue através de wp_localize_script() (variável global `vbData`).
 5. (Opcional) Adicione um screenshot.png (1200x900) na raiz do tema para
    a miniatura na tela de temas.
 
+== Conteúdo de demonstração ==
+
+Em Aparência > Personalizar > "Demo content", clique em
+"Import demo content" para carregar categorias, posts, colunistas,
+páginas e menus de exemplo (arquivo `demo/demo-content.json`). Posts
+sem imagem destacada exibem um placeholder skeleton local.
+
+* Conteúdo existente nunca é alterado; menus só são criados para
+  locais ainda vazios.
+* "Remove demo content" apaga apenas os itens criados pela importação.
+* Via WP-CLI: `wp vue-blocks demo import|remove|status`.
+
 == Personalização ==
 
 * Cores, tipografia e espaçamentos: edite as variáveis CSS em `:root`

@@ -21,7 +21,7 @@ $vb_excluded = apply_filters( 'vb_news_grid_excluded_post_ids', array() );
 		<div class="news-head">
 			<h2 class="sec-title"><?php esc_html_e( 'Últimas Notícias', 'vue-blocks' ); ?></h2>
 			<div class="sec-line"></div>
-			<a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ?: home_url( '/?post_type=post' ) ); ?>" class="btn-see-more">
+			<a href="<?php echo esc_url( vb_news_url() ); ?>" class="btn-see-more">
 				<?php esc_html_e( 'Ver todas', 'vue-blocks' ); ?>
 				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
 			</a>

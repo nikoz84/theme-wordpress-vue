@@ -31,11 +31,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<li class="perk"><span class="perk-dot">&check;</span> <?php esc_html_e( 'Análises exclusivas do mercado de seguros', 'vue-blocks' ); ?></li>
 					<li class="perk"><span class="perk-dot">&check;</span> <?php esc_html_e( 'Atualizações regulatórias em primeira mão', 'vue-blocks' ); ?></li>
 				</ul>
-				<form class="nl-form" onsubmit="return false;">
+				<form class="nl-form" id="nl-grande" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<?php vb_newsletter_hidden_fields( 'nl-grande' ); ?>
 					<label class="screen-reader-text" for="nl-grande-email"><?php esc_html_e( 'Seu e-mail', 'vue-blocks' ); ?></label>
-					<input id="nl-grande-email" type="email" name="email" class="nl-input" placeholder="<?php esc_attr_e( 'seu@email.com', 'vue-blocks' ); ?>" />
+					<input id="nl-grande-email" type="email" name="vb_email" required autocomplete="email" class="nl-input" placeholder="<?php esc_attr_e( 'seu@email.com', 'vue-blocks' ); ?>" />
 					<button type="submit" class="nl-btn"><?php esc_html_e( 'Assinar', 'vue-blocks' ); ?></button>
 				</form>
+			<?php $vb_msg = vb_newsletter_message( 'nl-grande' ); ?>
+			<?php if ( $vb_msg ) : ?><p class="vb-nl-inline-msg" role="status"><?php echo esc_html( $vb_msg ); ?></p><?php endif; ?>
 				<p class="nl-note"><?php esc_html_e( 'Sem spam. Cancele a qualquer momento.', 'vue-blocks' ); ?></p>
 			</div>
 		</div>

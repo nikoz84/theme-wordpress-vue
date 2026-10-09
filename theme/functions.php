@@ -182,7 +182,8 @@ function vb_enqueue_assets() {
 	// ---- Default: CDN-first (Vue from unpkg + un-built app.js) ---------
 
 	// Stylesheet principal (style.css também registra o tema).
-	wp_enqueue_style( 'vue-blocks-style', get_stylesheet_uri(), array(), VB_VERSION );
+	// Versão = data de modificação do arquivo, para o navegador não usar cache antigo.
+	wp_enqueue_style( 'vue-blocks-style', get_stylesheet_uri(), array(), (string) filemtime( VB_THEME_DIR . '/style.css' ) );
 
 	// Vue.js 3 (build de produção, global) via CDN oficial.
 	wp_enqueue_script(
@@ -203,7 +204,7 @@ function vb_enqueue_assets() {
 		'vue-blocks-app',
 		VB_THEME_URI . '/assets/js/app.js',
 		array( 'vue-js' ),
-		VB_VERSION,
+		(string) filemtime( VB_THEME_DIR . '/assets/js/app.js' ),
 		true
 	);
 
@@ -227,6 +228,22 @@ function vb_enqueue_assets() {
 				'readMore'          => __( 'Ler mais', 'vue-blocks' ),
 				'toggleMenu'        => __( 'Abrir/Fechar menu', 'vue-blocks' ),
 				'toggleTheme'       => __( 'Alternar modo escuro', 'vue-blocks' ),
+				'seguradoFullName' => __( 'Nome completo', 'vue-blocks' ),
+				'seguradoDocType'   => __( 'Tipo de documento', 'vue-blocks' ),
+				'seguradoDocNumber' => __( 'Número do documento', 'vue-blocks' ),
+				'seguradoEmail'     => __( 'E-mail', 'vue-blocks' ),
+				'seguradoPhone'     => __( 'Telefone', 'vue-blocks' ),
+				'seguradoAddress1'  => __( 'Endereço linha 1', 'vue-blocks' ),
+				'seguradoAddress2'  => __( 'Endereço linha 2', 'vue-blocks' ),
+				'seguradoCity'      => __( 'Cidade', 'vue-blocks' ),
+				'seguradoState'     => __( 'Estado', 'vue-blocks' ),
+				'seguradoPostal'    => __( 'CEP', 'vue-blocks' ),
+				'seguradoCountry'   => __( 'País', 'vue-blocks' ),
+				'seguradoRequired'  => __( 'Campo obrigatório.', 'vue-blocks' ),
+				'seguradoInvalidEmail' => __( 'E-mail inválido.', 'vue-blocks' ),
+				'seguradoInvalidDoc' => __( 'Número de documento inválido.', 'vue-blocks' ),
+				'seguradoSaveSuccess' => __( 'Dados salvos com sucesso.', 'vue-blocks' ),
+				'seguradoSaveError' => __( 'Erro ao salvar dados.', 'vue-blocks' ),
 			),
 		)
 	);
@@ -291,8 +308,115 @@ function vb_register_rest_fields() {
 			},
 		)
 	);
+
+	register_rest_field(
+		'post',
+		'vb_segurado',
+		array(
+			'get_callback' => function ( $post ) {
+				return vb_get_segurado( $post['id'] );
+			},
+		)
+	);
 }
 add_action( 'rest_api_init', 'vb_register_rest_fields' );
+
+/**
+ * 5b. SEGURADO META FIELDS
+ *
+ * Registers segurado (insured/policyholder) meta fields for the post
+ * type with REST API exposure. Each field has a sanitize_callback
+ * for data integrity and show_in_rest => true for Vue consumption.
+ *
+ * @see specs/008-segurado-section-markup/data-model.md (E1)
+ */
+function vb_register_segurado_meta() {
+	$vb_segurado_fields = array(
+		'vb_segurado_full_name'     => array(
+			'type'         => 'string',
+			'description'  => __( 'Segurado full name', 'vue-blocks' ),
+			'single'       => true,
+			'show_in_rest' => true,
+			'sanitize_callback' => 'sanitize_text_field',
+		),
+		'vb_segurado_document_type' => array(
+			'type'         => 'string',
+			'description'  => __( 'Document type (cpf, cnpj, passport, other)', 'vue-blocks' ),
+			'single'       => true,
+			'show_in_rest' => true,
+			'sanitize_callback' => 'vb_sanitize_segurado_document_type',
+		),
+		'vb_segurado_document_number' => array(
+			'type'         => 'string',
+			'description'  => __( 'Document number', 'vue-blocks' ),
+			'single'       => true,
+			'show_in_rest' => true,
+			'sanitize_callback' => 'sanitize_text_field',
+		),
+		'vb_segurado_email'         => array(
+			'type'         => 'string',
+			'description'  => __( 'Segurado email', 'vue-blocks' ),
+			'single'       => true,
+			'show_in_rest' => true,
+			'sanitize_callback' => 'sanitize_email',
+		),
+		'vb_segurado_phone'         => array(
+			'type'         => 'string',
+			'description'  => __( 'Segurado phone', 'vue-blocks' ),
+			'single'       => true,
+			'show_in_rest' => true,
+			'sanitize_callback' => 'vb_sanitize_segurado_phone',
+		),
+		'vb_segurado_address_1'     => array(
+			'type'         => 'string',
+			'description'  => __( 'Address line 1', 'vue-blocks' ),
+			'single'       => true,
+			'show_in_rest' => true,
+			'sanitize_callback' => 'sanitize_text_field',
+		),
+		'vb_segurado_address_2'     => array(
+			'type'         => 'string',
+			'description'  => __( 'Address line 2', 'vue-blocks' ),
+			'single'       => true,
+			'show_in_rest' => true,
+			'sanitize_callback' => 'sanitize_text_field',
+		),
+		'vb_segurado_city'          => array(
+			'type'         => 'string',
+			'description'  => __( 'City', 'vue-blocks' ),
+			'single'       => true,
+			'show_in_rest' => true,
+			'sanitize_callback' => 'sanitize_text_field',
+		),
+		'vb_segurado_state'         => array(
+			'type'         => 'string',
+			'description'  => __( 'State', 'vue-blocks' ),
+			'single'       => true,
+			'show_in_rest' => true,
+			'sanitize_callback' => 'sanitize_text_field',
+		),
+		'vb_segurado_postal_code'   => array(
+			'type'         => 'string',
+			'description'  => __( 'Postal code', 'vue-blocks' ),
+			'single'       => true,
+			'show_in_rest' => true,
+			'sanitize_callback' => 'sanitize_text_field',
+		),
+		'vb_segurado_country'       => array(
+			'type'         => 'string',
+			'description'  => __( 'Country', 'vue-blocks' ),
+			'single'       => true,
+			'show_in_rest' => true,
+			'sanitize_callback' => 'sanitize_text_field',
+			'default'      => 'BR',
+		),
+	);
+
+	foreach ( $vb_segurado_fields as $vb_key => $vb_args ) {
+		register_meta( 'post', $vb_key, $vb_args );
+	}
+}
+add_action( 'init', 'vb_register_segurado_meta' );
 
 /**
  * 6. FALLBACK DE MENU CASO NENHUM MENU TENHA SIDO CRIADO NO PAINEL
@@ -331,6 +455,10 @@ remove_action( 'wp_head', 'wp_generator' );
  */
 require VB_THEME_DIR . '/inc/template-tags.php';
 require VB_THEME_DIR . '/inc/build-manifest.php';
+require VB_THEME_DIR . '/inc/segurado.php';
+require VB_THEME_DIR . '/inc/nav-walker.php';
+require VB_THEME_DIR . '/inc/news.php';
+require VB_THEME_DIR . '/inc/demo-import.php';
 
 /**
  * 10. WORDPRESS CUSTOMIZER — Social media URLs
@@ -430,14 +558,20 @@ if ( getenv( 'VB_TEST_SHIM' ) !== false && getenv( 'VB_TEST_SHIM' ) !== '' ) {
 						array(
 							'post_title'   => $title,
 							'post_content' => isset( $req['content'] ) ? wp_kses_post( (string) $req['content'] ) : 'placeholder',
-							'post_status'  => 'draft',
+							'post_status'  => 'publish' === $req['status'] ? 'publish' : 'draft',
 							'post_type'    => 'post',
-							'post_author'  => 1,
+							'post_author'  => ! empty( $req['email_author'] ) ? vb_test_email_author_id() : 1,
 						),
 						true
 					);
 					if ( is_wp_error( $id ) ) {
 						return $id;
+					}
+					// Optional segurado meta — saved through the registered sanitize callbacks.
+					foreach ( (array) $req['meta'] as $key => $value ) {
+						if ( 0 === strpos( (string) $key, 'vb_segurado_' ) ) {
+							update_post_meta( $id, sanitize_key( $key ), (string) $value );
+						}
 					}
 					return array( 'id' => $id, 'title' => $title );
 				},
@@ -456,5 +590,86 @@ if ( getenv( 'VB_TEST_SHIM' ) !== false && getenv( 'VB_TEST_SHIM' ) !== '' ) {
 				},
 			)
 		);
+
+		register_rest_route( 'vue-blocks/v1', '/test-publish-post', array(
+				'methods'             => 'POST',
+				'permission_callback' => '__return_true',
+				'callback'            => function ( $req ) {
+					if ( empty( $req['id'] ) ) {
+						return new WP_Error( 'vb_missing_id', __( 'Missing id.', 'vue-blocks' ), array( 'status' => 400 ) );
+					}
+					$post_id = (int) $req['id'];
+					$post    = get_post( $post_id );
+					if ( ! $post ) {
+						return new WP_Error( 'vb_post_not_found', __( 'Post not found.', 'vue-blocks' ), array( 'status' => 404 ) );
+					}
+					wp_update_post( array( 'ID' => $post_id, 'post_status' => 'publish' ) );
+					return array( 'ok' => true, 'id' => $post_id, 'status' => 'publish' );
+				},
+			)
+		);
+
+		// Demo content import/remove for the news list/article specs.
+		register_rest_route( 'vue-blocks/v1', '/test-demo', array(
+				'methods'             => 'POST',
+				'permission_callback' => '__return_true',
+				'callback'            => function ( $req ) {
+					if ( 'remove' === $req['action'] ) {
+						return array( 'ok' => true, 'removed' => vb_demo_remove() );
+					}
+					if ( vb_demo_is_imported() ) {
+						return array( 'ok' => true, 'already' => true );
+					}
+					$result = vb_demo_import();
+					return is_wp_error( $result ) ? $result : array( 'ok' => true, 'already' => false, 'imported' => $result );
+				},
+			)
+		);
+
+		// Remove a test newsletter subscriber and reset this IP's rate limit.
+		register_rest_route( 'vue-blocks/v1', '/test-newsletter-cleanup', array(
+				'methods'             => 'POST',
+				'permission_callback' => '__return_true',
+				'callback'            => function ( $req ) {
+					$ids = get_posts(
+						array(
+							'post_type'   => 'vb_subscriber',
+							'post_status' => 'any',
+							'title'       => strtolower( sanitize_email( (string) $req['email'] ) ),
+							'numberposts' => -1,
+							'fields'      => 'ids',
+						)
+					);
+					foreach ( $ids as $id ) {
+						wp_delete_post( $id, true );
+					}
+					$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+					delete_transient( 'vb_nl_' . md5( $ip ) );
+					return array( 'ok' => true, 'deleted' => count( $ids ) );
+				},
+			)
+		);
 	} );
+
+	/**
+	 * Test user whose display name is an e-mail (checks it is never printed).
+	 *
+	 * @return int User ID.
+	 */
+	function vb_test_email_author_id() {
+		$user = get_user_by( 'login', 'vb-test-email-author' );
+		if ( $user ) {
+			return (int) $user->ID;
+		}
+		return (int) wp_insert_user(
+			array(
+				'user_login'   => 'vb-test-email-author',
+				'user_pass'    => wp_generate_password( 32, true, true ),
+				'user_email'   => 'vb-test-email-author@example.invalid',
+				'display_name' => 'pauta.teste@example.com',
+				'nickname'     => 'pauta.teste@example.com',
+				'role'         => 'author',
+			)
+		);
+	}
 }

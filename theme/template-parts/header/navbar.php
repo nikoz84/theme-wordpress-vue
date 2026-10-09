@@ -42,11 +42,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 				array(
 					'theme_location' => 'primary',
 					'container'      => false,
-					'menu_class'     => 'nav-links',
 					'fallback_cb'    => false,
 					'depth'          => 2,
-					'link_class'     => '',
-					'item_class'     => '',
+					'items_wrap'     => '<div class="nav-links">%3$s</div>',
+					'walker'         => new Vue_Blocks_Nav_Walker(),
 				)
 			);
 			?>
@@ -101,7 +100,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php endforeach; ?>
 		</div>
 
-		<button class="nav-hamburger" id="safe-midia-navHamburger" aria-label="Menu">
+		<button class="nav-hamburger" id="safe-midia-navHamburger" type="button" aria-label="Menu" aria-controls="safe-midia-mobileMenu" aria-expanded="false">
 			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
 				<line x1="3" y1="6" x2="21" y2="6"/>
 				<line x1="3" y1="12" x2="21" y2="12"/>
@@ -117,19 +116,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</nav>
 </header>
 
-<nav class="mobile-menu" id="safe-midia-mobileMenu">
+<nav class="mobile-menu" id="safe-midia-mobileMenu" aria-label="<?php esc_attr_e( 'Menu mobile', 'vue-blocks' ); ?>">
 	<?php if ( has_nav_menu( 'primary' ) ) : ?>
 		<?php
 		wp_nav_menu(
 			array(
 				'theme_location' => 'primary',
 				'container'      => false,
-				'menu_class'     => '',
 				'fallback_cb'    => false,
 				'depth'          => 2,
 				'items_wrap'     => '%3$s',
-				'link_class'     => '',
-				'item_class'     => '',
+				'walker'         => new Vue_Blocks_Nav_Walker(),
 			)
 		);
 		?>

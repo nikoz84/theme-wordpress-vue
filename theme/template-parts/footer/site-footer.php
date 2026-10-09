@@ -13,6 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 $vb_year       = (int) gmdate( 'Y' );
 $vb_site_title = get_bloginfo( 'name' );
+
+// Two-tone brand like the navbar: the last word gets the accent color.
+$vb_title_words = preg_split( '/\s+/u', trim( $vb_site_title ) );
+$vb_title_last  = count( $vb_title_words ) > 1 ? array_pop( $vb_title_words ) : '';
+$vb_title_first = implode( ' ', $vb_title_words );
 ?>
 
 <footer class="site-footer">
@@ -25,7 +30,7 @@ $vb_site_title = get_bloginfo( 'name' );
 						<path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/>
 					</svg>
 				</span>
-				<span class="footer-logo-text">Vue <span>Blocks</span></span>
+				<span class="footer-logo-text"><?php echo esc_html( $vb_title_first ); ?><?php if ( '' !== $vb_title_last ) : ?> <span><?php echo esc_html( $vb_title_last ); ?></span><?php endif; ?></span>
 			</a>
 			<p class="footer-desc">
 				<?php esc_html_e( 'Portal de notícias do setor. Conteúdo editorial independente, com curadoria e atualização diária.', 'vue-blocks' ); ?>
@@ -97,10 +102,13 @@ $vb_site_title = get_bloginfo( 'name' );
 			<p class="footer-nl-sub">
 				<?php esc_html_e( 'Receba as principais notícias do setor no seu e-mail.', 'vue-blocks' ); ?>
 			</p>
-			<form class="footer-nl-form" onsubmit="return false;">
-				<input type="email" name="email" class="footer-nl-input" placeholder="<?php esc_attr_e( 'seu@email.com', 'vue-blocks' ); ?>" aria-label="<?php esc_attr_e( 'Seu e-mail', 'vue-blocks' ); ?>" />
+			<form class="footer-nl-form" id="footer-newsletter" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<?php vb_newsletter_hidden_fields( 'footer-newsletter' ); ?>
+				<input type="email" name="vb_email" required autocomplete="email" class="footer-nl-input" placeholder="<?php esc_attr_e( 'seu@email.com', 'vue-blocks' ); ?>" aria-label="<?php esc_attr_e( 'Seu e-mail', 'vue-blocks' ); ?>" />
 				<button type="submit" class="footer-nl-btn"><?php esc_html_e( 'Assinar', 'vue-blocks' ); ?></button>
 			</form>
+			<?php $vb_msg = vb_newsletter_message( 'footer-newsletter' ); ?>
+			<?php if ( $vb_msg ) : ?><p class="vb-nl-inline-msg" role="status"><?php echo esc_html( $vb_msg ); ?></p><?php endif; ?>
 		</div>
 
 	</div>

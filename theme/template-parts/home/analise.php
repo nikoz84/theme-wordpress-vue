@@ -18,7 +18,7 @@ $vb_analise_q  = null;
 if ( $vb_analise_cat ) {
 	$vb_analise_q = new WP_Query(
 		array(
-			'category'      => $vb_analise_cat->term_id,
+			'cat'           => $vb_analise_cat->term_id,
 			'posts_per_page' => 5,
 			'orderby'        => 'date',
 			'order'          => 'DESC',

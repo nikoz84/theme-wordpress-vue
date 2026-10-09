@@ -13,7 +13,7 @@
 #   4. Creates / updates the admin user from WP_ADMIN_* env vars.
 #   5. Activates the Vue Blocks theme.
 #   6. Sets permalinks.
-#   7. Imports the seeded sample content (once).
+#   7. Imports the seeded sample content + theme demo content (once).
 #
 # It then exec's the original image command (apache2-foreground).
 
@@ -209,6 +209,12 @@ ensure_wp_importer() {
 }
 
 # ---- import_seed (FR-014) ------------------------------------------
+#
+# Runs once per database:
+#   1. Imports the WXR seed (./seed/sample-content.xml).
+#   2. Loads the theme demo content (theme/demo/demo-content.json) via
+#      `wp vue-blocks demo import` — the same importer as
+#      Appearance → Customize → "Demo content".
 import_seed() {
   local marker="vb_seed_imported"
   local existing
@@ -217,15 +223,17 @@ import_seed() {
     log "Sample content already imported; skipping."
     return 0
   fi
-  if [ ! -f "${SEED_FILE}" ]; then
-    log "No seed file at ${SEED_FILE}; skipping sample content import."
-    return 0
+  if [ -f "${SEED_FILE}" ]; then
+    log "Importing sample content from ${SEED_FILE}..."
+    ensure_wp_importer
+    wp import "${SEED_FILE}" \
+      --path="${WP_PATH}" --allow-root \
+      --authors=skip || log "Sample content import failed; continuing."
+  else
+    log "No seed file at ${SEED_FILE}; skipping WXR sample content."
   fi
-  log "Importing sample content from ${SEED_FILE}..."
-  ensure_wp_importer
-  wp import "${SEED_FILE}" \
-    --path="${WP_PATH}" --allow-root \
-    --authors=skip || log "Sample content import failed; continuing."
+  log "Importing theme demo content..."
+  wp vue-blocks demo import --path="${WP_PATH}" --allow-root || log "Demo content import failed; continuing."
   wp option update "${marker}" "1" --path="${WP_PATH}" --allow-root >/dev/null
 }
 

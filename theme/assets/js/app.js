@@ -16,6 +16,66 @@
 ( function () {
 	'use strict';
 
+	/**
+	 * 0) NAVBAR SAFE MÍDIA: abre/fecha o menu mobile pelo botão hambúrguer.
+	 * JS puro (sem Vue) para funcionar mesmo se o CDN do Vue falhar.
+	 */
+	var hamburger = document.getElementById( 'safe-midia-navHamburger' );
+	var mobileMenu = document.getElementById( 'safe-midia-mobileMenu' );
+	if ( hamburger && mobileMenu ) {
+		var setMenuOpen = function ( open ) {
+			mobileMenu.classList.toggle( 'open', open );
+			hamburger.setAttribute( 'aria-expanded', open ? 'true' : 'false' );
+		};
+
+		hamburger.addEventListener( 'click', function () {
+			setMenuOpen( ! mobileMenu.classList.contains( 'open' ) );
+		} );
+
+		// Fecha ao clicar em um link, ao pressionar Esc ou ao clicar fora.
+		mobileMenu.addEventListener( 'click', function ( event ) {
+			if ( event.target.closest( 'a' ) ) {
+				setMenuOpen( false );
+			}
+		} );
+		document.addEventListener( 'keydown', function ( event ) {
+			if ( event.key === 'Escape' && mobileMenu.classList.contains( 'open' ) ) {
+				setMenuOpen( false );
+				hamburger.focus();
+			}
+		} );
+		document.addEventListener( 'click', function ( event ) {
+			if ( ! mobileMenu.contains( event.target ) && ! hamburger.contains( event.target ) ) {
+				setMenuOpen( false );
+			}
+		} );
+	}
+
+	/**
+	 * 0b) LISTA / MATÉRIA: "Copiar link" e ordenação automática.
+	 */
+	document.addEventListener( 'click', function ( event ) {
+		var copy = event.target.closest( '[data-copy-link]' );
+		if ( ! copy || ! navigator.clipboard ) {
+			return;
+		}
+		navigator.clipboard.writeText( copy.getAttribute( 'data-copy-link' ) ).then( function () {
+			var label = copy.querySelector( 'span' );
+			var original = label.textContent;
+			label.textContent = copy.getAttribute( 'data-copied-label' );
+			copy.classList.add( 'is-copied' );
+			setTimeout( function () {
+				label.textContent = original;
+				copy.classList.remove( 'is-copied' );
+			}, 2000 );
+		} );
+	} );
+	document.querySelectorAll( 'select[data-autosubmit]' ).forEach( function ( select ) {
+		select.addEventListener( 'change', function () {
+			select.form.submit();
+		} );
+	} );
+
 	if ( typeof Vue === 'undefined' ) {
 		return;
 	}
@@ -171,5 +231,135 @@
 				},
 			},
 		} ).mount( feedEl );
+	}
+
+	/**
+	 * 4) SEGURADO INLINE EDIT: auto-save + dynamic validation.
+	 */
+	var seguradoEl = document.querySelector( '.vb-segurado-edit' );
+	if ( seguradoEl ) {
+		var seguradoPostId = seguradoEl.getAttribute( 'data-segurado-post-id' );
+
+		createApp( {
+			data: function () {
+				return {
+					vbData: data,
+					postId: seguradoPostId,
+					editing: false,
+					saving: false,
+					saveSuccess: false,
+					saveError: '',
+					errors: {},
+					fields: {
+						full_name: '',
+						document_type: '',
+						document_number: '',
+						email: '',
+						phone: '',
+						address_1: '',
+						address_2: '',
+						city: '',
+						state: '',
+						postal_code: '',
+						country: ''
+					}
+				};
+			},
+			mounted: function () {
+				var self = this;
+				var definitions = seguradoEl.querySelectorAll( '.vb-segurado-definition' );
+
+				definitions.forEach( function ( def ) {
+					var field = def.getAttribute( 'data-segurado-field' );
+					var value = def.getAttribute( 'data-segurado-value' );
+					if ( field && self.fields.hasOwnProperty( field ) ) {
+						self.fields[ field ] = value;
+					}
+
+					def.addEventListener( 'click', function () {
+						self.startEdit( field, def );
+					} );
+				} );
+			},
+			methods: {
+				startEdit: function ( field, element ) {
+					if ( this.editing ) {
+						return;
+					}
+					this.editing = true;
+					element.classList.add( 'vb-segurado-editing' );
+					element.setAttribute( 'contenteditable', 'true' );
+					element.focus();
+
+					var self = this;
+					element.addEventListener( 'blur', function () {
+						self.saveField( field, element );
+					}, { once: true } );
+				},
+				saveField: function ( field, element ) {
+					var self = this;
+					var newValue = element.textContent.trim();
+					this.fields[ field ] = newValue;
+					element.classList.remove( 'vb-segurado-editing' );
+					element.removeAttribute( 'contenteditable' );
+
+					if ( ! this.validateField( field, newValue ) ) {
+						this.editing = false;
+						return;
+					}
+
+					this.saving = true;
+					this.saveSuccess = false;
+					this.saveError = '';
+
+					var meta = {};
+					meta[ 'vb_segurado_' + field ] = newValue;
+
+					fetch( data.restUrl + '/posts/' + this.postId, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'X-WP-Nonce': data.nonce
+						},
+						body: JSON.stringify( { meta: meta } )
+					} )
+						.then( function ( response ) {
+							if ( ! response.ok ) {
+								throw new Error( 'REST request failed' );
+							}
+							return response.json();
+						} )
+						.then( function () {
+							self.saveSuccess = true;
+							self.editing = false;
+							element.setAttribute( 'data-segurado-value', newValue );
+						} )
+						.catch( function () {
+							self.saveError = data.i18n.seguradoSaveError || 'Erro ao salvar dados.';
+							self.editing = false;
+						} )
+						.finally( function () {
+							self.saving = false;
+						} );
+				},
+				validateField: function ( field, value ) {
+					this.errors = {};
+
+					if ( 'full_name' === field && ! value ) {
+						this.errors[ field ] = data.i18n.seguradoRequired || 'Campo obrigatório.';
+						return false;
+					}
+					if ( 'email' === field && value && ! /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test( value ) ) {
+						this.errors[ field ] = data.i18n.seguradoInvalidEmail || 'E-mail inválido.';
+						return false;
+					}
+					if ( 'document_number' === field && ! value ) {
+						this.errors[ field ] = data.i18n.seguradoInvalidDoc || 'Número de documento inválido.';
+						return false;
+					}
+					return true;
+				}
+			}
+		} ).mount( seguradoEl );
 	}
 } )();

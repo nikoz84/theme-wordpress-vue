@@ -20,7 +20,7 @@ if ( ! $vb_boletim_cat ) {
 
 $vb_boletim_q = new WP_Query(
 	array(
-		'category'      => $vb_boletim_cat->term_id,
+		'cat'           => $vb_boletim_cat->term_id,
 		'posts_per_page' => 6,
 		'orderby'        => 'date',
 		'order'          => 'DESC',

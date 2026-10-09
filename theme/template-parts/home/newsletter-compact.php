@@ -27,11 +27,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="nl-compact-sub"><?php esc_html_e( 'Inscreva-se em nossa newsletter e fique por dentro.', 'vue-blocks' ); ?></div>
 				</div>
 			</div>
-			<form class="nl-compact-form" onsubmit="return false;">
+			<form class="nl-compact-form" id="nl-compact" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<?php vb_newsletter_hidden_fields( 'nl-compact' ); ?>
 				<label class="screen-reader-text" for="nl-compact-email"><?php esc_html_e( 'Seu e-mail', 'vue-blocks' ); ?></label>
-				<input id="nl-compact-email" type="email" name="email" class="nl-compact-input" placeholder="<?php esc_attr_e( 'seu@email.com', 'vue-blocks' ); ?>" />
+				<input id="nl-compact-email" type="email" name="vb_email" required autocomplete="email" class="nl-compact-input" placeholder="<?php esc_attr_e( 'seu@email.com', 'vue-blocks' ); ?>" />
 				<button type="submit" class="nl-compact-btn"><?php esc_html_e( 'Inscrever', 'vue-blocks' ); ?></button>
 			</form>
+			<?php $vb_msg = vb_newsletter_message( 'nl-compact' ); ?>
+			<?php if ( $vb_msg ) : ?><p class="vb-nl-inline-msg" role="status"><?php echo esc_html( $vb_msg ); ?></p><?php endif; ?>
 		</div>
 	</div>
 </section>

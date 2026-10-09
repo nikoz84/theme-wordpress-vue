@@ -80,20 +80,14 @@ if ( ! function_exists( 'vb_pagination' ) ) {
 
 if ( ! function_exists( 'vb_placeholder_image' ) ) {
 	/**
-	 * Return a deterministic placeholder image URL for posts without
-	 * a featured image. Uses picsum.photos with a stable seed so each
-	 * missing-image post gets a different image.
+	 * Return the skeleton placeholder image URL for posts without a
+	 * featured image (local SVG — no external requests).
 	 *
-	 * @param int|null $seed Optional seed (defaults to post ID when
-	 *                       called inside the loop).
+	 * @param int|null $seed Unused; kept for backwards compatibility.
 	 * @return string
 	 */
 	function vb_placeholder_image( $seed = null ) {
-		if ( null === $seed && get_the_ID() ) {
-			$seed = get_the_ID();
-		}
-		$seed = $seed ? absint( $seed ) : absint( wp_rand( 1, 9999 ) );
-		return 'https://picsum.photos/seed/' . $seed . '/480/270';
+		return VB_THEME_URI . '/assets/images/skeleton.svg';
 	}
 }
 
@@ -153,6 +147,13 @@ if ( ! function_exists( 'vb_first_category' ) ) {
 		if ( empty( $cats ) ) {
 			return '';
 		}
+		// Prefer a real category over the default ("Uncategorized").
+		$default = (int) get_option( 'default_category' );
+		foreach ( $cats as $cat ) {
+			if ( (int) $cat->term_id !== $default ) {
+				return $cat->name;
+			}
+		}
 		return $cats[0]->name;
 	}
 }
@@ -182,7 +183,7 @@ if ( ! function_exists( 'vb_get_colunista_cards' ) ) {
 
 		$posts = get_posts(
 			array(
-				'category'      => $cat->term_id,
+				'cat'           => $cat->term_id,
 				'posts_per_page' => 50,
 				'orderby'        => 'date',
 				'order'          => 'DESC',

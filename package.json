@@ -8,7 +8,8 @@
     "build": "vite build",
     "dev": "vite build --watch",
     "clean": "rm -rf dist",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "demo:export": "docker compose exec -T wordpress wp --allow-root --path=/var/www/html eval-file /bootstrap/bin/export-demo.php > theme/demo/demo-content.json.tmp && mv theme/demo/demo-content.json.tmp theme/demo/demo-content.json"
   },
   "devDependencies": {
     "vite": "^6.0.0",

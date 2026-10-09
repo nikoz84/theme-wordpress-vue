@@ -69,8 +69,8 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       input: {
-        app: resolve(__dirname, 'assets/js/app.js'),
-        style: resolve(__dirname, 'style.css'),
+        app: resolve(__dirname, 'theme/assets/js/app.js'),
+        style: resolve(__dirname, 'theme/style.css'),
       },
       output: {
         entryFileNames: 'assets/[name].[hash].js',

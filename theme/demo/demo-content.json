@@ -1,0 +1,661 @@
+{
+ "version": 1,
+ "authors": [
+  {
+   "key": "mariana",
+   "display_name": "Mariana Costa",
+   "first_name": "Mariana",
+   "last_name": "Costa",
+   "description": "Advogada especialista em direito securitário e defesa do consumidor.",
+   "job_title": "Colunista de Direito do Consumidor"
+  },
+  {
+   "key": "ricardo",
+   "display_name": "Ricardo Almeida",
+   "first_name": "Ricardo",
+   "last_name": "Almeida",
+   "description": "Atuário e consultor de riscos, escreve sobre previdência e seguros de vida.",
+   "job_title": "Colunista de Previdência"
+  },
+  {
+   "key": "fernanda",
+   "display_name": "Fernanda Lima",
+   "first_name": "Fernanda",
+   "last_name": "Lima",
+   "description": "Jornalista de economia, acompanha o mercado segurador há mais de dez anos.",
+   "job_title": "Editora de Mercado"
+  }
+ ],
+ "categories": [
+  {
+   "slug": "mercado",
+   "name": "Mercado",
+   "description": "Notícias e tendências do mercado segurador."
+  },
+  {
+   "slug": "auto",
+   "name": "Auto",
+   "description": "Seguro de automóveis, frotas e mobilidade."
+  },
+  {
+   "slug": "saude",
+   "name": "Saúde",
+   "description": "Planos de saúde, odontológicos e bem-estar."
+  },
+  {
+   "slug": "vida",
+   "name": "Vida",
+   "description": "Seguro de vida, previdência e proteção familiar."
+  },
+  {
+   "slug": "empresarial",
+   "name": "Empresarial",
+   "description": "Seguros para empresas, riscos e responsabilidade civil."
+  },
+  {
+   "slug": "susep",
+   "name": "SUSEP",
+   "description": "Atos e comunicados da Superintendência de Seguros Privados."
+  },
+  {
+   "slug": "regulatorio",
+   "name": "Regulação",
+   "description": "Normas, resoluções e atualizações regulatórias."
+  },
+  {
+   "slug": "opiniao",
+   "name": "Opinião",
+   "description": "Artigos de opinião sobre o setor."
+  },
+  {
+   "slug": "analise",
+   "name": "Análise de Mercado",
+   "description": "Análises e dados do mercado de seguros."
+  },
+  {
+   "slug": "colunistas",
+   "name": "Colunistas",
+   "description": "Colunas assinadas por especialistas."
+  },
+  {
+   "slug": "segurado",
+   "name": "Para o Segurado",
+   "description": "Direitos, dicas e orientações para o segurado."
+  }
+ ],
+ "posts": [
+  {
+   "slug": "demo-mercado-cresce-primeiro-semestre",
+   "title": "Mercado de seguros cresce 12% no primeiro semestre",
+   "categories": [
+    "mercado",
+    "analise"
+   ],
+   "hours_ago": 2,
+   "excerpt": "Arrecadação do setor avança puxada por automóvel, vida e saúde suplementar.",
+   "content": [
+    "A arrecadação do mercado segurador cresceu 12% no primeiro semestre em comparação com o mesmo período do ano anterior, segundo dados consolidados do setor.",
+    "Os ramos de automóvel, vida e saúde suplementar responderam pela maior parte da alta, enquanto os seguros patrimoniais mantiveram crescimento moderado.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Mercado Segurador",
+    "Resultados"
+   ],
+   "meta": {
+    "vb_views": 300
+   }
+  },
+  {
+   "slug": "demo-seguradoras-investem-tecnologia",
+   "title": "Seguradoras ampliam investimentos em tecnologia e atendimento digital",
+   "categories": [
+    "mercado"
+   ],
+   "hours_ago": 5,
+   "excerpt": "Aplicativos, assistentes virtuais e vistoria remota ganham espaço nas operações.",
+   "content": [
+    "As seguradoras seguem ampliando os investimentos em canais digitais, com destaque para aplicativos de autoatendimento e vistoria remota por vídeo.",
+    "A expectativa é reduzir o tempo de regulação de sinistros e melhorar a experiência do cliente.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Tecnologia",
+    "Insurtech"
+   ]
+  },
+  {
+   "slug": "demo-corretores-novas-oportunidades",
+   "title": "Corretores apostam em nichos para crescer em mercado competitivo",
+   "categories": [
+    "mercado"
+   ],
+   "hours_ago": 30,
+   "excerpt": "Especialização em pets, eventos e equipamentos portáteis abre novas frentes.",
+   "content": [
+    "Com a concorrência crescente, corretores de seguros têm investido em nichos como seguro pet, eventos e equipamentos portáteis.",
+    "A especialização permite oferecer consultoria mais próxima e produtos sob medida.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Corretores",
+    "Mercado Segurador"
+   ]
+  },
+  {
+   "slug": "demo-seguro-auto-preco-medio",
+   "title": "Preço médio do seguro auto recua pelo terceiro mês seguido",
+   "categories": [
+    "auto",
+    "analise"
+   ],
+   "hours_ago": 8,
+   "excerpt": "Queda nos índices de roubo e furto ajuda a explicar a redução.",
+   "content": [
+    "O preço médio do seguro de automóvel recuou pelo terceiro mês consecutivo, segundo levantamento com as principais seguradoras.",
+    "A redução está ligada à queda nos índices de roubo e furto em grandes centros urbanos e à maior concorrência entre as empresas.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Seguro Auto",
+    "Preços"
+   ],
+   "meta": {
+    "vb_views": 350
+   }
+  },
+  {
+   "slug": "demo-seguro-carro-eletrico",
+   "title": "Seguro para carro elétrico: o que muda na contratação",
+   "categories": [
+    "auto",
+    "segurado"
+   ],
+   "hours_ago": 20,
+   "excerpt": "Bateria, carregador doméstico e assistência específica entram na conta.",
+   "content": [
+    "Quem tem carro elétrico deve ficar atento a coberturas para a bateria, o carregador doméstico e serviços de assistência especializados.",
+    "Compare as condições gerais e confirme se o guincho atende veículos elétricos.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Seguro Auto",
+    "Carro Elétrico",
+    "Consumidor"
+   ]
+  },
+  {
+   "slug": "demo-frotas-telemetria",
+   "title": "Telemetria reduz sinistros em frotas corporativas",
+   "categories": [
+    "auto",
+    "empresarial"
+   ],
+   "hours_ago": 54,
+   "excerpt": "Monitoramento de condução ajuda empresas a negociar prêmios menores.",
+   "content": [
+    "Empresas que adotam telemetria em suas frotas registram redução relevante na frequência de sinistros.",
+    "Os dados de condução também ajudam na negociação de prêmios mais competitivos na renovação.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Seguro Auto",
+    "Tecnologia"
+   ]
+  },
+  {
+   "slug": "demo-planos-saude-reajuste",
+   "title": "Reajuste dos planos de saúde individuais: entenda o cálculo",
+   "categories": [
+    "saude",
+    "segurado"
+   ],
+   "hours_ago": 11,
+   "excerpt": "Índice anual considera a variação de custos e a frequência de uso.",
+   "content": [
+    "O reajuste anual dos planos de saúde individuais considera a variação das despesas assistenciais e a frequência de utilização dos serviços.",
+    "O consumidor pode consultar o índice aplicado no boleto e no site da operadora.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Planos de Saúde",
+    "ANS",
+    "Consumidor"
+   ],
+   "meta": {
+    "vb_views": 480
+   }
+  },
+  {
+   "slug": "demo-saude-mental-cobertura",
+   "title": "Cobertura de saúde mental ganha destaque nos planos empresariais",
+   "categories": [
+    "saude",
+    "empresarial"
+   ],
+   "hours_ago": 40,
+   "excerpt": "Empresas incluem terapia e programas de bem-estar nos benefícios.",
+   "content": [
+    "A inclusão de terapia e programas de bem-estar emocional passou a ser um diferencial nos planos de saúde empresariais.",
+    "Especialistas apontam ganhos de produtividade e redução de afastamentos.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Planos de Saúde",
+    "Benefícios"
+   ]
+  },
+  {
+   "slug": "demo-odontologico-cresce",
+   "title": "Planos odontológicos batem recorde de beneficiários",
+   "categories": [
+    "saude"
+   ],
+   "hours_ago": 75,
+   "excerpt": "Produto de entrada atrai pequenas empresas e famílias.",
+   "content": [
+    "Os planos odontológicos atingiram número recorde de beneficiários, impulsionados por pequenas empresas e famílias.",
+    "O baixo custo e a carência reduzida são os principais atrativos.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Planos de Saúde"
+   ]
+  },
+  {
+   "slug": "demo-seguro-vida-jovens",
+   "title": "Seguro de vida atrai público jovem com coberturas em vida",
+   "categories": [
+    "vida"
+   ],
+   "hours_ago": 14,
+   "excerpt": "Diagnóstico de doenças graves e invalidez estão entre as mais procuradas.",
+   "content": [
+    "O seguro de vida vem atraindo um público mais jovem graças a coberturas que podem ser usadas em vida, como diagnóstico de doenças graves.",
+    "A contratação digital e os planos mensais de baixo valor também ajudam.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Seguro de Vida",
+    "Consumidor"
+   ]
+  },
+  {
+   "slug": "demo-previdencia-privada-portabilidade",
+   "title": "Portabilidade na previdência privada: quando vale a pena",
+   "categories": [
+    "vida",
+    "segurado"
+   ],
+   "hours_ago": 26,
+   "excerpt": "Taxas de administração e rentabilidade devem ser comparadas com atenção.",
+   "content": [
+    "A portabilidade permite transferir os recursos de um plano de previdência para outro sem incidência de imposto.",
+    "Compare taxas de administração, rentabilidade histórica e perfil de risco antes de decidir.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Previdência",
+    "Consumidor"
+   ]
+  },
+  {
+   "slug": "demo-beneficiarios-seguro-vida",
+   "title": "Como indicar e atualizar os beneficiários do seguro de vida",
+   "categories": [
+    "vida",
+    "segurado"
+   ],
+   "hours_ago": 3,
+   "excerpt": "Manter a lista atualizada evita disputas e agiliza o pagamento.",
+   "content": [
+    "Indicar beneficiários e manter a lista atualizada é a melhor forma de garantir que a indenização chegue a quem você deseja.",
+    "A alteração pode ser feita a qualquer momento junto à seguradora ou ao corretor.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "meta": {
+    "vb_segurado_full_name": "Maria Exemplo da Silva",
+    "vb_segurado_document_type": "cpf",
+    "vb_segurado_document_number": "000.000.000-00",
+    "vb_segurado_email": "maria.exemplo@example.com",
+    "vb_segurado_phone": "(11) 90000-0000",
+    "vb_segurado_city": "São Paulo",
+    "vb_segurado_state": "SP",
+    "vb_segurado_country": "Brasil",
+    "vb_views": 220
+   },
+   "tags": [
+    "Seguro de Vida",
+    "Consumidor"
+   ]
+  },
+  {
+   "slug": "demo-seguro-cibernetico-pme",
+   "title": "Seguro cibernético chega às pequenas e médias empresas",
+   "categories": [
+    "empresarial"
+   ],
+   "hours_ago": 18,
+   "excerpt": "Ataques de ransomware impulsionam a procura pelo produto.",
+   "content": [
+    "O seguro contra riscos cibernéticos deixou de ser exclusivo das grandes corporações e passou a ser oferecido para pequenas e médias empresas.",
+    "As coberturas incluem resposta a incidentes, recuperação de dados e responsabilidade perante terceiros.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Riscos Cibernéticos",
+    "Empresas"
+   ],
+   "meta": {
+    "vb_views": 150
+   }
+  },
+  {
+   "slug": "demo-susep-consulta-publica",
+   "title": "SUSEP abre consulta pública sobre seguros de danos",
+   "categories": [
+    "susep",
+    "regulatorio"
+   ],
+   "hours_ago": 6,
+   "excerpt": "Proposta busca simplificar as regras e ampliar a concorrência.",
+   "content": [
+    "A Superintendência de Seguros Privados (SUSEP) abriu consulta pública para revisar as normas aplicáveis aos seguros de danos. A proposta busca <strong>simplificar regras</strong>, reduzir custos de conformidade e ampliar a concorrência entre seguradoras.",
+    "<h2>O que está em consulta</h2>",
+    "O texto propõe mudanças em três frentes principais:",
+    "<ul><li><strong>Condições gerais:</strong> linguagem mais simples e padronizada;</li><li><strong>Produtos flexíveis:</strong> coberturas modulares contratadas sob demanda;</li><li><strong>Transparência:</strong> informações claras sobre franquias e exclusões.</li></ul>",
+    "<blockquote><p>\"A consulta é uma oportunidade para o mercado e os consumidores contribuírem com regras mais modernas.\"</p><cite>Fonte: comunicado de demonstração</cite></blockquote>",
+    "<h3>Como participar</h3>",
+    "Interessados podem enviar contribuições pelo portal da autarquia dentro do prazo indicado no edital.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "SUSEP",
+    "Regulação"
+   ],
+   "meta": {
+    "vb_views": 540
+   }
+  },
+  {
+   "slug": "demo-susep-open-insurance",
+   "title": "Open Insurance: nova fase de compartilhamento de dados",
+   "categories": [
+    "susep",
+    "regulatorio"
+   ],
+   "hours_ago": 36,
+   "excerpt": "Clientes poderão autorizar o compartilhamento de dados entre seguradoras.",
+   "content": [
+    "O Open Insurance avança para uma nova fase, permitindo que o cliente autorize o compartilhamento dos seus dados entre instituições.",
+    "A medida deve facilitar comparações de preço e a oferta de produtos personalizados.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "SUSEP",
+    "Open Insurance",
+    "Regulação"
+   ]
+  },
+  {
+   "slug": "demo-resolucao-microsseguros",
+   "title": "Nova resolução atualiza regras de microsseguros",
+   "categories": [
+    "regulatorio"
+   ],
+   "hours_ago": 60,
+   "excerpt": "Norma amplia canais de venda e simplifica documentação.",
+   "content": [
+    "Uma nova resolução atualizou as regras para microsseguros, ampliando os canais de distribuição e simplificando a documentação exigida.",
+    "O objetivo é aumentar o acesso da população de baixa renda à proteção securitária.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Regulação",
+    "Microsseguros"
+   ]
+  },
+  {
+   "slug": "demo-prazo-adequacao-normas",
+   "title": "Seguradoras têm novo prazo para adequação a normas de conduta",
+   "categories": [
+    "regulatorio"
+   ],
+   "hours_ago": 90,
+   "excerpt": "Regras tratam de transparência e tratamento justo ao cliente.",
+   "content": [
+    "As seguradoras ganharam novo prazo para se adequar às normas de conduta, que tratam de transparência e tratamento justo ao cliente.",
+    "As empresas deverão revisar processos de venda e de atendimento.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Regulação",
+    "Conduta"
+   ]
+  },
+  {
+   "slug": "demo-analise-sinistralidade",
+   "title": "Análise: sinistralidade estável sustenta resultado das seguradoras",
+   "categories": [
+    "analise"
+   ],
+   "hours_ago": 22,
+   "excerpt": "Indicador se mantém controlado mesmo com eventos climáticos.",
+   "content": [
+    "A sinistralidade do setor permaneceu estável no período, sustentando o resultado operacional das seguradoras.",
+    "Eventos climáticos pontuais afetaram os ramos rurais, mas foram compensados por outros segmentos.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Resultados",
+    "Sinistralidade"
+   ]
+  },
+  {
+   "slug": "demo-analise-seguro-rural",
+   "title": "Análise: seguro rural e os desafios do clima",
+   "categories": [
+    "analise"
+   ],
+   "hours_ago": 48,
+   "excerpt": "Eventos extremos pressionam preços e exigem novos modelos de risco.",
+   "content": [
+    "A maior frequência de eventos climáticos extremos pressiona o seguro rural e exige modelos de risco mais sofisticados.",
+    "Subvenção ao prêmio e seguro paramétrico aparecem como alternativas.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Seguro Rural",
+    "Clima"
+   ]
+  },
+  {
+   "slug": "demo-coluna-direitos-negativa-sinistro",
+   "title": "Negativa de sinistro: o que fazer quando a seguradora recusa",
+   "categories": [
+    "colunistas",
+    "opiniao",
+    "segurado"
+   ],
+   "hours_ago": 12,
+   "author": "mariana",
+   "excerpt": "Peça a justificativa por escrito e conheça os canais de reclamação.",
+   "content": [
+    "Quando a seguradora nega um sinistro, o primeiro passo é pedir a justificativa por escrito e revisar as condições gerais da apólice.",
+    "Se a resposta não for satisfatória, recorra à ouvidoria da seguradora e aos canais oficiais de defesa do consumidor.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Consumidor",
+    "Sinistro"
+   ],
+   "meta": {
+    "vb_views": 410
+   }
+  },
+  {
+   "slug": "demo-coluna-previdencia-longo-prazo",
+   "title": "Previdência é maratona, não corrida de cem metros",
+   "categories": [
+    "colunistas",
+    "opiniao"
+   ],
+   "hours_ago": 28,
+   "author": "ricardo",
+   "excerpt": "Disciplina e horizonte longo valem mais que a rentabilidade do mês.",
+   "content": [
+    "Quem acompanha a previdência privada mês a mês tende a tomar decisões ruins. O que importa é a disciplina dos aportes e o horizonte de longo prazo.",
+    "Revise o plano uma vez por ano e ajuste o perfil conforme a idade.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Previdência"
+   ]
+  },
+  {
+   "slug": "demo-coluna-mercado-em-transformacao",
+   "title": "Um mercado em transformação silenciosa",
+   "categories": [
+    "colunistas",
+    "opiniao"
+   ],
+   "hours_ago": 44,
+   "author": "fernanda",
+   "excerpt": "Dados, canais digitais e novos entrantes mudam o setor sem alarde.",
+   "content": [
+    "O setor de seguros passa por uma transformação silenciosa: dados, canais digitais e novos entrantes estão mudando a forma como o produto é criado e vendido.",
+    "Quem não acompanhar essa mudança corre o risco de ficar para trás.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Mercado Segurador",
+    "Tecnologia"
+   ]
+  },
+  {
+   "slug": "demo-opiniao-educacao-financeira",
+   "title": "Educação securitária deveria começar na escola",
+   "categories": [
+    "opiniao"
+   ],
+   "hours_ago": 70,
+   "excerpt": "Entender risco e proteção é parte da educação financeira.",
+   "content": [
+    "Falar de seguro ainda é tabu para muitas famílias. Incluir noções de risco e proteção na educação financeira ajudaria a mudar esse cenário.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Educação Financeira",
+    "Consumidor"
+   ]
+  },
+  {
+   "slug": "demo-dicas-contratar-seguro-residencial",
+   "title": "Cinco dicas para contratar o seguro residencial certo",
+   "categories": [
+    "segurado"
+   ],
+   "hours_ago": 9,
+   "excerpt": "Avalie o valor do imóvel, as coberturas adicionais e as assistências.",
+   "content": [
+    "Antes de contratar o seguro residencial, avalie corretamente o valor do imóvel e dos bens.",
+    "Considere coberturas adicionais como danos elétricos e responsabilidade civil, e verifique as assistências 24 horas incluídas.",
+    "Este é um conteúdo de demonstração do tema Vue Blocks."
+   ],
+   "tags": [
+    "Seguro Residencial",
+    "Consumidor"
+   ]
+  }
+ ],
+ "pages": [
+  {
+   "slug": "noticias",
+   "title": "Últimas Notícias",
+   "excerpt": "Acompanhe em tempo real as principais novidades do mercado de seguros, regulação e finanças.",
+   "content": []
+  },
+  {
+   "slug": "sobre",
+   "title": "Sobre",
+   "content": [
+    "A Safe Mídia é um portal de notícias sobre o mercado de seguros. Esta é uma página de demonstração do tema Vue Blocks."
+   ]
+  },
+  {
+   "slug": "contato",
+   "title": "Contato",
+   "content": [
+    "Fale com a redação pelo e-mail contato@example.com. Esta é uma página de demonstração do tema Vue Blocks."
+   ]
+  },
+  {
+   "slug": "termos-de-uso",
+   "title": "Termos de Uso",
+   "content": [
+    "Estes são termos de uso de exemplo. Substitua este texto pelos termos do seu site."
+   ]
+  }
+ ],
+ "menus": {
+  "primary": {
+   "name": "Menu Principal (demo)",
+   "items": [
+    {
+     "type": "category",
+     "slug": "mercado"
+    },
+    {
+     "type": "category",
+     "slug": "auto"
+    },
+    {
+     "type": "category",
+     "slug": "saude"
+    },
+    {
+     "type": "category",
+     "slug": "vida"
+    },
+    {
+     "type": "category",
+     "slug": "empresarial"
+    },
+    {
+     "type": "category",
+     "slug": "susep"
+    },
+    {
+     "type": "category",
+     "slug": "regulatorio"
+    },
+    {
+     "type": "category",
+     "slug": "opiniao"
+    }
+   ]
+  },
+  "footer": {
+   "name": "Menu do Rodapé (demo)",
+   "items": [
+    {
+     "type": "page",
+     "slug": "sobre"
+    },
+    {
+     "type": "page",
+     "slug": "contato"
+    },
+    {
+     "type": "page",
+     "slug": "privacy-policy",
+     "title": "Política de Privacidade"
+    },
+    {
+     "type": "page",
+     "slug": "termos-de-uso"
+    }
+   ]
+  }
+ }
+}

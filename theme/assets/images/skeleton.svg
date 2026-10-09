@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" preserveAspectRatio="xMidYMid slice">
+	<style>
+		.vb-sk-shine { animation: vb-sk 1.6s ease-in-out infinite; }
+		@keyframes vb-sk { from { transform: translateX(-480px); } to { transform: translateX(480px); } }
+		@media (prefers-reduced-motion: reduce) { .vb-sk-shine { animation: none; opacity: 0; } }
+	</style>
+	<defs>
+		<linearGradient id="vb-sk-g" x1="0" x2="1" y1="0" y2="0">
+			<stop offset="0" stop-color="#e5e7eb" stop-opacity="0"/>
+			<stop offset=".5" stop-color="#f3f4f6"/>
+			<stop offset="1" stop-color="#e5e7eb" stop-opacity="0"/>
+		</linearGradient>
+	</defs>
+	<rect width="480" height="270" fill="#e5e7eb"/>
+	<rect class="vb-sk-shine" width="480" height="270" fill="url(#vb-sk-g)"/>
+	<g fill="#d1d5db" transform="translate(212 107)">
+		<rect width="56" height="44" rx="6" fill="none" stroke="#d1d5db" stroke-width="4"/>
+		<circle cx="18" cy="15" r="5"/>
+		<path d="M6 38l14-14 9 9 7-7 14 12z"/>
+	</g>
+</svg>
