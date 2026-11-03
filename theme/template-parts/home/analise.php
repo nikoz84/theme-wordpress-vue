@@ -53,7 +53,7 @@ $vb_analise_rest     = array_slice( $vb_analise_q->posts, 1 );
 				<?php endif; ?>
 				<div class="analise-overlay"></div>
 				<div class="analise-main-content">
-					<div class="analise-main-meta"><?php echo esc_html( vb_first_category( $vb_analise_featured->ID ) ); ?> · <?php echo esc_html( vb_time_ago_short( $vb_analise_featured->ID ) ); ?></div>
+					<div class="analise-main-meta"><?php echo esc_html( vb_first_category( $vb_analise_featured->ID ) ); ?> · <?php echo vb_time_ago_html( $vb_analise_featured->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?></div>
 					<h3 class="analise-main-title"><?php echo esc_html( get_the_title( $vb_analise_featured ) ); ?></h3>
 				</div>
 			</a>
@@ -68,7 +68,7 @@ $vb_analise_rest     = array_slice( $vb_analise_q->posts, 1 );
 							<?php endif; ?>
 						</div>
 						<div>
-							<div class="aitem-meta"><?php echo esc_html( vb_first_category( $vb_post->ID ) ); ?> · <?php echo esc_html( vb_time_ago_short( $vb_post->ID ) ); ?></div>
+							<div class="aitem-meta"><?php echo esc_html( vb_first_category( $vb_post->ID ) ); ?> · <?php echo vb_time_ago_html( $vb_post->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?></div>
 							<div class="aitem-title"><?php echo esc_html( get_the_title( $vb_post ) ); ?></div>
 						</div>
 					</a>

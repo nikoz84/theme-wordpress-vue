@@ -63,9 +63,8 @@ $sidebar_q = new WP_Query(
 				<div class="hero-meta-bar">
 					<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
 					<?php
-					/* translators: %s: category name. */
 					printf( '%s / <span class="hero-cat">%s</span>',
-						esc_html( vb_time_ago_short() ),
+						vb_time_ago_html( $main_post ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper.
 						esc_html( vb_first_category( $main_post ) )
 					);
 					?>
@@ -93,7 +92,7 @@ $sidebar_q = new WP_Query(
 					</div>
 					<div>
 						<div class="spost-cat">
-							<?php echo esc_html( vb_first_category() ); ?> · <?php echo esc_html( vb_time_ago_short() ); ?>
+							<?php echo esc_html( vb_first_category() ); ?> · <?php echo vb_time_ago_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 						</div>
 						<div class="spost-title"><?php the_title(); ?></div>
 					</div>

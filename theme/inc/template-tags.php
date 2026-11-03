@@ -96,17 +96,15 @@ if ( ! function_exists( 'vb_time_ago_short' ) ) {
 	 * Short Portuguese "time ago" string ("Há 2 horas", "Há 3 dias")
 	 * for the hero meta bar and sidebar post labels.
 	 *
-	 * @param int|null $post_id Optional post ID; defaults to current post.
+	 * @param int|WP_Post|null $post_id Optional post; defaults to current post.
 	 * @return string
 	 */
 	function vb_time_ago_short( $post_id = null ) {
-		$post_id = $post_id ? absint( $post_id ) : get_the_ID();
-		if ( ! $post_id ) {
+		$post = get_post( $post_id );
+		if ( ! $post ) {
 			return '';
 		}
-		$post_time = get_post_time( 'U', true, $post_id );
-		$now       = current_time( 'timestamp' );
-		$diff      = (int) ( $now - $post_time );
+		$diff = (int) ( time() - (int) get_post_time( 'U', true, $post ) );
 		if ( $diff < 60 ) {
 			return __( 'Agora mesmo', 'vue-blocks' );
 		}
@@ -131,6 +129,29 @@ if ( ! function_exists( 'vb_time_ago_short' ) ) {
 	}
 }
 
+if ( ! function_exists( 'vb_time_ago_html' ) ) {
+	/**
+	 * `vb_time_ago_short()` wrapped in a <time> carrying the UTC publish
+	 * date. app.js recomputes the label from `datetime` on page load, so
+	 * pages served from the page cache (LiteSpeed) don't show a frozen
+	 * "Há 2 minutos".
+	 *
+	 * @param int|WP_Post|null $post_id Optional post; defaults to current post.
+	 * @return string Escaped HTML.
+	 */
+	function vb_time_ago_html( $post_id = null ) {
+		$post = get_post( $post_id );
+		if ( ! $post ) {
+			return '';
+		}
+		return sprintf(
+			'<time class="vb-time-ago" datetime="%s">%s</time>',
+			esc_attr( get_post_time( 'c', true, $post ) ),
+			esc_html( vb_time_ago_short( $post ) )
+		);
+	}
+}
+
 if ( ! function_exists( 'vb_first_category' ) ) {
 	/**
 	 * Return the first category name for the current post (or a given post ID).
@@ -139,7 +160,8 @@ if ( ! function_exists( 'vb_first_category' ) ) {
 	 * @return string Empty string if no category.
 	 */
 	function vb_first_category( $post_id = null ) {
-		$post_id = $post_id ? absint( $post_id ) : get_the_ID();
+		$post    = get_post( $post_id );
+		$post_id = $post ? $post->ID : 0;
 		if ( ! $post_id ) {
 			return '';
 		}

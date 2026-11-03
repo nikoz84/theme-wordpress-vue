@@ -41,7 +41,7 @@ while ( have_posts() ) :
 
 		<div class="article-cat">
 			<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-			<?php echo esc_html( vb_time_ago_short() . ( $vb_category ? ' · ' . $vb_category : '' ) ); ?>
+			<?php echo vb_time_ago_html() . esc_html( $vb_category ? ' · ' . $vb_category : '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
 		</div>
 
 		<h1 class="article-title"><?php the_title(); ?></h1>
@@ -65,7 +65,7 @@ while ( have_posts() ) :
 		<div class="meta-info">
 			<div class="meta-date">
 				<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-				<time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time>
+				<time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'j \d\e F \d\e Y' ) ); ?></time>
 			</div>
 			<div class="meta-readtime">
 				<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -127,14 +127,7 @@ while ( have_posts() ) :
 				?>
 			</div>
 
-			<?php
-			// Segurado section — display or edit based on user capabilities.
-			if ( current_user_can( 'edit_post', $vb_post_id ) ) {
-				get_template_part( 'template-parts/segurado/segurado-edit' );
-			} else {
-				get_template_part( 'template-parts/segurado/segurado-display' );
-			}
-			?>
+			<?php get_template_part( 'template-parts/segurado/segurado-display' ); ?>
 
 			<?php $vb_tags = get_the_tags(); ?>
 			<?php if ( $vb_tags ) : ?>

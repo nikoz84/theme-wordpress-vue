@@ -17,6 +17,37 @@
 	'use strict';
 
 	/**
+	 * TEMPO RELATIVO ("Há 2 horas"): recalcula a partir do `datetime` de
+	 * cada <time class="vb-time-ago">. O texto do PHP fica congelado quando
+	 * a página vem do cache (LiteSpeed); aqui ele volta a refletir o agora.
+	 * Mesmas regras de vb_time_ago_short() em inc/template-tags.php.
+	 */
+	var timeAgo = function ( diff ) {
+		var plural = function ( n, one, many ) {
+			return 'Há ' + n + ' ' + ( 1 === n ? one : many );
+		};
+		if ( diff < 60 ) {
+			return 'Agora mesmo';
+		}
+		if ( diff < 3600 ) {
+			return plural( Math.floor( diff / 60 ), 'minuto', 'minutos' );
+		}
+		if ( diff < 86400 ) {
+			return plural( Math.floor( diff / 3600 ), 'hora', 'horas' );
+		}
+		if ( diff < 604800 ) {
+			return plural( Math.floor( diff / 86400 ), 'dia', 'dias' );
+		}
+		return plural( Math.floor( diff / 604800 ), 'semana', 'semanas' );
+	};
+	document.querySelectorAll( 'time.vb-time-ago[datetime]' ).forEach( function ( el ) {
+		var published = Date.parse( el.getAttribute( 'datetime' ) );
+		if ( ! isNaN( published ) ) {
+			el.textContent = timeAgo( Math.max( 0, Math.floor( ( Date.now() - published ) / 1000 ) ) );
+		}
+	} );
+
+	/**
 	 * 0) NAVBAR SAFE MÍDIA: abre/fecha o menu mobile pelo botão hambúrguer.
 	 * JS puro (sem Vue) para funcionar mesmo se o CDN do Vue falhar.
 	 */

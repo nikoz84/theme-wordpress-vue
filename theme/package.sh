@@ -35,13 +35,19 @@ fi
 log "Building ${OUT}..."
 cd "${THEME_DIR}"
 
-python3 - "${THEME_DIR}" "${OUT}" <<'PYEOF'
+python3 - "${THEME_DIR}" "${OUT}" "${SLUG}" <<'PYEOF'
 import os
 import sys
 import zipfile
 
 theme_dir = sys.argv[1]
 out_path = sys.argv[2]
+# Every entry goes under a top-level "<slug>/" folder so WordPress installs
+# the theme into wp-content/themes/<slug>/ whatever the zip is named.
+# Without it WP names the folder after the zip ("vue-blocks-1.0.0"), and the
+# dots make wp-admin's "Excluir" fail: it strips them from the slug and
+# reports "O tema solicitado não existe".
+slug = sys.argv[3]
 
 EXCLUDE_TOP = {
     "package.sh", "PACKAGE.md", ".gitignore", "docker-compose.yml",
@@ -83,7 +89,7 @@ with zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED) as zf:
             rel = os.path.relpath(full, theme_dir)
             if excluded(rel, False):
                 continue
-            zf.write(full, rel)
+            zf.write(full, slug + "/" + rel)
             count += 1
 
 print(f"[vb-package] added {count} files to archive")
@@ -102,7 +108,7 @@ fi
 # pattern) and meta files that should never appear at any depth
 # (package.sh, PACKAGE.md, docker-compose.yml, README.md at root).
 log "Verifying zip contents are clean of test-harness paths..."
-LEAKED="$(unzip -l "${OUT}" | awk '/^[ ]+[0-9]+/ {print $NF}' | grep -E '^(node_modules|dist|docker-compose\.yml|\.env$|bin/bootstrap\.sh|seed/|config/|specs/|\.specify/|\.opencode/|\.agents/|\.claude/|layouts-html/|wp-content/|package\.sh|PACKAGE\.md|README\.md|package\.json|package-lock\.json|vite\.config\.js|skills-lock\.json)$' || true)"
+LEAKED="$(unzip -l "${OUT}" | awk '/^[ ]+[0-9]+/ {print $NF}' | sed "s#^${SLUG}/##" | grep -E '^(node_modules|dist|docker-compose\.yml|\.env$|bin/bootstrap\.sh|seed/|config/|specs/|\.specify/|\.opencode/|\.agents/|\.claude/|layouts-html/|wp-content/|package\.sh|PACKAGE\.md|README\.md|package\.json|package-lock\.json|vite\.config\.js|skills-lock\.json)$' || true)"
 if [ -n "${LEAKED}" ]; then
   printf '%s\n' "${LEAKED}" >&2
   fail "Package contains excluded paths; aborting."
