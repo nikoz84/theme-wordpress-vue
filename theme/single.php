@@ -98,22 +98,22 @@ while ( have_posts() ) :
 		</button>
 	</div>
 
-	<figure class="article-hero">
-		<div class="article-hero-img">
-			<?php if ( has_post_thumbnail() ) : ?>
-				<?php the_post_thumbnail( 'large' ); ?>
-			<?php else : ?>
-				<img src="<?php echo esc_url( vb_placeholder_image() ); ?>" alt="" />
-			<?php endif; ?>
-		</div>
-		<?php $vb_caption = has_post_thumbnail() ? wp_get_attachment_caption( get_post_thumbnail_id() ) : ''; ?>
-		<?php if ( $vb_caption ) : ?>
-			<figcaption class="article-hero-caption"><?php echo esc_html( $vb_caption ); ?></figcaption>
-		<?php endif; ?>
-	</figure>
-
 	<div class="article-layout">
 		<article id="post-<?php the_ID(); ?>" <?php post_class( 'article-body' ); ?>>
+
+			<figure class="article-hero">
+				<div class="article-hero-img">
+					<?php if ( has_post_thumbnail() ) : ?>
+						<?php the_post_thumbnail( 'large' ); ?>
+					<?php else : ?>
+						<img src="<?php echo esc_url( vb_placeholder_image() ); ?>" alt="" />
+					<?php endif; ?>
+				</div>
+				<?php $vb_caption = has_post_thumbnail() ? wp_get_attachment_caption( get_post_thumbnail_id() ) : ''; ?>
+				<?php if ( $vb_caption ) : ?>
+					<figcaption class="article-hero-caption"><?php echo esc_html( $vb_caption ); ?></figcaption>
+				<?php endif; ?>
+			</figure>
 
 			<div class="article-content entry-content">
 				<?php
