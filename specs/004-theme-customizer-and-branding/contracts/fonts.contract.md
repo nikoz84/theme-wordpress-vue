@@ -16,7 +16,7 @@ in `<head>` on every front-end page (single, page, archive, search,
 ```
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@400;500;600;700&display=swap">
 ```
 
 ## Tag order rationale
@@ -31,8 +31,10 @@ in `<head>` on every front-end page (single, page, archive, search,
 
 | Family | Weights | Where used in `theme/style.css` |
 |---|---|---|
-| Merriweather (serif) | 700, 900 | Headings, titles (`.logo-text`, `.hero-title`, etc.) |
-| Inter (sans) | 300, 400, 500, 600 | Body, navigation, UI |
+| Merriweather (serif) | 400, 700, 900; italic 400 | 400: single-post body (`.article-body`); 700: headings, titles, `<strong>` in posts; 900: `.page-title`; italic 400: `<em>`/blockquotes in posts |
+| Inter (sans) | 400, 500, 600, 700 | Body, navigation, UI, buttons/badges (700) |
+
+Only weights actually referenced by `theme/style.css` are loaded (Inter 300 is unused; the lone Inter 800 rule falls back to 700).
 
 ## `display=swap`
 

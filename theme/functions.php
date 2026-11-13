@@ -42,7 +42,7 @@ if ( ! defined( 'VB_USE_BUNDLED_ASSETS' ) ) {
 function vb_enqueue_google_fonts() {
 	wp_enqueue_style(
 		'vb-google-fonts',
-		'https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@300;400;500;600&display=swap',
+		'https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@400;500;600;700&display=swap',
 		array(),
 		null
 	);
