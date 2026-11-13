@@ -2,9 +2,11 @@
 /**
  * Vue Blocks — Category Tabs (Safe Mídia home section).
  *
- * 4 most-populated categories, each rendered as a tab; each tab
- * shows 4 latest posts in that category. Hidden per FR-004 if fewer
- * than 2 categories exist.
+ * One tab per category in the primary menu (same order, empty
+ * categories included — vb_filter_categories()); falls back to the
+ * most-used categories when the menu has none. The active tab is the
+ * first category that has posts and shows its 4 latest posts. Hidden
+ * per FR-004 if fewer than 2 categories exist.
  *
  * @package Vue_Blocks
  */
@@ -13,34 +15,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$vb_tabs_cats = get_categories(
-	array(
-		'orderby'    => 'count',
-		'order'      => 'DESC',
-		'number'     => 4,
-		'hide_empty' => true,
-		'exclude'    => array( get_cat_ID( 'Uncategorized' ) ),
-	)
-);
-if ( ! is_array( $vb_tabs_cats ) ) {
-	$vb_tabs_cats = array();
-}
+$vb_tabs_cats = array_values( (array) vb_filter_categories() );
 if ( count( $vb_tabs_cats ) < 2 ) {
 	return;
 }
 
+// Active tab: first category with posts (so the grid isn't empty).
 $vb_tabs_first = $vb_tabs_cats[0];
-$vb_tabs_rest  = array_slice( $vb_tabs_cats, 1 );
+foreach ( $vb_tabs_cats as $vb_cat ) {
+	if ( (int) $vb_cat->count > 0 ) {
+		$vb_tabs_first = $vb_cat;
+		break;
+	}
+}
 ?>
 
 <section class="tabs-section">
 	<div class="vb-container">
 		<nav class="tabs-nav" role="tablist" aria-label="<?php esc_attr_e( 'Categorias', 'vue-blocks' ); ?>">
-			<a href="<?php echo esc_url( get_category_link( $vb_tabs_first->term_id ) ); ?>" class="tab-btn active" role="tab" aria-selected="true">
-				<?php echo esc_html( $vb_tabs_first->name ); ?>
-			</a>
-			<?php foreach ( $vb_tabs_rest as $vb_cat ) : ?>
-				<a href="<?php echo esc_url( get_category_link( $vb_cat->term_id ) ); ?>" class="tab-btn" role="tab">
+			<?php foreach ( $vb_tabs_cats as $vb_cat ) : ?>
+				<?php $vb_is_active = ( (int) $vb_cat->term_id === (int) $vb_tabs_first->term_id ); ?>
+				<a href="<?php echo esc_url( get_category_link( $vb_cat->term_id ) ); ?>" class="tab-btn<?php echo $vb_is_active ? ' active' : ''; ?>" role="tab" aria-selected="<?php echo $vb_is_active ? 'true' : 'false'; ?>">
 					<?php echo esc_html( $vb_cat->name ); ?>
 				</a>
 			<?php endforeach; ?>
