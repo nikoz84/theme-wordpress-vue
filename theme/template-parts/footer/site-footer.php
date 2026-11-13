@@ -12,25 +12,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $vb_year       = (int) gmdate( 'Y' );
-$vb_site_title = get_bloginfo( 'name' );
 
-// Two-tone brand like the navbar: the last word gets the accent color.
-$vb_title_words = preg_split( '/\s+/u', trim( $vb_site_title ) );
-$vb_title_last  = count( $vb_title_words ) > 1 ? array_pop( $vb_title_words ) : '';
-$vb_title_first = implode( ' ', $vb_title_words );
 ?>
 
 <footer class="site-footer">
 	<div class="footer-main">
 
 		<div>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo">
-				<span class="logo-shield">
-					<svg width="18" height="20" viewBox="0 0 18 22" fill="none" aria-hidden="true">
-						<path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/>
-					</svg>
-				</span>
-				<span class="footer-logo-text"><?php echo esc_html( $vb_title_first ); ?><?php if ( '' !== $vb_title_last ) : ?> <span><?php echo esc_html( $vb_title_last ); ?></span><?php endif; ?></span>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo" rel="home">
+				<img
+					class="footer-logo-img"
+					src="<?php echo esc_url( VB_THEME_URI . '/assets/images/logo-white.png' ); ?>"
+					width="341" height="120"
+					alt="<?php echo esc_attr__( 'Safe Mídia', 'vue-blocks' ); ?>"
+					loading="lazy"
+					decoding="async"
+				>
 			</a>
 			<p class="footer-desc">
 				<?php esc_html_e( 'Portal de notícias do setor. Conteúdo editorial independente, com curadoria e atualização diária.', 'vue-blocks' ); ?>

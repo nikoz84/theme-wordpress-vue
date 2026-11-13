@@ -2958,7 +2958,7 @@ a.page-btn:hover { border-color: var(--blue); color: var(--blue); }
 
 /* ─── ARTICLE HERO IMAGE ─── */
 .article-hero { max-width: 1280px; margin: 28px auto 0; padding: 0 28px; }
-.article-hero-img { width: 100%; height: 520px; border-radius: 16px; overflow: hidden; position: relative; }
+.article-hero-img { width: 100%; max-width: 860px; aspect-ratio: 4 / 3; border-radius: 16px; overflow: hidden; position: relative; }
 .article-hero-img img { width: 100%; height: 100%; object-fit: cover; }
 .article-hero-caption { font-size: 12px; color: var(--gray-text); margin-top: 10px; padding-left: 2px; }
 
@@ -3011,7 +3011,6 @@ a.page-btn:hover { border-color: var(--blue); color: var(--blue); }
   .ad-v.ad-v--sidebar { height: 250px; }
   .ad-v--sidebar .ad-size-desktop { display: none; }
   .ad-v--sidebar .ad-size-mobile { display: inline; }
-  .article-hero-img { height: 420px; }
 }
 @media (max-width: 768px) {
   .page-hero { padding: 22px 0 26px; }
@@ -3037,7 +3036,7 @@ a.page-btn:hover { border-color: var(--blue); color: var(--blue); }
   .meta-info { width: 100%; flex-direction: row; flex-wrap: wrap; gap: 12px; }
   .share-bar { padding: 0 16px; }
   .article-hero { padding: 0 16px; margin-top: 20px; }
-  .article-hero-img { height: 240px; border-radius: 10px; }
+  .article-hero-img { border-radius: 10px; }
   .article-layout { padding: 0 16px; margin-top: 24px; gap: 32px; }
   .article-body { font-size: 16px; }
   .article-content > p:first-of-type::first-letter { font-size: 48px; }
@@ -3074,3 +3073,43 @@ a.page-btn:hover { border-color: var(--blue); color: var(--blue); }
 .article-body .comment-form .submit:hover { background: var(--blue-hover); }
 .vb-nl-inline-msg { margin: 8px 0 0; font-size: 12.5px; color: var(--gold); }
 #nl-compact, #nl-grande, #footer-newsletter { scroll-margin-top: 90px; }
+
+/* ---------- Brand logo image (Safe — Informação Segura) ----------
+ * Replaces the old shield icon + text wordmark. The header uses the
+ * full-colour PNG (or the Customizer custom logo when one is set);
+ * the dark footer uses the white variant. Sources are 341×120 (2×).
+ */
+.nav-logo-img,
+.custom-logo-link .custom-logo {
+  display: block;
+  height: 44px;
+  width: auto;
+  max-width: none;
+}
+
+.custom-logo-link {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.footer-logo-img {
+  display: block;
+  height: 52px;
+  width: auto;
+}
+
+@media (max-width: 1024px) {
+  .custom-logo-link { position: absolute; left: 50%; transform: translateX(-50%); background: var(--white); padding: 0 4px; z-index: 1; }
+  .nav-logo-img,
+  .custom-logo-link .custom-logo { height: 38px; }
+}
+
+@media (max-width: 768px) {
+  .custom-logo-link { position: static; transform: none; padding: 0; }
+}
+
+@media (max-width: 360px) {
+  .nav-logo-img,
+  .custom-logo-link .custom-logo { height: 32px; }
+}

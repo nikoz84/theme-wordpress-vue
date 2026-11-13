@@ -39,7 +39,7 @@ test('Customizer Site title updates <title> but NOT the navbar brand (US2 / FR-0
   expect(newTitle.trim()).toBe('Anything Here');
 
   // 4. Navbar brand MUST remain "Safe Mídia" (decoupled)
-  const brandText = await page.locator('.logo-text').first().innerText();
+  const brandText = (await page.locator('.nav-logo-img, .custom-logo').first().getAttribute('alt')) ?? '';
   expect(brandText.trim()).toBe('Safe Mídia');
 
   // 4b. Footer brand MUST remain "Safe Mídia" too (US2 — feature 007)

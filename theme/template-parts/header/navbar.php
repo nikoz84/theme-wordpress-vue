@@ -25,14 +25,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 <header class="navbar">
 	<nav class="nav-inner">
 
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-logo">
-			<span class="logo-shield">
-				<svg width="18" height="20" viewBox="0 0 18 22" fill="none" aria-hidden="true">
-					<path d="M9 1L1.5 4.5V10.5C1.5 15.1 4.7 19.4 9 21C13.3 19.4 16.5 15.1 16.5 10.5V4.5L9 1Z" fill="white" fill-opacity=".92"/>
-				</svg>
-			</span>
-			<span class="logo-text">Safe <span>Mídia</span></span>
-		</a>
+		<?php if ( has_custom_logo() ) : ?>
+			<?php the_custom_logo(); ?>
+		<?php else : ?>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-logo" rel="home">
+				<img
+					class="nav-logo-img"
+					src="<?php echo esc_url( VB_THEME_URI . '/assets/images/logo.png' ); ?>"
+					width="341" height="120"
+					alt="<?php echo esc_attr__( 'Safe Mídia', 'vue-blocks' ); ?>"
+					decoding="async"
+					fetchpriority="high"
+				>
+			</a>
+		<?php endif; ?>
 
 		<span class="nav-sep" aria-hidden="true"></span>
 

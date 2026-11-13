@@ -22,7 +22,7 @@ export const SYNTHETIC_BODY = 'placeholder';
 export async function expectDockerHarnessUp(page: Page, baseURL: string) {
   const res = await page.goto(baseURL, { waitUntil: 'domcontentloaded' });
   expect(res?.status(), `Docker harness reachable`).toBeLessThan(400);
-  const brandText = await page.locator('.logo-text').first().innerText();
+  const brandText = (await page.locator('.nav-logo-img, .custom-logo').first().getAttribute('alt')) ?? '';
   expect(brandText.trim(), 'navbar brand reads Safe Mídia').toBe('Safe Mídia');
 }
 
