@@ -714,13 +714,67 @@ function vb_newsletter_subscribe() {
 		),
 		admin_url( 'admin-post.php' )
 	);
-	wp_mail(
-		$email,
-		/* translators: %s: site name */
-		sprintf( __( 'Confirme sua inscrição — %s', 'vue-blocks' ), get_bloginfo( 'name' ) ),
-		/* translators: %s: confirmation URL */
-		sprintf( __( "Olá!\n\nPara confirmar sua inscrição na newsletter, acesse:\n%s\n\nSe você não pediu a inscrição, ignore este e-mail.", 'vue-blocks' ), $confirm )
-	);
+	$site_name = get_bloginfo( 'name' );
+	$site_url  = home_url( '/' );
+	$logo_url  = VB_THEME_URI . '/assets/images/logo.png';
+
+	$subject = sprintf( __( 'Confirme sua inscrição — %s', 'vue-blocks' ), $site_name );
+
+	$message = '
+	<!DOCTYPE html>
+	<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>' . esc_html( $subject ) . '</title>
+	</head>
+	<body style="margin:0;padding:0;background-color:#f4f4f7;font-family:Inter,Arial,Helvetica,sans-serif;">
+		<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f7;padding:32px 16px;">
+			<tr>
+				<td align="center">
+					<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+						<tr>
+							<td style="background-color:#0f172a;padding:24px 32px;text-align:center;">
+								<img src="' . esc_url( $logo_url ) . '" alt="' . esc_attr( $site_name ) . '" width="160" style="display:block;margin:0 auto;height:auto;" />
+							</td>
+						</tr>
+						<tr>
+							<td style="padding:32px;">
+								<h1 style="margin:0 0 12px;font-size:22px;color:#0f172a;">Olá' . ( $name ? ', ' . esc_html( $name ) : '' ) . '!</h1>
+								<p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#334155;">
+									' . esc_html__( 'Obrigado por se inscrever na newsletter do', 'vue-blocks' ) . ' ' . esc_html( $site_name ) . '.
+									' . esc_html__( 'Para confirmar sua inscrição, clique no botão abaixo.', 'vue-blocks' ) . '
+								</p>
+								<table role="presentation" cellpadding="0" cellspacing="0" style="margin:24px 0;">
+									<tr>
+										<td align="center" style="background-color:#2563eb;border-radius:8px;">
+											<a href="' . esc_url( $confirm ) . '" style="display:inline-block;padding:14px 28px;font-size:16px;font-weight:600;color:#ffffff;text-decoration:none;">' . esc_html__( 'Confirmar inscrição', 'vue-blocks' ) . '</a>
+										</td>
+									</tr>
+								</table>
+								<p style="margin:0 0 16px;font-size:14px;line-height:1.6;color:#64748b;">
+									' . esc_html__( 'Se o botão não funcionar, copie e cole o link abaixo no seu navegador:', 'vue-blocks' ) . '<br>
+									<a href="' . esc_url( $confirm ) . '" style="color:#2563eb;word-break:break-all;">' . esc_html( $confirm ) . '</a>
+								</p>
+								<p style="margin:24px 0 0;font-size:13px;line-height:1.6;color:#94a3b8;">
+									' . esc_html__( 'Se você não pediu esta inscrição, ignore este e-mail.', 'vue-blocks' ) . '
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td style="background-color:#f8fafc;padding:16px 32px;text-align:center;font-size:12px;color:#94a3b8;">
+								&copy; ' . esc_html( date_i18n( 'Y' ) ) . ' ' . esc_html( $site_name ) . ' &middot; <a href="' . esc_url( $site_url ) . '" style="color:#94a3b8;text-decoration:none;">' . esc_html( $site_url ) . '</a>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+	</html>';
+
+	$headers = array( 'Content-Type: text/html; charset=UTF-8' );
+	wp_mail( $email, $subject, $message, $headers );
 
 	vb_newsletter_redirect( 'ok' );
 }
