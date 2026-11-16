@@ -650,6 +650,57 @@ function vb_campaign_analytics_page() {
 }
 
 /* =========================================================
+   11. DEFAULT EMAIL TEMPLATES
+   ========================================================= */
+
+function vb_campaign_seed_templates() {
+	if ( get_option( 'vb_campaign_templates_seeded' ) ) {
+		return;
+	}
+
+	$templates = array(
+		array(
+			'title'   => __( 'Newsletter padrão', 'vue-blocks' ),
+			'content' => '<div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;color:#0f172a;">'
+				. '<h1 style="font-size:24px;margin:0 0 16px;">' . esc_html__( 'Olá, {name}!', 'vue-blocks' ) . '</h1>'
+				. '<div style="font-size:16px;line-height:1.6;">{content}</div>'
+				. '<p style="margin-top:24px;font-size:12px;color:#64748b;">' . esc_html__( 'Você recebeu este e-mail porque se inscreveu na newsletter.', 'vue-blocks' ) . '</p>'
+				. '</div>',
+		),
+		array(
+			'title'   => __( 'Boletim semanal', 'vue-blocks' ),
+			'content' => '<div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;">'
+				. '<div style="background:#0f172a;padding:20px;text-align:center;"><span style="color:#ffffff;font-size:20px;font-weight:700;">' . esc_html__( 'Boletim Safe Mídia', 'vue-blocks' ) . '</span></div>'
+				. '<div style="padding:24px;font-size:16px;line-height:1.6;color:#0f172a;">{content}</div>'
+				. '<div style="padding:16px 24px;background:#f8fafc;font-size:12px;color:#64748b;">' . esc_html__( 'Resumo das principais notícias da semana.', 'vue-blocks' ) . '</div>'
+				. '</div>',
+		),
+		array(
+			'title'   => __( 'Promocional', 'vue-blocks' ),
+			'content' => '<div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;text-align:center;padding:32px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#ffffff;border-radius:12px;">'
+				. '<h1 style="margin:0 0 12px;font-size:26px;">{name}</h1>'
+				. '<div style="font-size:16px;line-height:1.6;margin:0 0 24px;">{content}</div>'
+				. '<a href="{unsubscribe_url}" style="display:inline-block;padding:12px 24px;background:#ffffff;color:#2563eb;font-weight:600;border-radius:8px;text-decoration:none;">' . esc_html__( 'Saiba mais', 'vue-blocks' ) . '</a>'
+				. '</div>',
+		),
+	);
+
+	foreach ( $templates as $tpl ) {
+		wp_insert_post(
+			array(
+				'post_type'    => 'vb_email_template',
+				'post_status'  => 'publish',
+				'post_title'   => $tpl['title'],
+				'post_content' => $tpl['content'],
+			)
+		);
+	}
+
+	update_option( 'vb_campaign_templates_seeded', 1 );
+}
+add_action( 'init', 'vb_campaign_seed_templates', 20 );
+
+/* =========================================================
    5. UNSUBSCRIBE ENDPOINT
    ========================================================= */
 
