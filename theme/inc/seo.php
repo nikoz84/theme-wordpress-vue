@@ -77,94 +77,121 @@ function vb_bot_cache_bypass() {
 add_action( 'template_redirect', 'vb_bot_cache_bypass', 1 );
 
 /**
- * Prints SEO/Open Graph meta tags for singular content.
+ * Prints SEO/Open Graph meta tags for singular content and front page.
  */
 if ( ! function_exists( 'adicionar_open_graph_whatsapp' ) ) {
 	function adicionar_open_graph_whatsapp() {
-		if ( ! is_single() && ! is_page() ) {
+		if ( ! is_single() && ! is_page() && ! is_front_page() ) {
 			return;
 		}
 
 		global $post;
-		if ( ! $post instanceof WP_Post ) {
-			return;
-		}
 
-		// Title.
-		$title = get_the_title( $post );
-		if ( '' === $title ) {
-			$title = get_bloginfo( 'name' );
-		}
+		$imagem_padrao = 'https://seusite.com.br'; // ALTERE AQUI
 
-		// Description (excerpt or trimmed content).
-		if ( ! empty( $post->post_excerpt ) ) {
-			$excerpt = $post->post_excerpt;
+		if ( ! is_front_page() && isset( $post->ID ) && has_post_thumbnail( $post->ID ) ) {
+			$img_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+			$img_src  = $img_data ? $img_data[0] : $imagem_padrao;
 		} else {
-			$excerpt = wp_trim_words( $post->post_content, 25, '...' );
-		}
-		$excerpt = wp_strip_all_tags( $excerpt );
-		$excerpt = str_replace( '"', "'", $excerpt );
-		$excerpt = trim( preg_replace( '/\s+/u', ' ', $excerpt ) );
-		if ( '' === $excerpt ) {
-			$excerpt = get_bloginfo( 'description' );
+			$img_src = $imagem_padrao;
 		}
 
-		// Featured image (or a sensible default).
-		$thumbnail_id = has_post_thumbnail( $post->ID ) ? (int) get_post_thumbnail_id( $post->ID ) : 0;
-		if ( $thumbnail_id ) {
-			$img_data = wp_get_attachment_image_src( $thumbnail_id, 'full' );
-			$img_src  = $img_data ? $img_data[0] : '';
-			$img_alt  = (string) get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true );
+		if ( is_front_page() ) {
+			$titulo    = get_bloginfo( 'name' );
+			$descricao = get_bloginfo( 'description' );
+			$url       = home_url( '/' );
+			$tipo      = 'website';
 		} else {
-			$img_src = VB_THEME_URI . '/assets/images/logo.png';
-			$img_alt = get_bloginfo( 'name' );
-		}
-		if ( '' === $img_alt ) {
-			$img_alt = $title;
-		}
-
-		$permalink = get_permalink( $post );
-		$site_name = get_bloginfo( 'name' );
-
-		// Standard SEO description.
-		echo '<meta name="description" content="' . esc_attr( $excerpt ) . '" />' . "\n";
-
-		// Open Graph.
-		echo '<meta property="og:title" content="' . esc_attr( $title ) . '" />' . "\n";
-		echo '<meta property="og:description" content="' . esc_attr( $excerpt ) . '" />' . "\n";
-		echo '<meta property="og:type" content="article" />' . "\n";
-		echo '<meta property="og:url" content="' . esc_url( $permalink ) . '" />' . "\n";
-		echo '<meta property="og:site_name" content="' . esc_attr( $site_name ) . '" />' . "\n";
-		echo '<meta property="og:locale" content="' . esc_attr( str_replace( '-', '_', get_locale() ) ) . '" />' . "\n";
-		if ( $img_src ) {
-			echo '<meta property="og:image" content="' . esc_url( $img_src ) . '" />' . "\n";
-			echo '<meta property="og:image:secure_url" content="' . esc_url( $img_src ) . '" />' . "\n";
-			echo '<meta property="og:image:alt" content="' . esc_attr( $img_alt ) . '" />' . "\n";
-			echo '<meta property="og:image:width" content="1200" />' . "\n";
-			echo '<meta property="og:image:height" content="630" />' . "\n";
+			$titulo    = get_the_title();
+			$excerpt   = isset( $post->post_excerpt ) && $post->post_excerpt ? $post->post_excerpt : wp_trim_words( $post->post_content, 25, '...' );
+			$descricao = str_replace( '"', "'", wp_strip_all_tags( $excerpt ) );
+			$url       = get_permalink();
+			$tipo      = 'article';
 		}
 
-		// Article metadata.
-		echo '<meta property="article:published_time" content="' . esc_attr( get_post_time( 'c', true, $post ) ) . '" />' . "\n";
-		echo '<meta property="article:modified_time" content="' . esc_attr( get_post_modified_time( 'c', true, $post ) ) . '" />' . "\n";
-		$author = get_the_author_meta( 'display_name', (int) $post->post_author );
-		if ( $author ) {
-			echo '<meta property="article:author" content="' . esc_attr( $author ) . '" />' . "\n";
-		}
-		$categories = get_the_category( $post->ID );
-		if ( ! empty( $categories ) ) {
-			echo '<meta property="article:section" content="' . esc_attr( $categories[0]->name ) . '" />' . "\n";
-		}
+		echo '<meta property="og:title" content="' . esc_attr( $titulo ) . '" />' . "\n";
+		echo '<meta property="og:description" content="' . esc_attr( $descricao ) . '" />' . "\n";
+		echo '<meta property="og:type" content="' . esc_attr( $tipo ) . '" />' . "\n";
+		echo '<meta property="og:url" content="' . esc_url( $url ) . '" />' . "\n";
+		echo '<meta property="og:site_name" content="' . esc_attr( get_bloginfo( 'name' ) ) . '" />' . "\n";
+		echo '<meta property="og:image" content="' . esc_url( $img_src ) . '" />' . "\n";
+		echo '<meta property="og:image:width" content="1200" />' . "\n";
+		echo '<meta property="og:image:height" content="630" />' . "\n";
 
-		// Twitter Card.
+		// Keep Twitter Card tags in sync too.
 		echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
-		echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '" />' . "\n";
-		echo '<meta name="twitter:description" content="' . esc_attr( $excerpt ) . '" />' . "\n";
-		if ( $img_src ) {
-			echo '<meta name="twitter:image" content="' . esc_url( $img_src ) . '" />' . "\n";
-			echo '<meta name="twitter:image:alt" content="' . esc_attr( $img_alt ) . '" />' . "\n";
-		}
-		echo '<meta name="twitter:url" content="' . esc_url( $permalink ) . '" />' . "\n";
+		echo '<meta name="twitter:title" content="' . esc_attr( $titulo ) . '" />' . "\n";
+		echo '<meta name="twitter:description" content="' . esc_attr( $descricao ) . '" />' . "\n";
+		echo '<meta name="twitter:image" content="' . esc_url( $img_src ) . '" />' . "\n";
 	}
 }
 add_action( 'wp_head', 'adicionar_open_graph_whatsapp', 5 );
+
+
+/**
+ * 2. FUNÇÃO PROGRAMÁTICA PARA LIMPAR O LITESPEED CACHE
+ */
+if ( ! function_exists( 'limpar_cache_litespeed' ) ) {
+	function limpar_cache_litespeed( $tipo = 'all', $alvo = '' ) {
+		if ( ! defined( 'LSCWP_V' ) ) {
+			return false;
+		}
+
+		switch ( $tipo ) {
+			case 'post':
+				if ( ! empty( $alvo ) && is_numeric( $alvo ) ) {
+					do_action( 'litespeed_purge_post', (int) $alvo );
+					return true;
+				}
+				break;
+
+			case 'url':
+				if ( ! empty( $alvo ) && filter_var( $alvo, FILTER_VALIDATE_URL ) ) {
+					do_action( 'litespeed_purge_url', esc_url_raw( $alvo ) );
+					return true;
+				}
+				break;
+
+			case 'all':
+			default:
+				do_action( 'litespeed_purge_all' );
+				return true;
+		}
+
+		return false;
+	}
+}
+
+/**
+ * 3. GATILHO AUTOMÁTICO AO SALVAR POSTS OU PÁGINAS
+ */
+add_action( 'save_post', function ( $post_id ) {
+	if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+		return;
+	}
+	limpar_cache_litespeed( 'post', $post_id );
+} );
+
+
+/**
+ * 4. WEBHOOK (URL SECRETA PARA LIMPEZA REMOTA)
+ * Uso: https://seusite.com.br/?limpar_cache_token=SEU_TOKEN
+ */
+add_action( 'init', function () {
+	$token_secreto = 'MUDE_PARA_UMA_SENHA_FORTE_123'; // ALTERE AQUI
+
+	if ( isset( $_GET['limpar_cache_token'] ) && $_GET['limpar_cache_token'] === $token_secreto ) {
+		$tipo = isset( $_GET['tipo'] ) ? sanitize_text_field( wp_unslash( $_GET['tipo'] ) ) : 'all';
+		$alvo = isset( $_GET['alvo'] ) ? sanitize_text_field( wp_unslash( $_GET['alvo'] ) ) : '';
+
+		$sucesso = limpar_cache_litespeed( $tipo, $alvo );
+
+		wp_send_json(
+			array(
+				'status'   => $sucesso ? 'sucesso' : 'erro',
+				'mensagem' => $sucesso ? 'Cache do LiteSpeed limpo com sucesso.' : 'Plugin inativo ou parâmetros inválidos.',
+				'tipo'     => $tipo,
+			)
+		);
+	}
+} );
