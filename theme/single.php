@@ -106,7 +106,7 @@ while ( have_posts() ) :
 					<?php if ( has_post_thumbnail() ) : ?>
 						<?php the_post_thumbnail( 'large' ); ?>
 					<?php else : ?>
-						<img src="<?php echo esc_url( vb_placeholder_image() ); ?>" alt="" />
+						<img src="<?php echo esc_url( vb_placeholder_image() ); ?>" alt="" decoding="async" fetchpriority="high" />
 					<?php endif; ?>
 				</div>
 				<?php $vb_caption = has_post_thumbnail() ? wp_get_attachment_caption( get_post_thumbnail_id() ) : ''; ?>

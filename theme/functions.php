@@ -454,6 +454,7 @@ remove_action( 'wp_head', 'wp_generator' );
  * 9. ARQUIVOS AUXILIARES (mantém functions.php organizado)
  */
 require VB_THEME_DIR . '/inc/template-tags.php';
+require VB_THEME_DIR . '/inc/seo.php';
 require VB_THEME_DIR . '/inc/build-manifest.php';
 require VB_THEME_DIR . '/inc/segurado.php';
 require VB_THEME_DIR . '/inc/nav-walker.php';
