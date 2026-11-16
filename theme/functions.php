@@ -463,6 +463,7 @@ add_filter( 'wp_editor_set_quality', function () { return 82; } );
  */
 require VB_THEME_DIR . '/inc/template-tags.php';
 require VB_THEME_DIR . '/inc/seo.php';
+require VB_THEME_DIR . '/inc/campaigns.php';
 require VB_THEME_DIR . '/inc/build-manifest.php';
 require VB_THEME_DIR . '/inc/segurado.php';
 require VB_THEME_DIR . '/inc/nav-walker.php';
