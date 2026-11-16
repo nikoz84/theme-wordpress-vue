@@ -451,6 +451,14 @@ add_filter( 'excerpt_more', 'vb_excerpt_more' );
 remove_action( 'wp_head', 'wp_generator' );
 
 /**
+ * Reduce generated JPEG quality to keep uploaded images under ~300 KB
+ * where possible. PNGs are not affected; convert/compress them before
+ * upload for best results.
+ */
+add_filter( 'jpeg_quality', function () { return 82; } );
+add_filter( 'wp_editor_set_quality', function () { return 82; } );
+
+/**
  * 9. ARQUIVOS AUXILIARES (mantém functions.php organizado)
  */
 require VB_THEME_DIR . '/inc/template-tags.php';

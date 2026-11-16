@@ -178,7 +178,7 @@ add_action( 'save_post', function ( $post_id ) {
  * Uso: https://seusite.com.br/?limpar_cache_token=SEU_TOKEN
  */
 add_action( 'init', function () {
-	$token_secreto = 'MUDE_PARA_UMA_SENHA_FORTE_123'; // ALTERE AQUI
+	$token_secreto = '6985465asd56488asd464.kuiasu'; // ALTERE AQUI
 
 	if ( isset( $_GET['limpar_cache_token'] ) && $_GET['limpar_cache_token'] === $token_secreto ) {
 		$tipo = isset( $_GET['tipo'] ) ? sanitize_text_field( wp_unslash( $_GET['tipo'] ) ) : 'all';
